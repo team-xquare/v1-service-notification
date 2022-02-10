@@ -1,1 +1,10 @@
-
+spring:
+  jpa:
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    password: ${DB_PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER}
+    url: jdbc:mysql://${DB_URL}:3306/${DB_NAME}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
