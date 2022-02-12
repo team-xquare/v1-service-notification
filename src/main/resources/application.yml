@@ -3,6 +3,9 @@ spring:
     generate-ddl: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+
   datasource:
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
