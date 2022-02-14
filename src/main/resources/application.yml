@@ -4,7 +4,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
   datasource:
     password: ${DB_PASSWORD}
