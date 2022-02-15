@@ -6,6 +6,8 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 @Entity
 class NotificationCategory(
@@ -15,12 +17,14 @@ class NotificationCategory(
         @Column(columnDefinition = "BINARY(16)")
         val id: UUID,
 
-        @Column(length = 20, nullable = false)
+        @field:Size(max = 20)
+        @field:NotNull
         val name: String,
 
-        @Column(nullable = false)
+        @field:NotNull
         val destination: String,
 
-        @Column(columnDefinition = "TINYINT(1)", nullable = false)
+        @Column(columnDefinition = "TINYINT(1)")
+        @field:NotNull
         val defaultActivated: Boolean
-        )
+)
