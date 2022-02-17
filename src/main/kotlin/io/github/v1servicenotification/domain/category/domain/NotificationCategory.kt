@@ -9,8 +9,6 @@ import javax.validation.constraints.Size
 
 @Entity
 class NotificationCategory(
-        id: UUID,
-
         @field:Size(max = 20)
         @field:NotNull
         val name: String,
@@ -21,4 +19,4 @@ class NotificationCategory(
         @Column(columnDefinition = "TINYINT(1)")
         @field:NotNull
         val defaultActivated: Boolean
-) : BaseUUIDEntity(id)
+) : BaseUUIDEntity()
