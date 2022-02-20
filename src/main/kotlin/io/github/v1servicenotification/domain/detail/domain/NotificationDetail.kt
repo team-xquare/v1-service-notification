@@ -9,8 +9,9 @@ import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-@Entity
+@Table(name = "tbl_notification_detail")
 @EntityListeners(value =  [AuditingEntityListener::class])
+@Entity
 class NotificationDetail(
         @field:Size(max = 20)
         @field:NotNull()
