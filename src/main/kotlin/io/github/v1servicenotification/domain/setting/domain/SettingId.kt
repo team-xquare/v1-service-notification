@@ -6,13 +6,12 @@ import java.util.*
 import javax.persistence.*
 
 @Embeddable
-class SettingId : Serializable {
+class SettingId(
 
-    @Column(columnDefinition = "BINARY(16)")
-    private var user_id: UUID? = null
+        @Column(columnDefinition = "BINARY(16)")
+        private var userId: UUID,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id")
-    private var document: NotificationCategory? = null
-
-}
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "category_id")
+        private var notificationCategory: NotificationCategory
+) : Serializable
