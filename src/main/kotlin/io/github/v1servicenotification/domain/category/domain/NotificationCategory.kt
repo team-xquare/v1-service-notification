@@ -17,7 +17,7 @@ class NotificationCategory(
         @field:NotNull
         val destination: String,
 
-        @Column(columnDefinition = "TINYINT(1)")
         @field:NotNull
+        @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
         val defaultActivated: Boolean
 ) : BaseUUIDEntity()

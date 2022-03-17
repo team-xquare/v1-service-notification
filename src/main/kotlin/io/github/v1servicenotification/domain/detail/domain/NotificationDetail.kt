@@ -4,6 +4,7 @@ import io.github.v1servicenotification.domain.category.domain.NotificationCatego
 import io.github.v1servicenotification.global.entity.BaseUUIDEntity
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -22,7 +23,7 @@ class NotificationDetail(
 
         @CreatedDate
         @field:NotNull
-        val sentAt: String,
+        val sentAt: LocalDateTime,
 
         @field:NotNull
         var isRead: Boolean,
