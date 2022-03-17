@@ -30,7 +30,7 @@ class NotificationDetail(
         @field:NotNull()
         val userId: UUID,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
         @JoinColumn(name = "notification_category_id")
         val notificationCategory: NotificationCategory
 
