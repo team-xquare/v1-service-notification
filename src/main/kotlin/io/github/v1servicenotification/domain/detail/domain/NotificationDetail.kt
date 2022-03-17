@@ -15,23 +15,23 @@ import javax.validation.constraints.Size
 @Entity
 class NotificationDetail(
         @field:Size(max = 20)
-        @field:NotNull()
+        @field:NotNull
         val title: String,
 
-        @field:NotNull()
+        @field:NotNull
         val content: String,
 
         @CreatedDate
-        @field:NotNull()
+        @field:NotNull
         val sentAt: LocalDateTime,
 
-        @field:NotNull()
+        @field:NotNull
         var isRead: Boolean,
 
-        @field:NotNull()
+        @field:NotNull
         val userId: UUID,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
         @JoinColumn(name = "notification_category_id")
         val notificationCategory: NotificationCategory
 

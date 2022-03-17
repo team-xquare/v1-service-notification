@@ -7,7 +7,7 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-@Table(name = "tbl_ notification_category")
+@Table(name = "tbl_notification_category")
 @Entity
 class NotificationCategory(
         @field:Size(max = 20)
