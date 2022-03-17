@@ -6,7 +6,7 @@ import java.util.*
 import javax.persistence.*
 
 @Embeddable
-class SettingId(
+data class SettingId(
 
         @Column(columnDefinition = "BINARY(16)")
         private var userId: UUID,
