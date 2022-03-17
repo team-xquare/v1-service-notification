@@ -9,9 +9,9 @@ import javax.persistence.*
 data class SettingId(
 
         @Column(columnDefinition = "BINARY(16)")
-        private var userId: UUID,
+        val userId: UUID,
 
         @ManyToOne(fetch = FetchType.LAZY, optional = false)
         @JoinColumn(name = "category_id")
-        private var notificationCategory: NotificationCategory
+        val notificationCategory: NotificationCategory
 ) : Serializable
