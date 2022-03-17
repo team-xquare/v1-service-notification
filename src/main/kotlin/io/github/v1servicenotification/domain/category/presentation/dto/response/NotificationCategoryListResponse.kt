@@ -2,6 +2,4 @@ package io.github.v1servicenotification.domain.category.presentation.dto.respons
 
 class NotificationCategoryListResponse(
         val categories: List<NotificationCategory>
-) {
-
-}
+)
