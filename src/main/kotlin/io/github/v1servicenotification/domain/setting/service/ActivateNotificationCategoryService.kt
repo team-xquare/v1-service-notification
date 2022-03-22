@@ -4,6 +4,7 @@ import io.github.v1servicenotification.domain.category.domain.repository.Notific
 import io.github.v1servicenotification.domain.setting.domain.NotificationSetting
 import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.domain.repository.NotificationSettingRepository
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -13,20 +14,30 @@ class ActivateNotificationCategoryService(
         private val notificationSettingRepository: NotificationSettingRepository
 ) {
 
-    fun execute(categoryUUID: UUID) {
+    fun execute(categoryUUID: UUID): Int {
         val notificationCategory = notificationCategoryRepository.findById(categoryUUID)
                 .orElseThrow {
                     RuntimeException() //TODO Error handling 구현 후 예외 처리하기
                 }
-        notificationSettingRepository.save(
-                NotificationSetting(
-                        settingId = SettingId(
-                                userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
-                                notificationCategory = notificationCategory
-                        ),
-                    isActivated = true
-                )
+
+        val settingId = SettingId(
+                userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
+                notificationCategory = notificationCategory
         )
+
+        return if(notificationSettingRepository.findBySettingId(settingId) != null) {
+            notificationSettingRepository.findBySettingId(settingId)!!
+                    .isActivated = true
+            HttpStatus.NO_CONTENT.value()
+        } else {
+            notificationSettingRepository.save(
+                    NotificationSetting(
+                            settingId = settingId,
+                            isActivated = true
+                    )
+            )
+            HttpStatus.CREATED.value()
+        }
     }
 
 }
