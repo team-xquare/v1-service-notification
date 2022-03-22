@@ -7,4 +7,5 @@ import java.util.*
 
 @Repository
 interface NotificationCategoryRepository : CrudRepository<NotificationCategory, UUID> {
+    fun findAllByDefaultActivatedIsTrue(): List<NotificationCategory>
 }
