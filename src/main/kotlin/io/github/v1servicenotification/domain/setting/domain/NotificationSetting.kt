@@ -15,5 +15,9 @@ class NotificationSetting(
 
         @field:NotNull
         @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-        var isActivated: Boolean
-)
+        private var isActivated: Boolean
+) {
+    fun activateNotification() {
+        this.isActivated = true
+    }
+}

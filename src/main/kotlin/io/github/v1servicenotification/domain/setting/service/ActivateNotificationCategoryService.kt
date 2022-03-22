@@ -6,6 +6,7 @@ import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.domain.repository.NotificationSettingRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
@@ -14,6 +15,7 @@ class ActivateNotificationCategoryService(
         private val notificationSettingRepository: NotificationSettingRepository
 ) {
 
+    @Transactional
     fun execute(categoryUUID: UUID): Int {
         val notificationCategory = notificationCategoryRepository.findById(categoryUUID)
                 .orElseThrow {
@@ -25,9 +27,9 @@ class ActivateNotificationCategoryService(
                 notificationCategory = notificationCategory
         )
 
-        return if(notificationSettingRepository.findBySettingId(settingId) != null) {
+        return if (notificationSettingRepository.findBySettingId(settingId) != null) {
             notificationSettingRepository.findBySettingId(settingId)!!
-                    .isActivated = true
+                    .activateNotification()
             HttpStatus.NO_CONTENT.value()
         } else {
             notificationSettingRepository.save(
