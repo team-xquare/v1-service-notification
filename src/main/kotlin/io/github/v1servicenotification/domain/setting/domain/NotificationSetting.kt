@@ -10,13 +10,19 @@ import javax.validation.constraints.NotNull
 @Table(name = "tbl_notification_setting")
 @Entity
 class NotificationSetting(
-        @EmbeddedId
-        val settingId: SettingId,
-
-        @field:NotNull
-        @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-        private var isActivated: Boolean
+        settingId: SettingId,
+        isActivated: Boolean
 ) {
+
+    @EmbeddedId
+    val settingId: SettingId = settingId
+
+
+    @field:NotNull
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    var isActivated: Boolean = isActivated
+        protected set
+
     fun activateNotification() {
         this.isActivated = true
     }
