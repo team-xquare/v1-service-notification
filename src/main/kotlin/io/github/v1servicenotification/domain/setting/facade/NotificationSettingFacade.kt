@@ -14,7 +14,7 @@ class NotificationSettingFacade(
         private val notificationSettingRepository: NotificationSettingRepository
 ) {
 
-    fun saveNotificationSetting(categoryUUID: UUID, isActivate: Boolean): Int {
+    fun saveOrUpdateNotificationSetting(categoryUUID: UUID, isActivate: Boolean): Int {
         val notificationCategory = notificationCategoryRepository.findById(categoryUUID)
                 .orElseThrow {
                     RuntimeException() //TODO Error handling 구현 후 예외 처리하기

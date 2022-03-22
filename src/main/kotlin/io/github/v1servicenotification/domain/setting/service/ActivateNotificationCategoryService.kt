@@ -12,7 +12,7 @@ class ActivateNotificationCategoryService(
 
     @Transactional
     fun execute(categoryUUID: UUID): Int {
-        return notificationSettingFacade.saveNotificationSetting(categoryUUID, true)
+        return notificationSettingFacade.saveOrUpdateNotificationSetting(categoryUUID, true)
     }
 
 }
