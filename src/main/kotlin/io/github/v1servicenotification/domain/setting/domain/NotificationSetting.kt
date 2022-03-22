@@ -23,7 +23,8 @@ class NotificationSetting(
     var isActivated: Boolean = isActivated
         protected set
 
-    fun activateNotification() {
-        this.isActivated = true
+    fun changeIsActivate(isActivated: Boolean) {
+        this.isActivated = isActivated;
     }
+
 }

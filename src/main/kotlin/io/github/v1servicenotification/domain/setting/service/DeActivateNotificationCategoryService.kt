@@ -6,13 +6,13 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
-class ActivateNotificationCategoryService(
+class DeActivateNotificationCategoryService(
         private val notificationSettingFacade: NotificationSettingFacade
 ) {
 
     @Transactional
     fun execute(categoryUUID: UUID): Int {
-        return notificationSettingFacade.saveOrUpdateNotificationSetting(categoryUUID, true)
+        return notificationSettingFacade.saveOrUpdateNotificationSetting(categoryUUID, false)
     }
 
 }
