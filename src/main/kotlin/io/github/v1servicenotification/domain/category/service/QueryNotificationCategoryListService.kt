@@ -16,6 +16,7 @@ class QueryNotificationCategoryListService(
                 notificationCategoryRepository.findAll()
                         .map {
                             NotificationCategory(
+                                    id = it.id,
                                     name = it.name,
                                     destination = it.destination
                             )

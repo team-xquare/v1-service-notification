@@ -11,6 +11,6 @@ import javax.persistence.MappedSuperclass
 abstract class BaseUUIDEntity {
     @Id
     @Column(columnDefinition = "BINARY(16)")
-    private val id: UUID = UUID.randomUUID()
+    val id: UUID = UUID.randomUUID()
 
 }
