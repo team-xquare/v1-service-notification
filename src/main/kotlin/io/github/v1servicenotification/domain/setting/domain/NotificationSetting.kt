@@ -15,5 +15,5 @@ class NotificationSetting(
 
         @field:NotNull
         @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-        val isActivated: Boolean
+        var isActivated: Boolean
 )
