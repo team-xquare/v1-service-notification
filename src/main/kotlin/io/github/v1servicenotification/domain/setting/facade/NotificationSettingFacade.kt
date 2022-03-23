@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.domain.setting.facade
 
-import io.github.v1servicenotification.domain.category.domain.repository.NotificationCategoryRepository
+import io.github.v1servicenotification.domain.category.facade.CategoryFacade
 import io.github.v1servicenotification.domain.setting.domain.NotificationSetting
 import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.domain.repository.NotificationSettingRepository
@@ -10,15 +10,12 @@ import java.util.*
 
 @Component
 class NotificationSettingFacade(
-        private val notificationCategoryRepository: NotificationCategoryRepository,
+        private val categoryFacade: CategoryFacade,
         private val notificationSettingRepository: NotificationSettingRepository
 ) {
 
     fun saveOrUpdateNotificationSetting(categoryUUID: UUID, isActivate: Boolean): Int {
-        val notificationCategory = notificationCategoryRepository.findById(categoryUUID)
-                .orElseThrow {
-                    RuntimeException() //TODO Error handling 구현 후 예외 처리하기
-                }
+        val notificationCategory = categoryFacade.getCategoryById(categoryUUID)
 
         val settingId = SettingId(
                 userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
