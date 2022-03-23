@@ -12,7 +12,7 @@ class QueryActivatedCategory(
 
     fun execute(): NotificationCategoryListResponse {
         return NotificationCategoryListResponse(
-                notificationCategoryRepository.findByDefaultActivatedIsTrue()
+                notificationCategoryRepository.findAllByDefaultActivatedIsTrue()
                         .map {
                             NotificationCategory(
                                     id = it.id,
