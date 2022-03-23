@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository
 import java.util.*
 
 interface NotificationDetailRepository : CrudRepository<NotificationDetail, UUID> {
+    fun findAllByUserId(userId: UUID): List<NotificationDetail>
 }
