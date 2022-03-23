@@ -35,4 +35,14 @@ class NotificationDetail(
         @JoinColumn(name = "notification_category_id")
         val notificationCategory: NotificationCategory
 
-) : BaseUUIDEntity()
+) : BaseUUIDEntity() {
+
+        fun getCategoryName(): String {
+                return notificationCategory.name
+        }
+
+        fun getCategoryDestination(): String {
+                return notificationCategory.destination
+        }
+
+}
