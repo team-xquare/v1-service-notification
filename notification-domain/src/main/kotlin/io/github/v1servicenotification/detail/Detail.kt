@@ -1,7 +1,6 @@
 package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.annotation.Aggregate
-import io.github.v1servicenotification.category.NotificationCategory
 import java.time.LocalDateTime
 import java.util.*
 
@@ -17,16 +16,6 @@ class NotificationDetail(
 
     val userId: UUID,
 
-    private val notificationCategory: NotificationCategory
+    val notificationCategoryId: UUID
 
-) {
-
-    fun getCategoryName(): String {
-        return notificationCategory.name
-    }
-
-    fun getCategoryDestination(): String {
-        return notificationCategory.destination
-    }
-
-}
+)

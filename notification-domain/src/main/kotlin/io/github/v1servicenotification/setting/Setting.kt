@@ -1,14 +1,13 @@
 package io.github.v1servicenotification.setting
 
 import io.github.v1servicenotification.annotation.Aggregate
-import io.github.v1servicenotification.category.NotificationCategory
 import java.util.*
 
 @Aggregate
 class NotificationSetting(
     val userId: UUID,
 
-    val notificationCategory: NotificationCategory,
+    val notificationCategoryId: UUID,
 
     isActivated: Boolean
 ) {
