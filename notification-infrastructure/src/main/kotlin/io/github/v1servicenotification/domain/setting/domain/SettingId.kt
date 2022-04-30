@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.domain.setting.domain
 
-import io.github.v1servicenotification.domain.category.domain.NotificationCategory
+import io.github.v1servicenotification.domain.category.domain.CategoryEntity
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
@@ -13,5 +13,5 @@ data class SettingId(
 
         @ManyToOne(fetch = FetchType.LAZY, optional = false)
         @JoinColumn(name = "category_id")
-        val notificationCategory: NotificationCategory
+        val categoryEntity: CategoryEntity
 ) : Serializable

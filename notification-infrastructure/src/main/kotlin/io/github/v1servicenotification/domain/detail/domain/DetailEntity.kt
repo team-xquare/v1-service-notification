@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.domain.detail.domain
 
-import io.github.v1servicenotification.domain.category.domain.NotificationCategory
+import io.github.v1servicenotification.domain.category.domain.CategoryEntity
 import io.github.v1servicenotification.global.entity.BaseUUIDEntity
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -13,7 +13,7 @@ import javax.validation.constraints.Size
 @Table(name = "tbl_notification_detail")
 @EntityListeners(value =  [AuditingEntityListener::class])
 @Entity
-class NotificationDetail(
+class DetailEntity(
         @field:Size(max = 20)
         @field:NotNull
         val title: String,
@@ -33,16 +33,16 @@ class NotificationDetail(
 
         @ManyToOne(fetch = FetchType.LAZY, optional = false)
         @JoinColumn(name = "notification_category_id")
-        val notificationCategory: NotificationCategory
+        val categoryEntity: CategoryEntity
 
 ) : BaseUUIDEntity() {
 
         fun getCategoryName(): String {
-                return notificationCategory.name
+                return categoryEntity.name
         }
 
         fun getCategoryDestination(): String {
-                return notificationCategory.destination
+                return categoryEntity.destination
         }
 
 }

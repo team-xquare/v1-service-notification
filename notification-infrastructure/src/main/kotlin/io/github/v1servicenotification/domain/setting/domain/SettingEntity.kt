@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull
 
 @Table(name = "tbl_notification_setting")
 @Entity
-class NotificationSetting(
+class SettingEntity(
         settingId: SettingId,
         isActivated: Boolean
 ) {
