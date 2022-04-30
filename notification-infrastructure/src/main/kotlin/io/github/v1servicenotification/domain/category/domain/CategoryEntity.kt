@@ -10,14 +10,14 @@ import javax.validation.constraints.Size
 @Table(name = "tbl_notification_category")
 @Entity
 class CategoryEntity(
-        @field:Size(max = 20)
-        @field:NotNull
-        val name: String,
+    @field:Size(max = 20)
+    @field:NotNull
+    val name: String,
 
-        @field:NotNull
-        val destination: String,
+    @field:NotNull
+    val destination: String,
 
-        @field:NotNull
-        @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-        val defaultActivated: Boolean
+    @field:NotNull
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    val defaultActivated: Boolean
 ) : BaseUUIDEntity()
