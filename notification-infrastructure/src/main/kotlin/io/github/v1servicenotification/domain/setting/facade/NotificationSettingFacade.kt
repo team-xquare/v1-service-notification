@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.domain.setting.facade
 
 import io.github.v1servicenotification.domain.category.facade.CategoryFacade
-import io.github.v1servicenotification.domain.setting.domain.NotificationSetting
+import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.domain.repository.NotificationSettingRepository
 import org.springframework.http.HttpStatus
@@ -19,7 +19,7 @@ class NotificationSettingFacade(
 
         val settingId = SettingId(
                 userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
-                notificationCategory = notificationCategory
+                categoryEntity = notificationCategory
         )
 
         return if (notificationSettingRepository.findBySettingId(settingId) != null) {
@@ -28,7 +28,7 @@ class NotificationSettingFacade(
             HttpStatus.NO_CONTENT.value()
         } else {
             notificationSettingRepository.save(
-                    NotificationSetting(
+                    SettingEntity(
                             settingId = settingId,
                             isActivated = isActivate
                     )

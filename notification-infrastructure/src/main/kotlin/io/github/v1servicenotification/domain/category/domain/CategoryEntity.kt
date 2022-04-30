@@ -9,7 +9,7 @@ import javax.validation.constraints.Size
 
 @Table(name = "tbl_notification_category")
 @Entity
-class NotificationCategory(
+class CategoryEntity(
         @field:Size(max = 20)
         @field:NotNull
         val name: String,

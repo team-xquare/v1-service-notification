@@ -4,7 +4,7 @@ import io.github.v1servicenotification.annotation.Aggregate
 import java.util.*
 
 @Aggregate
-class NotificationSetting(
+class Setting(
     val userId: UUID,
 
     val notificationCategoryId: UUID,

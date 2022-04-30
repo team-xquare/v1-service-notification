@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.category.queryCategory.api
 
-import io.github.v1servicenotification.category.NotificationCategory
+import io.github.v1servicenotification.category.Category
 
 interface QueryActivatedCategory {
-    suspend fun queryActivatedCategory(): List<NotificationCategory>
+    suspend fun queryActivatedCategory(): List<Category>
 }
