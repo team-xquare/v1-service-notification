@@ -19,9 +19,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("mysql:mysql-connector-java")
 
+    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     implementation(project(":notification-domain"))
+}
+
+kapt {
+    arguments {
+        arg("mapstruct.defaultComponentModel", "spring")
+    }
 }
 
 allOpen {
