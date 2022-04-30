@@ -8,10 +8,10 @@ import javax.persistence.*
 @Embeddable
 data class SettingId(
 
-        @Column(columnDefinition = "BINARY(16)")
-        val userId: UUID,
+    @Column(columnDefinition = "BINARY(16)")
+    val userId: UUID,
 
-        @ManyToOne(fetch = FetchType.LAZY, optional = false)
-        @JoinColumn(name = "category_id")
-        val categoryEntity: CategoryEntity
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id")
+    val categoryEntity: CategoryEntity
 ) : Serializable

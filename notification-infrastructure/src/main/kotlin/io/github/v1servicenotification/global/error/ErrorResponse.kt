@@ -3,7 +3,7 @@ package io.github.v1servicenotification.global.error
 import io.github.v1servicenotification.global.error.exception.ErrorCode
 
 class ErrorResponse(
-        errorCode: ErrorCode
+    errorCode: ErrorCode
 ) {
 
     private val status: Int = errorCode.status

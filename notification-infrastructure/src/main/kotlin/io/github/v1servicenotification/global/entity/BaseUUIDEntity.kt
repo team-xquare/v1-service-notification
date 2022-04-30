@@ -1,9 +1,7 @@
 package io.github.v1servicenotification.global.entity
 
-import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.Column
-import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 

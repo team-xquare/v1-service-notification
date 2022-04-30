@@ -7,7 +7,7 @@ import java.util.*
 
 @Service
 class DeActivateNotificationCategoryService(
-        private val notificationSettingFacade: NotificationSettingFacade
+    private val notificationSettingFacade: NotificationSettingFacade
 ) {
 
     @Transactional

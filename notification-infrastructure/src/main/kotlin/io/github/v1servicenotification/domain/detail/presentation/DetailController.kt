@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class DetailController(
-        private val queryNotificationDetailListService: QueryNotificationDetailListService
+    private val queryNotificationDetailListService: QueryNotificationDetailListService
 ) {
 
     @GetMapping("/")
