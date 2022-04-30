@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.category.queryCategory.api
 
-import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
 
 interface QueryNotificationCategory {
-    suspend fun queryNotificationCategory(): List<Category>
+    fun queryNotificationCategory(): CategoryListResponse
 }

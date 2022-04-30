@@ -6,5 +6,5 @@ import java.util.*
 
 @Spi
 interface DetailRepositorySpi {
-    suspend fun findAllByUserId(userId: UUID): List<Detail>
+    fun findAllByUserId(userId: UUID): List<Detail>
 }
