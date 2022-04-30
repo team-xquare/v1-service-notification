@@ -17,7 +17,7 @@ subprojects {
 }
 
 allprojects {
-    group = "com.xquare"
+    group = "io.github"
     version = "0.0.1-SNAPSHOT"
 
     tasks {
@@ -40,8 +40,4 @@ allprojects {
     repositories {
         mavenCentral()
     }
-}
-
-repositories {
-    mavenCentral()
 }
