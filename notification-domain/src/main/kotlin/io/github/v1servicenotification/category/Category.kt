@@ -4,7 +4,7 @@ import io.github.v1servicenotification.annotation.Aggregate
 import java.util.*
 
 @Aggregate
-class NotificationCategory(
+class Category(
     val id: UUID = UUID.randomUUID(),
 
     val name: String,

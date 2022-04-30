@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Aggregate
-class NotificationDetail(
+class Detail(
     val title: String,
 
     val content: String,
