@@ -1,9 +1,9 @@
-package io.github.v1servicenotification.detail.queryDetail.api.dto
+package io.github.v1servicenotification.detail.queryDetail.api.dto.response
 
 import java.time.LocalDateTime
 import java.util.*
 
-class NotificationDetailResponse(
+class DetailElement(
     val id: UUID,
     val title: String,
     val content: String,
