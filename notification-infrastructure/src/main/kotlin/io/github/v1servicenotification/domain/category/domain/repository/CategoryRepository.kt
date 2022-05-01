@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface NotificationCategoryRepository : CrudRepository<CategoryEntity, UUID> {
+interface CategoryRepository : CrudRepository<CategoryEntity, UUID> {
     fun findAllByDefaultActivatedIsTrue(): List<CategoryEntity>
 }

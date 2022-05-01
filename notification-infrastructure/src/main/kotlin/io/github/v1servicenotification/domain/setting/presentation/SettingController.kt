@@ -9,15 +9,17 @@ import java.util.*
 @RequestMapping("/tags")
 @RestController
 class SettingController(
-        private val activateNotificationCategoryService: ActivateNotificationCategoryService,
-        private val deActivateNotificationCategoryService: ActivateNotificationCategoryService
+    private val activateNotificationCategoryService: ActivateNotificationCategoryService,
+    private val deActivateNotificationCategoryService: ActivateNotificationCategoryService
 ) {
 
     @PatchMapping("/{category-uuid}")
     fun activateNotificationCategory(@PathVariable("category-uuid") uuid: UUID): ResponseEntity<Unit> {
-        return ResponseEntity(HttpStatus.valueOf(
-                        activateNotificationCategoryService.execute(uuid)
-                ))
+        return ResponseEntity(
+            HttpStatus.valueOf(
+                activateNotificationCategoryService.execute(uuid)
+            )
+        )
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

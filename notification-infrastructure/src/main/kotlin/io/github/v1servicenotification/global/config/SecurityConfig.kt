@@ -8,19 +8,19 @@ import org.springframework.security.config.http.SessionCreationPolicy
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig: WebSecurityConfigurerAdapter() {
+class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http
-                .formLogin().disable()
-                .cors().and()
-                .csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .formLogin().disable()
+            .cors().and()
+            .csrf().disable()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and().apply(FilterConfig())
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and().apply(FilterConfig())
 
     }
 

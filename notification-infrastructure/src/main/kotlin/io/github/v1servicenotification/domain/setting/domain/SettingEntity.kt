@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull
 @Table(name = "tbl_notification_setting")
 @Entity
 class SettingEntity(
-        settingId: SettingId,
-        isActivated: Boolean
+    settingId: SettingId,
+    isActivated: Boolean
 ) {
 
     @EmbeddedId

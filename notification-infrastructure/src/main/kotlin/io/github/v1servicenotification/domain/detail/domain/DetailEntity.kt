@@ -11,38 +11,38 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Table(name = "tbl_notification_detail")
-@EntityListeners(value =  [AuditingEntityListener::class])
+@EntityListeners(value = [AuditingEntityListener::class])
 @Entity
 class DetailEntity(
-        @field:Size(max = 20)
-        @field:NotNull
-        val title: String,
+    @field:Size(max = 20)
+    @field:NotNull
+    val title: String,
 
-        @field:NotNull
-        val content: String,
+    @field:NotNull
+    val content: String,
 
-        @CreatedDate
-        @field:NotNull
-        val sentAt: LocalDateTime,
+    @CreatedDate
+    @field:NotNull
+    val sentAt: LocalDateTime,
 
-        @field:NotNull
-        var isRead: Boolean,
+    @field:NotNull
+    var isRead: Boolean,
 
-        @field:NotNull
-        val userId: UUID,
+    @field:NotNull
+    val userId: UUID,
 
-        @ManyToOne(fetch = FetchType.LAZY, optional = false)
-        @JoinColumn(name = "notification_category_id")
-        val categoryEntity: CategoryEntity
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "notification_category_id")
+    val categoryEntity: CategoryEntity
 
 ) : BaseUUIDEntity() {
 
-        fun getCategoryName(): String {
-                return categoryEntity.name
-        }
+    fun getCategoryName(): String {
+        return categoryEntity.name
+    }
 
-        fun getCategoryDestination(): String {
-                return categoryEntity.destination
-        }
+    fun getCategoryDestination(): String {
+        return categoryEntity.destination
+    }
 
 }

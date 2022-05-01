@@ -2,8 +2,10 @@ package io.github.v1servicenotification.category.queryCategory.spi
 
 import io.github.v1servicenotification.annotation.Spi
 import io.github.v1servicenotification.category.Category
+import java.util.*
 
 @Spi
 interface CategoryRepositorySpi {
-    suspend fun findAllByDefaultActivatedIsTrue(): List<Category>
+    fun findById(id: UUID): Category
+    fun findAllByDefaultActivatedIsTrue(): List<Category>
 }

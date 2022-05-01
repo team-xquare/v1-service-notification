@@ -10,28 +10,28 @@ import java.util.*
 
 @Component
 class NotificationSettingFacade(
-        private val categoryFacade: CategoryFacade,
-        private val notificationSettingRepository: NotificationSettingRepository
+    private val categoryFacade: CategoryFacade,
+    private val notificationSettingRepository: NotificationSettingRepository
 ) {
 
     fun saveOrUpdateNotificationSetting(categoryUUID: UUID, isActivate: Boolean): Int {
         val notificationCategory = categoryFacade.getCategoryById(categoryUUID)
 
         val settingId = SettingId(
-                userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
-                categoryEntity = notificationCategory
+            userId = UUID.randomUUID(),//TODO UserId 받아서 넣기
+            categoryEntity = notificationCategory
         )
 
         return if (notificationSettingRepository.findBySettingId(settingId) != null) {
             notificationSettingRepository.findBySettingId(settingId)!!
-                    .changeIsActivate(isActivate)
+                .changeIsActivate(isActivate)
             HttpStatus.NO_CONTENT.value()
         } else {
             notificationSettingRepository.save(
-                    SettingEntity(
-                            settingId = settingId,
-                            isActivated = isActivate
-                    )
+                SettingEntity(
+                    settingId = settingId,
+                    isActivated = isActivate
+                )
             )
             HttpStatus.CREATED.value()
         }
