@@ -6,6 +6,8 @@ import java.util.*
 
 @Aggregate
 class Detail(
+    val id: UUID,
+
     val title: String,
 
     val content: String,

@@ -5,7 +5,7 @@ import java.util.*
 
 @Aggregate
 class Category(
-    val id: UUID = UUID.randomUUID(),
+    val id: UUID,
 
     val name: String,
 
