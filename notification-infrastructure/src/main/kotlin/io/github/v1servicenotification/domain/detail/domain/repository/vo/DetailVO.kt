@@ -1,15 +1,24 @@
-package io.github.v1servicenotification.detail.queryDetail.api.dto
+package io.github.v1servicenotification.domain.detail.domain.repository.vo
 
+import com.querydsl.core.annotations.QueryProjection
 import java.time.LocalDateTime
 import java.util.*
 
-class NotificationDetailResponse(
+
+class DetailVO @QueryProjection constructor(
     val id: UUID,
+
     val title: String,
+
     val content: String,
+
     val sentAt: LocalDateTime,
-    val isRead: Boolean,
+
+    var isRead: Boolean,
+
     val userId: UUID,
+
     val name: String,
+
     val destination: String
 )
