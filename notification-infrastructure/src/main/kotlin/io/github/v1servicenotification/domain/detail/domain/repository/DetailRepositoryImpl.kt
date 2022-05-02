@@ -30,7 +30,16 @@ class DetailRepositoryImpl(
             .join(detailEntity.categoryEntity, categoryEntity)
             .fetch()
             .map {
-                DetailModel(it.id, it.title, it.content, it.sentAt, it.isRead, it.userId, it.name, it.destination)
+                DetailModel(
+                    id = it.id,
+                    title = it.title,
+                    content = it.content,
+                    sentAt = it.sentAt,
+                    isRead = it.isRead,
+                    userId = it.userId,
+                    name = it.name,
+                    destination = it.destination
+                )
             }
             .toList()
     }
