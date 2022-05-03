@@ -4,6 +4,8 @@ import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
+import io.github.v1servicenotification.domain.setting.mapper.SettingMapper
+import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import org.springframework.stereotype.Repository
 import java.util.*
@@ -11,22 +13,27 @@ import java.util.*
 @Repository
 class SettingRepositoryImpl(
     private val settingRepository: NotificationSettingRepository,
+    private val settingMapper: SettingMapper,
     private val categoryMapper: CategoryMapper
 ) : SettingRepositorySpi {
-    override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean) {
-        settingRepository.save(
-            SettingEntity(
-                settingId = getSettingId(category, userId),
-                isActivated = isActivated
+    override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
+        return settingMapper.settingEntityToDomain(
+            settingRepository.save(
+                SettingEntity(
+                    settingId = getSettingId(category, userId),
+                    isActivated = isActivated
+                )
             )
         )
     }
 
-    override fun updateSetting(category: Category, userId: UUID, isActivated: Boolean) {
-        settingRepository.save(
-            SettingEntity(
-                settingId = getSettingId(category, userId),
-                isActivated = isActivated
+    override fun updateSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
+        return settingMapper.settingEntityToDomain(
+            settingRepository.save(
+                SettingEntity(
+                    settingId = getSettingId(category, userId),
+                    isActivated = isActivated
+                )
             )
         )
     }
