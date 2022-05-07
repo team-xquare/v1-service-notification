@@ -1,8 +1,8 @@
 plugins {
-    id("org.springframework.boot") version "2.6.7"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.10"
+    id("org.springframework.boot") version PluginVersions.SPRING_VERSION
+    id("io.spring.dependency-management") version PluginVersions.DEPENDENCY_MANAGEMENT
+    kotlin("plugin.spring") version PluginVersions.SPRING_PLUGIN
+    kotlin("plugin.jpa") version PluginVersions.JPA_PLUGIN
 }
 
 val awsMessagingVersion = "2.2.6.RELEASE"
@@ -12,23 +12,25 @@ sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourc
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation(Dependencies.SPRING_STARTER)
+    implementation(Dependencies.SPRING_VALIDATION)
+    implementation(Dependencies.SPRING_SECURITY)
 
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.cloud:spring-cloud-starter-aws-messaging:$awsMessagingVersion")
-    implementation("org.mapstruct:mapstruct:1.4.2.Final")
+    implementation(Dependencies.JACKSON)
 
-    implementation("com.querydsl:querydsl-jpa")
-    kapt("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jpa")
+    implementation(Dependencies.AWS_MESSAGING)
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("mysql:mysql-connector-java")
+    implementation(Dependencies.MAPSTRUCT)
+    kapt(Dependencies.MAPSTRUCT_PROCESSOR)
 
-    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    implementation(Dependencies.QUERYDSL)
+    kapt(Dependencies.QUERYDSL_PROCESSOR)
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(Dependencies.JPA)
+    runtimeOnly(Dependencies.MYSQL_CONNECTOR)
+
+
+    testImplementation(Dependencies.SPRING_TEST)
 
     implementation(project(":notification-domain"))
 }
