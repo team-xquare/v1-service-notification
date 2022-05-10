@@ -16,5 +16,7 @@ object Dependencies {
     const val MAPSTRUCT = "org.mapstruct:mapstruct:1.4.2.Final"
     const val MAPSTRUCT_PROCESSOR = "org.mapstruct:mapstruct-processor:1.4.2.Final"
 
-    const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test"
+    const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test:${PluginVersions.SPRING_VERSION}"
+    const val ASSERTJ = "org.assertj:assertj-core:${DependencyVersions.ASSERTJ}"
+
 }
