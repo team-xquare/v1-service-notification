@@ -1,7 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm") version "1.6.21"
+    jacoco
 }
 
 subprojects {
@@ -44,5 +43,12 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(false)
     }
 }
