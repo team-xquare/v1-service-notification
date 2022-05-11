@@ -60,6 +60,7 @@ tasks.register<JacocoReport>("jacocoRootReport") {
     }
 
     reports {
+        xml.outputLocation.set(File("${buildDir}/reports/jacoco/test/jacocoTestReport.xml"))
         xml.required.set(true)
         html.required.set(false)
     }
