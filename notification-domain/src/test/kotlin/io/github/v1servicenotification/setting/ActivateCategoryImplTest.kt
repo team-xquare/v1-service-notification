@@ -13,7 +13,7 @@ class ActivateCategoryImplTest {
 
     private val categorySpi = InMemoryCategoryRepository()
 
-    private val settingSpi = InMemorySettingRepository(categorySpi)
+    private val settingSpi = InMemorySettingRepository()
 
     private val settingFacade = SettingFacade(categorySpi, settingSpi)
 

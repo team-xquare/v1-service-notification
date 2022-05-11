@@ -10,9 +10,7 @@ import java.util.*
 
 class QueryActivatedCategoryImplTest {
 
-    private val categorySpi = InMemoryCategoryRepository()
-
-    private val settingSpi = InMemorySettingRepository(categorySpi)
+    private val settingSpi = InMemorySettingRepository()
 
     private val queryActivatedCategory = QueryActivatedCategoryImpl(settingSpi)
 
@@ -23,7 +21,7 @@ class QueryActivatedCategoryImplTest {
 
         val category = Category(categoryId, "Test name", "Test destination", false)
 
-        categorySpi.saveCategory(category)
+        settingSpi.saveCategory(category)
 
         settingSpi.saveSetting(
             category,

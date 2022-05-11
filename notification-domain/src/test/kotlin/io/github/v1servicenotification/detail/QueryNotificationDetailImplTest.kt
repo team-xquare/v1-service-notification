@@ -11,8 +11,7 @@ import org.assertj.core.api.Assertions.*
 
 class QueryNotificationDetailImplTest {
 
-    private val notificationSpi = InMemoryCategoryRepository()
-    private val detailSpi = InMemoryDetailRepository(notificationSpi)
+    private val detailSpi = InMemoryDetailRepository()
     private val queryNotificationDetail = QueryNotificationDetailImpl(detailSpi)
 
     @Test
@@ -25,7 +24,7 @@ class QueryNotificationDetailImplTest {
         )
         val userId = UUID.randomUUID()
 
-        notificationSpi.saveCategory(category)
+        detailSpi.saveCategory(category)
         detailSpi.saveDetail(
             Detail(UUID.randomUUID(),
                 "Test title",
