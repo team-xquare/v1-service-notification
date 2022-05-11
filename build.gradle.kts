@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm") version "1.6.21"
 }
@@ -25,6 +23,8 @@ allprojects {
     group = "io.github"
     version = "0.0.1-SNAPSHOT"
 
+    apply(plugin = "jacoco")
+
     tasks {
         compileKotlin {
             kotlinOptions {
@@ -44,5 +44,23 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+}
+
+tasks.register<JacocoReport>("jacocoRootReport") {
+    subprojects {
+        this@subprojects.plugins.withType<JacocoPlugin>().configureEach {
+            this@subprojects.tasks.matching {
+                it.extensions.findByType<JacocoTaskExtension>() != null }
+                .configureEach {
+                    sourceSets(this@subprojects.the<SourceSetContainer>().named("main").get())
+                    executionData(this)
+                }
+        }
+    }
+
+    reports {
+        xml.required.set(true)
+        html.required.set(false)
     }
 }
