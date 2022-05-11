@@ -29,9 +29,6 @@ dependencies {
     implementation(Dependencies.JPA)
     runtimeOnly(Dependencies.MYSQL_CONNECTOR)
 
-
-    testImplementation(Dependencies.SPRING_TEST)
-
     implementation(project(":notification-domain"))
 }
 

@@ -1,4 +1,7 @@
 object Dependencies {
+    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect"
+    const val KOTLIN_JDK = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
     const val SPRING_STARTER = "org.springframework.boot:spring-boot-starter-web"
     const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
@@ -16,5 +19,7 @@ object Dependencies {
     const val MAPSTRUCT = "org.mapstruct:mapstruct:1.4.2.Final"
     const val MAPSTRUCT_PROCESSOR = "org.mapstruct:mapstruct-processor:1.4.2.Final"
 
-    const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test"
+    const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test:${PluginVersions.SPRING_VERSION}"
+    const val ASSERTJ = "org.assertj:assertj-core:${DependencyVersions.ASSERTJ}"
+
 }

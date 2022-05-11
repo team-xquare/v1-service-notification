@@ -30,11 +30,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew build --info
-
       - name: codecov gradle
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew test jacocoRootReport
 
-      - name: codecov upload
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/jacoco/test/jacocoTestReport.xml
