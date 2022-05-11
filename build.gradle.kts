@@ -1,12 +1,13 @@
 plugins {
     kotlin("jvm") version "1.6.21"
-    jacoco
+//    jacoco
 }
 
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
         version = "1.6.21"
+        plugin("jacoco")
     }
 
     apply {
@@ -46,9 +47,9 @@ allprojects {
     }
 }
 
-tasks.jacocoTestReport {
-    reports {
-        xml.required.set(true)
-        html.required.set(false)
-    }
-}
+//tasks.jacocoTestReport {
+//    reports {
+//        xml.required.set(true)
+//        html.required.set(false)
+//    }
+//}
