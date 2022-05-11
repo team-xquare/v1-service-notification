@@ -11,9 +11,12 @@ jobs:
       matrix:
         os: [ macos-latest, ubuntu-latest ]
         java-version: [ 17 ]
-        
+
     steps:
       - uses: actions/checkout@v2
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
