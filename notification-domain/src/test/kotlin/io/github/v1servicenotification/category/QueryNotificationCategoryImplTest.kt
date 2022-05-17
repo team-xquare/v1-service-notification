@@ -1,14 +1,14 @@
 package io.github.v1servicenotification.category
 
 import io.github.v1servicenotification.category.queryCategory.service.QueryNotificationCategoryImpl
-import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
+import io.github.v1servicenotification.stubs.InMemoryQueryCategoryRepository
 import org.junit.jupiter.api.Test
 import java.util.*
 import org.assertj.core.api.Assertions.*
 
 class QueryNotificationCategoryImplTest {
 
-    private val notificationSpi = InMemoryCategoryRepository()
+    private val notificationSpi = InMemoryQueryCategoryRepository()
     private val queryNotificationCategory = QueryNotificationCategoryImpl(notificationSpi)
 
     @Test

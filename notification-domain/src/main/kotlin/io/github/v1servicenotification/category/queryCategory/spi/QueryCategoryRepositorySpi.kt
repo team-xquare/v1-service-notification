@@ -5,7 +5,7 @@ import io.github.v1servicenotification.category.Category
 import java.util.*
 
 @Spi
-interface CategoryRepositorySpi {
+interface QueryCategoryRepositorySpi {
     fun findById(id: UUID): Category
     fun findAllByDefaultActivatedIsTrue(): List<Category>
 }
