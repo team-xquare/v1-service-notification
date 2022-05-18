@@ -2,13 +2,14 @@ package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.queryCategory.spi.QueryCategoryRepositorySpi
+import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
 import java.util.*
 
-class InMemoryQueryCategoryRepository(
+class InMemoryCategoryRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf()
-) : QueryCategoryRepositorySpi {
+) : QueryCategoryRepositorySpi, UpdateCategoryRepositorySpi {
 
-    fun saveCategory(category: Category) {
+    override fun saveCategory(category: Category) {
         categoryMap[category.id] = category
     }
 
