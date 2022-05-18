@@ -9,14 +9,11 @@ import org.springframework.stereotype.Repository
 class UpdateCategoryRepositoryImpl(
     private val categoryMapper: CategoryMapper,
     private val categoryRepository: CategoryRepository
-): UpdateCategoryRepositorySpi {
+) : UpdateCategoryRepositorySpi {
 
-    override fun saveCategory(category: Category): Category {
+    override fun saveCategory(category: Category) {
         val categoryEntity = categoryMapper.categoryDomainToEntity(category)
-        return categoryMapper.categoryEntityToDomain(
-            categoryRepository.save(categoryEntity)
-        )
+        categoryRepository.save(categoryEntity)
     }
-
 
 }

@@ -5,5 +5,5 @@ import io.github.v1servicenotification.category.Category
 
 @Spi
 interface UpdateCategoryRepositorySpi {
-    fun saveCategory(category: Category): Category
+    fun saveCategory(category: Category)
 }
