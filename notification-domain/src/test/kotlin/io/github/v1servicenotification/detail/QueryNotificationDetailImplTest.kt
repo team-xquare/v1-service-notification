@@ -2,7 +2,6 @@ package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.queryDetail.service.QueryNotificationDetailImpl
-import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import io.github.v1servicenotification.stubs.InMemoryDetailRepository
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
