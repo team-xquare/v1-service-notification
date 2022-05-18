@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 
 class CreateCategoryImplTest {
 
-    private val createCategorySpi = InMemoryCategoryRepository()
-    private val createCategory = CreateCategoryImpl(createCategorySpi)
+    private val updateCategorySpi = InMemoryCategoryRepository()
+    private val createCategory = CreateCategoryImpl(updateCategorySpi)
 
     @Test
     fun createDefaultActivatedTrueCategory() {
@@ -25,14 +25,14 @@ class CreateCategoryImplTest {
             )
         )
 
-        createCategorySpi.findAllByDefaultActivatedIsTrue()
+        updateCategorySpi.findAllByDefaultActivatedIsTrue()
             .forEach {
                 assertThat(it.name).isEqualTo(name)
                 assertThat(it.destination).isEqualTo(destination)
                 assertThat(it.defaultActivated).isEqualTo(defaultActivated)
             }
 
-        assertThat(createCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(1)
+        assertThat(updateCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(1)
     }
 
     @Test
@@ -49,7 +49,7 @@ class CreateCategoryImplTest {
             )
         )
         
-        assertThat(createCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(0)
+        assertThat(updateCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(0)
     }
 
 }
