@@ -13,6 +13,12 @@ class InMemoryCategoryRepository(
         categoryMap[category.id] = category
     }
 
+    override fun removeCategory(categoryId: UUID) {
+        categoryMap[categoryId]
+            ?: throw NullPointerException()
+        categoryMap.remove(categoryId)
+    }
+
     override fun findById(id: UUID): Category {
         return categoryMap[id]
             ?: throw NullPointerException()
