@@ -7,5 +7,6 @@ import java.util.UUID
 @Spi
 interface UpdateCategoryRepositorySpi {
     fun saveCategory(category: Category)
-    fun removeCategory(categoryId: UUID)
+    fun findCategoryById(categoryId: UUID): Category?
+    fun removeCategory(category: Category)
 }

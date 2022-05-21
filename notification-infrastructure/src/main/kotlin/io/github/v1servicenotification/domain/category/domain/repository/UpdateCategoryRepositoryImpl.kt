@@ -2,8 +2,8 @@ package io.github.v1servicenotification.domain.category.domain.repository
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
-import io.github.v1servicenotification.domain.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
+import io.github.v1servicenotification.global.extension.findOne
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -18,11 +18,18 @@ class UpdateCategoryRepositoryImpl(
         categoryRepository.save(categoryEntity)
     }
 
-    override fun removeCategory(categoryId: UUID) {
-        categoryRepository.findById(categoryId)
-            .orElseThrow {
-                CategoryNotFoundException.EXCEPTION
-            }
+    override fun findCategoryById(categoryId: UUID): Category? {
+        val category = categoryRepository.findOne(categoryId)
+
+        return if(category != null) {
+            categoryMapper.categoryEntityToDomain(category)
+        } else null
+    }
+
+    override fun removeCategory(category: Category) {
+        categoryRepository.delete(
+            categoryMapper.categoryDomainToEntity(category)
+        )
     }
 
 }
