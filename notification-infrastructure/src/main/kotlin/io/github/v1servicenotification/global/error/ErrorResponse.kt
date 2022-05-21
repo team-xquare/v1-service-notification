@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.global.error
 
-import io.github.v1servicenotification.global.error.exception.ErrorCode
+import io.github.v1servicenotification.error.ErrorCode
 
 class ErrorResponse(
     errorCode: ErrorCode

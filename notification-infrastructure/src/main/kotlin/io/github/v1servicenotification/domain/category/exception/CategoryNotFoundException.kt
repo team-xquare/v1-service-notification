@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.domain.category.exception
 
-import io.github.v1servicenotification.global.error.exception.ErrorCode
-import io.github.v1servicenotification.global.error.exception.NotificationException
+import io.github.v1servicenotification.error.ErrorCode
+import io.github.v1servicenotification.error.NotificationException
 
 class CategoryNotFoundException private constructor() : NotificationException(ErrorCode.CATEGORY_NOT_FOUND) {
 

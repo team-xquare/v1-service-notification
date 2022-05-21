@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.global.error
 
-import io.github.v1servicenotification.global.error.exception.ErrorCode
-import io.github.v1servicenotification.global.error.exception.NotificationException
+import io.github.v1servicenotification.error.ErrorCode
+import io.github.v1servicenotification.error.NotificationException
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
