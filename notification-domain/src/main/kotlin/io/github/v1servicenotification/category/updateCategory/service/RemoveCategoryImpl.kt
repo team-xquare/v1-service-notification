@@ -2,6 +2,7 @@ package io.github.v1servicenotification.category.updateCategory.service
 
 import io.github.v1servicenotification.annotation.DomainService
 import io.github.v1servicenotification.category.updateCategory.api.RemoveCategory
+import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
 import java.util.*
 
@@ -11,7 +12,9 @@ class RemoveCategoryImpl(
 ): RemoveCategory {
 
     override fun removeCategory(categoryId: UUID) {
-        updateCategoryRepositorySpi.removeCategory(categoryId)
+        val category = updateCategoryRepositorySpi.findCategoryById(categoryId)
+            ?: throw CategoryNotFoundException.EXCEPTION
+        updateCategoryRepositorySpi.removeCategory(category)
     }
 
 }
