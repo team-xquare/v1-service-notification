@@ -2,6 +2,7 @@ package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.queryCategory.spi.QueryCategoryRepositorySpi
+import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
 import java.util.*
 
@@ -13,10 +14,14 @@ class InMemoryCategoryRepository(
         categoryMap[category.id] = category
     }
 
-    override fun removeCategory(categoryId: UUID) {
-        categoryMap[categoryId]
-            ?: throw NullPointerException()
-        categoryMap.remove(categoryId)
+    override fun findCategoryById(categoryId: UUID): Category? {
+        return categoryMap[categoryId]
+    }
+
+    override fun removeCategory(category: Category) {
+        categoryMap[category.id]
+            ?: throw CategoryNotFoundException.EXCEPTION
+        categoryMap.remove(category.id)
     }
 
     override fun findById(id: UUID): Category {

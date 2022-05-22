@@ -1,5 +1,6 @@
 package io.github.v1servicenotification.category
 
+import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.updateCategory.service.RemoveCategoryImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import org.junit.jupiter.api.Test
@@ -32,7 +33,7 @@ class RemoveCategoryImplTest {
 
     @Test
     fun removeCategoryNotFound() {
-        assertThrows<NullPointerException> { removeCategory.removeCategory(UUID.randomUUID()) }
+        assertThrows<CategoryNotFoundException> { removeCategory.removeCategory(UUID.randomUUID()) }
     }
 
 }
