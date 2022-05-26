@@ -21,9 +21,9 @@ class UpdateCategoryRepositoryImpl(
     override fun findCategoryById(categoryId: UUID): Category? {
         val category = categoryRepository.findOne(categoryId)
 
-        return if(category != null) {
+        return category?.let {
             categoryMapper.categoryEntityToDomain(category)
-        } else null
+        }
     }
 
     override fun removeCategory(category: Category) {
