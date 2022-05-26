@@ -3,23 +3,17 @@ package io.github.v1servicenotification.global.fcm
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
-import com.google.firebase.messaging.ApnsConfig
-import com.google.firebase.messaging.Aps
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.Message
-import com.google.firebase.messaging.Notification
-import io.github.v1servicenotification.global.fcm.dto.NotificationRequest
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
-import org.springframework.stereotype.Service
 import java.io.IOException
 import javax.annotation.PostConstruct
 
-@Service
-class FcmService {
+@Configuration
+class FcmConfig {
 
     companion object {
-        @Value("\${FCM_PATH}")
+        @Value("\${fcm.path}")
         const val path = "Temp Path"
     }
 
