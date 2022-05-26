@@ -20,10 +20,10 @@ class FcmConfig {
     @PostConstruct
     fun initialize() {
         try {
-            val options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(ClassPathResource(path).inputStream))
-                .build()
             if(FirebaseApp.getApps().isEmpty()) {
+                val options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(ClassPathResource(path).inputStream))
+                    .build()
                 FirebaseApp.initializeApp(options)
             }
         } catch (e: IOException) {
