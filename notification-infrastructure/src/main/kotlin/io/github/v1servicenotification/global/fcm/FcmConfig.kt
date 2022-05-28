@@ -14,7 +14,7 @@ class FcmConfig {
 
     companion object {
         @Value("\${fcm.path}")
-        const val path = "Temp Path"
+        lateinit var path: String
     }
 
     @PostConstruct
