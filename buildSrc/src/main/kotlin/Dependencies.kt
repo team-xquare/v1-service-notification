@@ -21,7 +21,7 @@ object Dependencies {
 
     const val SPRING_TEST = "org.springframework.boot:spring-boot-starter-test:${PluginVersions.SPRING_VERSION}"
     const val ASSERTJ = "org.assertj:assertj-core:${DependencyVersions.ASSERTJ}"
-    const val FIREBASE = "com.google.firebase:firebase-admin:8.1.0"
+    const val FIREBASE = "com.google.firebase:firebase-admin:${DependencyVersions.FIREBASE}"
 
 
 }
