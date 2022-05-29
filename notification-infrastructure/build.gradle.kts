@@ -29,6 +29,8 @@ dependencies {
     implementation(Dependencies.JPA)
     runtimeOnly(Dependencies.MYSQL_CONNECTOR)
 
+    implementation(Dependencies.FIREBASE)
+
     implementation(project(":notification-domain"))
 }
 
