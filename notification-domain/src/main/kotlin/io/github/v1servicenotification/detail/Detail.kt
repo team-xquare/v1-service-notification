@@ -18,6 +18,6 @@ class Detail(
 
     val userId: UUID,
 
-    val notificationCategoryId: UUID
+    val categoryId: UUID
 
 )
