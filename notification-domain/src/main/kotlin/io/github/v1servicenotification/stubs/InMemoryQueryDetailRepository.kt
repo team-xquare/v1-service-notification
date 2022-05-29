@@ -2,14 +2,14 @@ package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.Detail
-import io.github.v1servicenotification.detail.queryDetail.spi.DetailRepositorySpi
+import io.github.v1servicenotification.detail.queryDetail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.queryDetail.spi.dto.DetailModel
 import java.util.*
 
-class InMemoryDetailRepository(
+class InMemoryQueryDetailRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
     private val detailMap: HashMap<UUID, Detail> = hashMapOf()
-) : DetailRepositorySpi {
+) : QueryDetailRepositorySpi {
 
     fun saveCategory(category: Category) {
         categoryMap[category.id] = category
@@ -22,7 +22,7 @@ class InMemoryDetailRepository(
     override fun findAllByUserId(userId: UUID): List<DetailModel> {
         return detailMap.filter { it.value.userId == userId }
             .map {
-                val category = categoryMap[it.value.notificationCategoryId]
+                val category = categoryMap[it.value.categoryId]
                     ?: throw RuntimeException()
                 DetailModel(
                     it.value.id,

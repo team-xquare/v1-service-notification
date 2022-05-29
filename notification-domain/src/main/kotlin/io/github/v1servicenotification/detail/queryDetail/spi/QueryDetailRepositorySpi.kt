@@ -5,6 +5,6 @@ import io.github.v1servicenotification.detail.queryDetail.spi.dto.DetailModel
 import java.util.*
 
 @Spi
-interface DetailRepositorySpi {
+interface QueryDetailRepositorySpi {
     fun findAllByUserId(userId: UUID): List<DetailModel>
 }

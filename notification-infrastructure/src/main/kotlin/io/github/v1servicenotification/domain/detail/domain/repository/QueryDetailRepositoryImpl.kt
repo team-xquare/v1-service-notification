@@ -1,18 +1,23 @@
 package io.github.v1servicenotification.domain.detail.domain.repository
 
 import com.querydsl.jpa.impl.JPAQueryFactory
-import io.github.v1servicenotification.detail.queryDetail.spi.DetailRepositorySpi
+import io.github.v1servicenotification.detail.Detail
+import io.github.v1servicenotification.detail.postDetail.spi.PostDetailRepositorySpi
+import io.github.v1servicenotification.detail.queryDetail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.queryDetail.spi.dto.DetailModel
 import io.github.v1servicenotification.domain.category.domain.QCategoryEntity.categoryEntity
 import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detailEntity
 import io.github.v1servicenotification.domain.detail.domain.repository.vo.QDetailVO
+import io.github.v1servicenotification.domain.detail.mapper.DetailMapper
 import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class DetailRepositoryImpl(
+class QueryDetailRepositoryImpl(
+    private val detailRepository: DetailRepository,
+    private val detailMapper: DetailMapper,
     private val query: JPAQueryFactory,
-) : DetailRepositorySpi {
+) : QueryDetailRepositorySpi, PostDetailRepositorySpi {
     override fun findAllByUserId(userId: UUID): List<DetailModel> {
         return query
             .select(
@@ -42,5 +47,13 @@ class DetailRepositoryImpl(
                 )
             }
             .toList()
+    }
+
+    override fun saveAllDetail(detailList: List<Detail>) {
+        val detailEntityList = detailList.parallelStream()
+            .map { detailMapper.detailDomainToEntity(it) }
+            .toList()
+
+        detailRepository.saveAll(detailEntityList)
     }
 }
