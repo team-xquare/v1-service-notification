@@ -4,14 +4,9 @@ import java.util.UUID
 import javax.validation.constraints.NotNull
 
 data class Group(
-    @field:NotNull
-    val categoryId: UUID?,
+    val categoryId: UUID,
 
-    @field:NotNull
-    val title: String?,
+    val title: String,
 
-    @field:NotNull
-    val content: String?
-) {
-    constructor(): this(null, null, null)
-}
+    val content: String
+)

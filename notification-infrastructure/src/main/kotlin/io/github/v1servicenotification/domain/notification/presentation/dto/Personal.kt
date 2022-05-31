@@ -4,17 +4,11 @@ import java.util.UUID
 import javax.validation.constraints.NotNull
 
 data class Personal(
-    @field:NotNull
-    val categoryId: UUID?,
+    val categoryId: UUID,
 
-    @field:NotNull
-    val userId: UUID?,
+    val userId: UUID,
 
-    @field:NotNull
-    val title: String?,
+    val title: String,
 
-    @field:NotNull
-    val content: String?
-) {
-    constructor(): this(null, null, null, null)
-}
+    val content: String
+)

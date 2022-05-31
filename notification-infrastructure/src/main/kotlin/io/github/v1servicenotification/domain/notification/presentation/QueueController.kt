@@ -24,12 +24,12 @@ class QueueController(
 
     @SqsListener(value = ["group-notification.fifo"], deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
     fun groupNotification(@Payload @Valid group: Group) {
-        postGroupNotification.postGroupNotification(group.categoryId!!, group.title!!, group.content!!)
+        postGroupNotification.postGroupNotification(group.categoryId, group.title, group.content)
     }
 
     @SqsListener(value = ["notification.fifo"], deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
     fun notification(@Payload @Valid personal: Personal) {
-        postNotification.postNotification(personal.userId!!, personal.categoryId!!, personal.title!!, personal.content!!)
+        postNotification.postNotification(personal.userId, personal.categoryId, personal.title, personal.content)
     }
 
 }
