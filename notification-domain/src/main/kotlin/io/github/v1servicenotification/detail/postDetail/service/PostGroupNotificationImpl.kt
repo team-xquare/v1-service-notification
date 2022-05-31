@@ -40,7 +40,7 @@ class PostGroupNotificationImpl(
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
-        postDetailFcmSpi.sendMessageByUserIdList(emptyList(), title, content)
+        postDetailFcmSpi.sendGroupMessage(emptyList(), title, content)
 
     }
 

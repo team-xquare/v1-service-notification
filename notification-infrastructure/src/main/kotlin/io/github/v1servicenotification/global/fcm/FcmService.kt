@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service
 @Service
 class FcmService: PostDetailFcmSpi {
 
-    override fun sendGroupMessage(tokenList: List<String>, title: String, message: String) {
+    override fun sendGroupMessage(tokenList: List<String>, title: String, content: String) {
         val multicast = MulticastMessage.builder()
             .addAllTokens(tokenList)
             .setNotification(
                 Notification.builder()
                     .setTitle(title)
-                    .setBody(message)
+                    .setBody(content)
                     .build()
             )
             .setApnsConfig(
