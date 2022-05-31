@@ -49,6 +49,12 @@ class QueryDetailRepositoryImpl(
             .toList()
     }
 
+    override fun save(detail: Detail) {
+        detailRepository.save(
+            detailMapper.detailDomainToEntity(detail)
+        )
+    }
+
     override fun saveAllDetail(detailList: List<Detail>) {
         val detailEntityList = detailList.stream()
             .map { detailMapper.detailDomainToEntity(it) }
