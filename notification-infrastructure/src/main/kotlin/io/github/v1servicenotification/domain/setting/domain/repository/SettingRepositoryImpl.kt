@@ -45,7 +45,7 @@ class SettingRepositoryImpl(
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
         return settingRepository
-            .findBySettingIdUserIdAndActivatedIsTrue(userId)
+            .findBySettingIdUserIdAndIsActivatedIsTrue(userId)
             .map {
                 categoryMapper.categoryEntityToDomain(it.settingId.categoryEntity)
             }
