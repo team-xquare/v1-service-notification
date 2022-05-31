@@ -62,7 +62,7 @@ class SettingRepositoryImpl(
     override fun findSettingByCategory(category: Category): List<Setting> {
         val categoryEntity = categoryMapper.categoryDomainToEntity(category)
 
-        return settingRepository.findBySettingIdCategoryEntity(categoryEntity)
+        return settingRepository.findAllBySettingIdCategoryEntity(categoryEntity)
             .stream()
             .map { settingMapper.settingEntityToDomain(it) }
             .toList()

@@ -11,5 +11,5 @@ import java.util.*
 interface NotificationSettingRepository : CrudRepository<SettingEntity, SettingId> {
     fun findBySettingId(settingId: SettingId): SettingEntity?
     fun findBySettingIdUserIdAndActivatedIsTrue(userId: UUID): List<SettingEntity>
-    fun findBySettingIdCategoryEntity(categoryEntity: CategoryEntity): List<SettingEntity>
+    fun findAllBySettingIdCategoryEntity(categoryEntity: CategoryEntity): List<SettingEntity>
 }
