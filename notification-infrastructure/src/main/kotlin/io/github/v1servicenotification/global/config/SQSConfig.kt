@@ -1,6 +1,8 @@
 package io.github.v1servicenotification.global.config
 
 import com.amazonaws.services.sqs.AmazonSQSAsync
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.springframework.cloud.aws.messaging.config.QueueMessageHandlerFactory
 import org.springframework.cloud.aws.messaging.listener.QueueMessageHandler
 import org.springframework.context.annotation.Bean
@@ -20,6 +22,11 @@ class SQSConfig(
     fun queueMessageHandlerFactory(): QueueMessageHandlerFactory {
         val factory = QueueMessageHandlerFactory()
         val messageConverter = MappingJackson2MessageConverter()
+        val objectMapper = ObjectMapper()
+
+        objectMapper.registerModule(KotlinModule.Builder().build())
+
+        messageConverter.objectMapper = objectMapper
 
         messageConverter.isStrictContentTypeMatch = false
 
