@@ -50,7 +50,7 @@ class QueryDetailRepositoryImpl(
     }
 
     override fun saveAllDetail(detailList: List<Detail>) {
-        val detailEntityList = detailList.parallelStream()
+        val detailEntityList = detailList.stream()
             .map { detailMapper.detailDomainToEntity(it) }
             .toList()
 

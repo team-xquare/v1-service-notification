@@ -10,7 +10,7 @@ class FcmService: PostDetailFcmSpi {
 
     override fun sendMessageByUserIdList(tokenList: List<String>, title: String, message: String) {
         tokenList
-            .parallelStream()
+            .stream()
             .map {
                 sendMessage(NotificationRequest(it, title, message))
             }

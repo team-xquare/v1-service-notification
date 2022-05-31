@@ -25,7 +25,7 @@ class PostGroupNotificationImpl(
         //TODO User service에 token 받아오는 spi
 
         val detailList = settingList
-            .parallelStream()
+            .stream()
             .map {
                 Detail(
                     id = UUID.randomUUID(),

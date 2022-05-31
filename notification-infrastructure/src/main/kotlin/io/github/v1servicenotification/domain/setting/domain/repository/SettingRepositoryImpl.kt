@@ -63,7 +63,7 @@ class SettingRepositoryImpl(
         val categoryEntity = categoryMapper.categoryDomainToEntity(category)
 
         return settingRepository.findBySettingIdCategoryEntity(categoryEntity)
-            .parallelStream()
+            .stream()
             .map { settingMapper.settingEntityToDomain(it) }
             .toList()
     }
