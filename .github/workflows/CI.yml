@@ -1,6 +1,9 @@
 name: v1-service-notification CI Workflow
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches: [ main ]
 
