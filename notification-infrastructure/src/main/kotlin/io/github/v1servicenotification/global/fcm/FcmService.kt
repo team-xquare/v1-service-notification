@@ -30,13 +30,13 @@ class FcmService: PostDetailFcmSpi {
         FirebaseMessaging.getInstance().sendMulticastAsync(multicast)
     }
 
-    private fun sendMessage(request: NotificationRequest) {
+    override fun sendMessage(token: String, title: String, content: String) {
         val message = Message.builder()
-            .setToken(request.token)
+            .setToken(token)
             .setNotification(
                 Notification.builder()
-                    .setTitle(request.title)
-                    .setBody(request.message)
+                    .setTitle(title)
+                    .setBody(content)
                     .build()
             )
             .setApnsConfig(
