@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.domain.setting.domain.repository
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
@@ -15,7 +16,7 @@ class SettingRepositoryImpl(
     private val settingRepository: NotificationSettingRepository,
     private val settingMapper: SettingMapper,
     private val categoryMapper: CategoryMapper
-) : SettingRepositorySpi {
+) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
     override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
         return settingMapper.settingEntityToDomain(
             settingRepository.save(
@@ -56,6 +57,15 @@ class SettingRepositoryImpl(
             userId = userId,
             categoryEntity = categoryMapper.categoryDomainToEntity(category)
         )
+    }
+
+    override fun findSettingByCategory(category: Category): List<Setting> {
+        val categoryEntity = categoryMapper.categoryDomainToEntity(category)
+
+        return settingRepository.findAllBySettingIdCategoryEntity(categoryEntity)
+            .stream()
+            .map { settingMapper.settingEntityToDomain(it) }
+            .toList()
     }
 
 }

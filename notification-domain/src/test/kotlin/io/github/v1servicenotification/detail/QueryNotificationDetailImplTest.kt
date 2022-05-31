@@ -2,7 +2,7 @@ package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.queryDetail.service.QueryNotificationDetailImpl
-import io.github.v1servicenotification.stubs.InMemoryDetailRepository
+import io.github.v1servicenotification.stubs.InMemoryQueryDetailRepository
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 import java.util.*
@@ -10,7 +10,7 @@ import org.assertj.core.api.Assertions.*
 
 class QueryNotificationDetailImplTest {
 
-    private val detailSpi = InMemoryDetailRepository()
+    private val detailSpi = InMemoryQueryDetailRepository()
     private val queryNotificationDetail = QueryNotificationDetailImpl(detailSpi)
 
     @Test

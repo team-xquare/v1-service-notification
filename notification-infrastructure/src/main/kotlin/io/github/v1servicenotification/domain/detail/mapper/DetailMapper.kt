@@ -11,7 +11,7 @@ interface DetailMapper {
     fun detailDomainToEntity(detail: Detail): DetailEntity
 
     @Mappings(
-        Mapping(source = "categoryEntity.id", target = "notificationCategoryId"),
+        Mapping(source = "categoryEntity.id", target = "categoryId"),
         Mapping(source = "read", target = "isRead")
     )
     fun detailEntityToDomain(detailEntity: DetailEntity): Detail
