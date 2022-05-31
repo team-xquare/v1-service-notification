@@ -17,7 +17,7 @@ class SQSConfig(
 ) {
 
     @Bean
-    fun queueMessageHandlerFactory(): QueueMessageHandlerFactory? {
+    fun queueMessageHandlerFactory(): QueueMessageHandlerFactory {
         val factory = QueueMessageHandlerFactory()
         val messageConverter = MappingJackson2MessageConverter()
 
