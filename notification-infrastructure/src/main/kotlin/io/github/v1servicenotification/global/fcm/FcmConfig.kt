@@ -10,12 +10,10 @@ import java.io.IOException
 import javax.annotation.PostConstruct
 
 @Configuration
-class FcmConfig {
-
-    companion object {
-        @Value("\${fcm.path}")
-        lateinit var path: String
-    }
+class FcmConfig(
+    @Value("\${fcm.path}")
+    private val path: String
+) {
 
     @PostConstruct
     fun initialize() {
