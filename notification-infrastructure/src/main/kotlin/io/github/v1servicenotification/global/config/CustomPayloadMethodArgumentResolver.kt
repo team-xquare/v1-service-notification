@@ -20,13 +20,11 @@ class CustomPayloadMethodArgumentResolver(
     }
 
     override fun resolveArgument(parameter: MethodParameter, message: Message<*>): Any? {
-        try {
-            payloadMethodArgumentResolver.resolveArgument(parameter, message)
+        return try {
+             payloadMethodArgumentResolver.resolveArgument(parameter, message)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-        return payloadMethodArgumentResolver.resolveArgument(parameter, message)
     }
 
 }
