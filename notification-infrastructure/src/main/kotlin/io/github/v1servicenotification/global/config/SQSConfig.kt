@@ -20,19 +20,23 @@ class SQSConfig(
 
     @Bean
     fun queueMessageHandlerFactory(): QueueMessageHandlerFactory {
-        val factory = QueueMessageHandlerFactory()
-        val messageConverter = MappingJackson2MessageConverter()
         val objectMapper = ObjectMapper()
+            .apply {
+                registerModule(KotlinModule.Builder().build())
+            }
 
-        objectMapper.registerModule(KotlinModule.Builder().build())
+        val messageConverter = MappingJackson2MessageConverter()
+            .apply {
+                this.objectMapper = objectMapper
+                this.isStrictContentTypeMatch = false
+            }
 
-        messageConverter.objectMapper = objectMapper
-
-        messageConverter.isStrictContentTypeMatch = false
-
-        factory.setArgumentResolvers(
-            listOf(CustomPayloadMethodArgumentResolver(messageConverter, validator))
-        )
+        val factory = QueueMessageHandlerFactory()
+            .apply {
+                setArgumentResolvers(
+                    listOf(CustomPayloadMethodArgumentResolver(messageConverter, validator))
+                )
+            }
 
         return factory
     }
