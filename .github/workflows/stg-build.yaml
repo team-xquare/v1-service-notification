@@ -1,0 +1,74 @@
+name: Build for Stage
+on:
+  push:
+    branches:
+      - main
+
+env:
+  SERVICE_NAME: notification
+  SERVICE_TYPE: backend
+  ENVIRONMENT: stage
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ 16 ]
+    outputs:
+      version: ${{ steps.get_version.outputs.BRANCH_NAME }}
+
+    steps:
+      - name: Check Out The Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'zulu'
+
+      - name: Gradle Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            build
+            --no-daemon
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: ${{secrets.DOCKER_USER}}
+          password: ${{secrets.DOCKER_HUB_TOKEN}}
+
+      - name: Build and push Docker image
+        id: docker_build
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ github.sha }}
+          build-args : |
+            JDBC_URL=${{secrets.JDBC_URL_STAGE}}
+            DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD_STAGE}}
+            DATABASE_USERNAME=${{secrets.DATABASE_USERNAME_STAGE}}
+            DB_USERNAME=${{secrets.DB_USERNAME}}
+            DB_PASSWORD=${{secrets.DB_PASSWORD}}
+            DB_URL=${{secrets.DB_URL}}
+            DB_NAME=${{secrets.DB_NAME}}
+
+            FCM_PATH=${{secrets.FCM_PATH}}
+
+            AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY}}
+            AWS_SECRET_KEY=${secrets.AWS_SECRET_KEY}}
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITOPS_DEPLOY_STAGE_TOKEN }}
+          repository: team-xquare/xquare-gitops-repo-staging
+          event-type: update_image
+          client-payload: '{"ref": "${{ github.ref }}", 
+                          "sha": "${{ github.sha }}",
+                          "service_name": "${{env.SERVICE_NAME}}",
+                          "service_type": "${{env.SERVICE_TYPE}}",
+                          "environment": "${{env.ENVIRONMENT}}" }'
