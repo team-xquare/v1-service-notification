@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class QueryDetailRepositoryImpl(
+class CustomDetailRepositoryImpl(
     private val detailRepository: DetailRepository,
     private val detailMapper: DetailMapper,
     private val query: JPAQueryFactory,

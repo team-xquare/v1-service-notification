@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class SettingRepositoryImpl(
-    private val settingRepository: NotificationSettingRepository,
+class CustomSettingRepositoryImpl(
+    private val settingRepository: SettingRepository,
     private val settingMapper: SettingMapper,
     private val categoryMapper: CategoryMapper
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface NotificationSettingRepository : CrudRepository<SettingEntity, SettingId> {
+interface SettingRepository : CrudRepository<SettingEntity, SettingId> {
     fun findBySettingId(settingId: SettingId): SettingEntity?
     fun findBySettingIdUserIdAndIsActivatedIsTrue(userId: UUID): List<SettingEntity>
     fun findAllBySettingIdCategoryEntity(categoryEntity: CategoryEntity): List<SettingEntity>
