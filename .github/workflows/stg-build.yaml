@@ -49,13 +49,10 @@ jobs:
           push: true
           tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ github.sha }}
           build-args : |
-            JDBC_URL=${{secrets.JDBC_URL_STAGE}}
-            DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD_STAGE}}
-            DATABASE_USERNAME=${{secrets.DATABASE_USERNAME_STAGE}}
-            DB_USERNAME=${{secrets.DB_USERNAME}}
-            DB_PASSWORD=${{secrets.DB_PASSWORD}}
-            DB_URL=${{secrets.DB_URL}}
-            DB_NAME=${{secrets.DB_NAME}}
+            DB_URL=${{secrets.DB_URL_PROD}}
+            DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
+            DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}
+            DB_NAME=${{secrets.DB_NAME_PROD}}
 
             FCM_PATH=${{secrets.FCM_PATH}}
 
