@@ -6,8 +6,7 @@ on:
 
 env:
   SERVICE_NAME: notification
-  SERVICE_TYPE: backend
-  ENVIRONMENT: stage
+  SERVICE_TYPE: be
 
 jobs:
   build:
@@ -67,5 +66,4 @@ jobs:
           client-payload: '{"ref": "${{ github.ref }}", 
                           "sha": "${{ github.sha }}",
                           "service_name": "${{env.SERVICE_NAME}}",
-                          "service_type": "${{env.SERVICE_TYPE}}",
-                          "environment": "${{env.ENVIRONMENT}}" }'
+                          "service_type": "${{env.SERVICE_TYPE}}"}'
