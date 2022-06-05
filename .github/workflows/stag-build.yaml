@@ -65,6 +65,6 @@ jobs:
           repository: team-xquare/xquare-gitops-repo-staging
           event-type: update_image
           client-payload: '{"ref": "${{ github.ref }}", 
-                          "sha": "${{ github.sha }}",
+                          "version": "${{ github.sha }}",
                           "service_name": "${{env.SERVICE_NAME}}",
                           "service_type": "${{env.SERVICE_TYPE}}"}'
