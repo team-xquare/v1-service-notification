@@ -10,6 +10,7 @@ env:
 
 jobs:
   build:
+    environment: stag
     runs-on: ubuntu-latest
     strategy:
       matrix:
