@@ -26,7 +26,7 @@ class DetailEntity(
     val sentAt: LocalDateTime,
 
     @field:NotNull
-    @field:Column(columnDefinition = "BIT")
+    @field:Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     var isRead: Boolean,
 
     @field:NotNull
