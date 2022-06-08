@@ -18,6 +18,6 @@ class CategoryEntity(
     val destination: String,
 
     @field:NotNull
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    @Column(columnDefinition = "BIT")
     val defaultActivated: Boolean
 ) : BaseUUIDEntity()
