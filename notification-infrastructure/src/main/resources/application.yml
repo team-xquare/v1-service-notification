@@ -13,7 +13,7 @@ spring:
     url: jdbc:mysql://${DB_URL}:3306/${DB_NAME}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
 
 fcm:
-  path: ${FCM_PATH}
+  value: ${FCM_VALUE}
 
 cloud:
   aws:
