@@ -1,8 +1,8 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:17.0.1-jdk-slim
 
 EXPOSE 8080
 
-COPY ./build/libs/*.jar app.jar
+COPY ./notification-infrastructure/build/libs/*.jar app.jar
 
 ARG DB_USERNAME
 ARG DB_PASSWORD
