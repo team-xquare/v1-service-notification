@@ -57,7 +57,7 @@ jobs:
             FCM_VALUE=${{secrets.FCM_VALUE_STAGE}}
 
             AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_STAGE}}
-            AWS_SECRET_KEY=${secrets.AWS_SECRET_KEY_STAGE}}
+            AWS_SECRET_KEY=${{secrets.AWS_SECRET_KEY_STAGE}}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
