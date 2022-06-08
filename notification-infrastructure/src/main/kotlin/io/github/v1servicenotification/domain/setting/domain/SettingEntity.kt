@@ -19,7 +19,7 @@ class SettingEntity(
 
 
     @field:NotNull
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     var isActivated: Boolean = isActivated
         protected set
 
