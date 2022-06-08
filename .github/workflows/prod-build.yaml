@@ -1,4 +1,4 @@
-name: Build for Stage
+name: Build for Prod
 on:
   push:
     tags:
@@ -54,16 +54,15 @@ jobs:
           push: true
           tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ steps.get_version.outputs.VERSION }}
           build-args : |
-            DB_URL=${{secrets.DB_URL_STAGE}}
-            DB_USERNAME=${{secrets.DB_USERNAME_STAGE}}
-            DB_PASSWORD=${{secrets.DB_PASSWORD_STAGE}}
-            DB_NAME=${{secrets.DB_NAME_STAGE}}
+            DB_URL=${{secrets.DB_URL_PROD}}
+            DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
+            DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}
+            DB_NAME=${{secrets.DB_NAME_PROD}}
 
-            FCM_PATH=${{secrets.FCM_PATH}}
-
-            AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY}}
-            AWS_SECRET_KEY=${secrets.AWS_SECRET_KEY}}
+            FCM_VALUE=${{secrets.FCM_VALUE_PROD}}
             
+            AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_PROD}}
+            AWS_SECRET_KEY=${secrets.AWS_SECRET_KEY_PROD}}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
