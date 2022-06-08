@@ -62,7 +62,7 @@ jobs:
             FCM_VALUE=${{secrets.FCM_VALUE_PROD}}
             
             AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_PROD}}
-            AWS_SECRET_KEY=${secrets.AWS_SECRET_KEY_PROD}}
+            AWS_SECRET_KEY=${{secrets.AWS_SECRET_KEY_PROD}}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
