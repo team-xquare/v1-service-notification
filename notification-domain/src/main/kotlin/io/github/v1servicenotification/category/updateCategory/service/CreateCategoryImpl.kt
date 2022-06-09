@@ -3,7 +3,6 @@ package io.github.v1servicenotification.category.updateCategory.service
 import io.github.v1servicenotification.annotation.DomainService
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.updateCategory.api.CreateCategory
-import io.github.v1servicenotification.category.updateCategory.api.dto.request.CreateCategoryRequest
 import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
 import java.util.*
 
@@ -12,13 +11,13 @@ class CreateCategoryImpl(
     private val updateCategoryRepositorySpi: UpdateCategoryRepositorySpi
 ): CreateCategory {
 
-    override fun createCategory(request: CreateCategoryRequest) {
+    override fun createCategory(name: String, destination: String, defaultActivated: Boolean) {
         updateCategoryRepositorySpi.saveCategory(
             Category(
                 id = UUID.randomUUID(),
-                name = request.name,
-                destination = request.destination,
-                defaultActivated = request.defaultActivated
+                name = name,
+                destination = destination,
+                defaultActivated = defaultActivated
             )
         )
     }
