@@ -14,6 +14,8 @@ import javax.validation.constraints.Size
 @EntityListeners(value = [AuditingEntityListener::class])
 @Entity
 class DetailEntity(
+    override val id: UUID?,
+
     @field:Size(max = 20)
     @field:NotNull
     val title: String,
@@ -23,7 +25,7 @@ class DetailEntity(
 
     @CreatedDate
     @field:NotNull
-    val sentAt: LocalDateTime,
+    var sentAt: LocalDateTime,
 
     @field:NotNull
     @field:Column(columnDefinition = "TINYINT(1) DEFAULT 0")
@@ -36,7 +38,11 @@ class DetailEntity(
     @JoinColumn(name = "notification_category_id")
     val categoryEntity: CategoryEntity
 
-) : BaseUUIDEntity() {
+) : BaseUUIDEntity(id) {
+
+    fun getCategoryId(): UUID {
+        return categoryEntity.id!!
+    }
 
     fun getCategoryName(): String {
         return categoryEntity.name
