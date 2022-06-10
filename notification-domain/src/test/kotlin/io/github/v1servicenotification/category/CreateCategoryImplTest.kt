@@ -1,6 +1,5 @@
 package io.github.v1servicenotification.category
 
-import io.github.v1servicenotification.category.updateCategory.api.dto.request.CreateCategoryRequest
 import io.github.v1servicenotification.category.updateCategory.service.CreateCategoryImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import org.assertj.core.api.Assertions.assertThat
@@ -18,11 +17,9 @@ class CreateCategoryImplTest {
         val defaultActivated = true
 
         createCategory.createCategory(
-            CreateCategoryRequest(
-                name = name,
-                destination = destination,
-                defaultActivated = defaultActivated
-            )
+            name = name,
+            destination = destination,
+            defaultActivated = defaultActivated
         )
 
         updateCategorySpi.findAllByDefaultActivatedIsTrue()
@@ -42,11 +39,9 @@ class CreateCategoryImplTest {
         val defaultActivated = false
 
         createCategory.createCategory(
-            CreateCategoryRequest(
-                name = name,
-                destination = destination,
-                defaultActivated = defaultActivated
-            )
+            name = name,
+            destination = destination,
+            defaultActivated = defaultActivated
         )
         
         assertThat(updateCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(0)

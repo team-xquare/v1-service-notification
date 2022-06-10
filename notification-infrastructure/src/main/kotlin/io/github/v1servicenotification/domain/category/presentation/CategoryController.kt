@@ -4,7 +4,7 @@ import io.github.v1servicenotification.category.queryCategory.api.QueryNotificat
 import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
 import io.github.v1servicenotification.category.updateCategory.api.CreateCategory
 import io.github.v1servicenotification.category.updateCategory.api.RemoveCategory
-import io.github.v1servicenotification.category.updateCategory.api.dto.request.CreateCategoryRequest
+import io.github.v1servicenotification.domain.category.presentation.dto.request.CreateCategoryRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -32,7 +32,11 @@ class CategoryController(
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun createCategory(@RequestBody request: CreateCategoryRequest) {
-        createCategory.createCategory(request)
+        createCategory.createCategory(
+            name = request.name,
+            destination = request.destination,
+            defaultActivated = request.defaultActivated
+        )
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
