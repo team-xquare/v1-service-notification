@@ -20,7 +20,6 @@ class PostNotificationImpl(
 
         postDetailRepositorySpi.save(
             Detail(
-                id = UUID.randomUUID(),
                 title = title,
                 content = content,
                 sentAt = LocalDateTime.now(),

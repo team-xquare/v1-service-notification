@@ -6,7 +6,7 @@ import java.util.*
 
 @Aggregate
 class Detail(
-    val id: UUID,
+    val id: UUID = UUID(0, 0),
 
     val title: String,
 

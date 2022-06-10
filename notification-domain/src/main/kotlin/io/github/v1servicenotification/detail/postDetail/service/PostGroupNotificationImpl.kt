@@ -28,7 +28,6 @@ class PostGroupNotificationImpl(
             .stream()
             .map {
                 Detail(
-                    id = UUID.randomUUID(),
                     title = title,
                     content = content,
                     sentAt = LocalDateTime.now(),
