@@ -14,7 +14,7 @@ import javax.validation.constraints.Size
 @EntityListeners(value = [AuditingEntityListener::class])
 @Entity
 class DetailEntity(
-    override val id: UUID?,
+    override val id: UUID,
 
     @field:Size(max = 20)
     @field:NotNull

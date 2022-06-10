@@ -11,7 +11,7 @@ import javax.validation.constraints.Size
 @Table(name = "tbl_notification_category")
 @Entity
 class CategoryEntity(
-    override val id: UUID?,
+    override val id: UUID,
 
     @field:Size(max = 20)
     @field:NotNull
