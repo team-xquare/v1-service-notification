@@ -14,7 +14,6 @@ class CreateCategoryImpl(
     override fun createCategory(name: String, destination: String, defaultActivated: Boolean) {
         updateCategoryRepositorySpi.saveCategory(
             Category(
-                id = UUID.randomUUID(),
                 name = name,
                 destination = destination,
                 defaultActivated = defaultActivated

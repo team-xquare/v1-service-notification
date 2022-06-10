@@ -32,10 +32,10 @@ class DetailMapperImpl(
 
     override fun detailEntityToDomain(detailEntity: DetailEntity): Detail {
         return Detail(
-            id = detailEntity.id!!,
+            id = detailEntity.id,
             title = detailEntity.title,
             content = detailEntity.content,
-            sentAt = detailEntity.sentAt!!,
+            sentAt = detailEntity.sentAt,
             isRead = detailEntity.isRead,
             userId = detailEntity.userId,
             categoryId = detailEntity.getCategoryId()

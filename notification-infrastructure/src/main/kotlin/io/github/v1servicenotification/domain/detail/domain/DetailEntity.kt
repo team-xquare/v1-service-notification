@@ -41,7 +41,7 @@ class DetailEntity(
 ) : BaseUUIDEntity(id) {
 
     fun getCategoryId(): UUID {
-        return categoryEntity.id!!
+        return categoryEntity.id
     }
 
     fun getCategoryName(): String {
