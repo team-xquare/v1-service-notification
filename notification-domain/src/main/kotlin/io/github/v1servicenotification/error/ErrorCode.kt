@@ -9,5 +9,7 @@ enum class ErrorCode(
 
     CATEGORY_NOT_FOUND(404, "CATEGORY-404-1", "Category Not Found."),
 
+    DETAIL_NOT_FOUND(404, "DETAIL-404-1", "Detail Not Found."),
+
     INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error.")
 }
