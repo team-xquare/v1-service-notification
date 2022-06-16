@@ -8,4 +8,5 @@ import java.util.*
 @Repository
 interface DetailRepository : CrudRepository<DetailEntity, UUID> {
     fun findAllByUserId(userId: UUID): List<DetailEntity>
+    fun findByUserIdAndId(userId: UUID, id: UUID): DetailEntity?
 }
