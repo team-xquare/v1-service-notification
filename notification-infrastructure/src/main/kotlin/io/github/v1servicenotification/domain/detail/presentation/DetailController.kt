@@ -3,6 +3,7 @@ package io.github.v1servicenotification.domain.detail.presentation
 import io.github.v1servicenotification.detail.postDetail.api.CheckNotification
 import io.github.v1servicenotification.detail.queryDetail.api.QueryNotificationDetail
 import io.github.v1servicenotification.detail.queryDetail.api.dto.response.DetailResponse
+import io.github.v1servicenotification.global.extension.getUserId
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,13 +18,12 @@ class DetailController(
 
     @GetMapping("/")
     fun queryNotificationDetailList(): DetailResponse {
-        return queryNotificationDetail.queryNotificationDetail(UUID.randomUUID()) //TODO User uuid
+        return queryNotificationDetail.queryNotificationDetail(getUserId())
     }
 
     @PostMapping("/{notification-uuid}")
     fun checkNotification(@PathVariable("notification-uuid") notificationId: UUID) {
-        val userId = UUID.randomUUID()
-        checkNotification.checkNotification(userId, notificationId)
+        checkNotification.checkNotification(getUserId(), notificationId)
     }
 
 }
