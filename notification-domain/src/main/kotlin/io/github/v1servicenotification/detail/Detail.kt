@@ -14,10 +14,13 @@ class Detail(
 
     val sentAt: LocalDateTime,
 
-    var isRead: Boolean,
+    isRead: Boolean,
 
     val userId: UUID,
 
     val categoryId: UUID
 
-)
+) {
+    var isRead: Boolean = isRead
+        private set
+}
