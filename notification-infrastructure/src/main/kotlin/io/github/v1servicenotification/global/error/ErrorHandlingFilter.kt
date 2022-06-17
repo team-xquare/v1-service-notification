@@ -19,14 +19,15 @@ class ErrorHandlingFilter : OncePerRequestFilter() {
         } catch (e: NotificationException) {
             errorToJson(e.errorCode, response)
         } catch (e: Exception) {
+            e.printStackTrace()
             errorToJson(ErrorCode.INTERNAL_SERVER_ERROR, response)
         }
     }
 
     private fun errorToJson(errorCode: ErrorCode, response: HttpServletResponse) {
-        response.status = errorCode.status;
-        response.contentType = "application/json";
-        response.writer.write(ErrorResponse(errorCode).toString());
+        response.status = errorCode.status
+        response.contentType = "application/json"
+        response.writer.write(ErrorResponse(errorCode).toString())
     }
 
 }
