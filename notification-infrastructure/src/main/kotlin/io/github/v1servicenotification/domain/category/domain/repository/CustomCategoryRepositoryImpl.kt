@@ -28,6 +28,10 @@ class CustomCategoryRepositoryImpl(
         }
     }
 
+    override fun exist(id: UUID): Boolean {
+        return categoryRepository.existsById(id)
+    }
+
     override fun findById(id: UUID): Category {
         val category = categoryRepository.findById(id)
             .orElseThrow {
