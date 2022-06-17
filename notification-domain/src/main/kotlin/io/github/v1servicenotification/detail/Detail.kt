@@ -23,4 +23,8 @@ class Detail(
 ) {
     var isRead: Boolean = isRead
         private set
+
+    fun checkRead() {
+        this.isRead = true;
+    }
 }
