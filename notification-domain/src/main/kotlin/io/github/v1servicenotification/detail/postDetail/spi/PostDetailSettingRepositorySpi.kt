@@ -1,8 +1,7 @@
 package io.github.v1servicenotification.detail.postDetail.spi
 
-import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.setting.Setting
+import java.util.*
 
 interface PostDetailSettingRepositorySpi {
-    fun findSettingByCategory(category: Category): List<Setting>
+    fun findAllUserIdByCategoryId(categoryId: UUID): List<UUID>
 }
