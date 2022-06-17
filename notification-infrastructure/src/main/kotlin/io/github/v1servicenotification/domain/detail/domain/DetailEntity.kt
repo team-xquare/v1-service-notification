@@ -52,4 +52,8 @@ class DetailEntity(
         return categoryEntity.destination
     }
 
+    fun checkRead() {
+        this.isRead = true
+    }
+
 }
