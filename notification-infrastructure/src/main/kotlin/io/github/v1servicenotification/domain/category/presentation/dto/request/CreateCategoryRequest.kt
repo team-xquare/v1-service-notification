@@ -7,10 +7,13 @@ class CreateCategoryRequest {
 
     @NotNull
     lateinit var name: String
+        private set
 
     @NotNull
     lateinit var destination: String
+        private set
 
     var defaultActivated by Delegates.notNull<Boolean>()
+        private set
 
 }

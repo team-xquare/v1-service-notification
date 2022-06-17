@@ -14,11 +14,14 @@ class DetailVO @QueryProjection constructor(
 
     val sentAt: LocalDateTime,
 
-    var isRead: Boolean,
+    isRead: Boolean,
 
     val userId: UUID,
 
     val name: String,
 
     val destination: String
-)
+) {
+    var isRead: Boolean = isRead
+        private set
+}

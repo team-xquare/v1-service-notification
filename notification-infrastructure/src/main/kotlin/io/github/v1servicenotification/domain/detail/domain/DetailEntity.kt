@@ -23,13 +23,9 @@ class DetailEntity(
     @field:NotNull
     val content: String,
 
-    @CreatedDate
-    @field:NotNull
-    var sentAt: LocalDateTime,
+    sentAt: LocalDateTime,
 
-    @field:NotNull
-    @field:Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-    var isRead: Boolean,
+    isRead: Boolean,
 
     @field:NotNull
     val userId: UUID,
@@ -39,6 +35,18 @@ class DetailEntity(
     val categoryEntity: CategoryEntity
 
 ) : BaseUUIDEntity(id) {
+
+
+
+    @CreatedDate
+    @field:NotNull
+    var sentAt: LocalDateTime = sentAt
+        protected set
+
+    @field:NotNull
+    @field:Column(columnDefinition = "TINYINT(1) DEFAULT 0")
+    var isRead: Boolean = isRead
+        protected set
 
     fun getCategoryId(): UUID {
         return categoryEntity.id
