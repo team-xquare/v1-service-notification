@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.domain.setting.presentation
 
 import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
+import io.github.v1servicenotification.global.extension.getUserId
 import io.github.v1servicenotification.setting.activeSetting.api.ActivateCategory
 import io.github.v1servicenotification.setting.activeSetting.api.DeActivateCategory
 import io.github.v1servicenotification.setting.activeSetting.api.QueryActivatedCategory
@@ -19,14 +20,14 @@ class SettingController(
 
     @GetMapping
     fun queryActivatedCategory(): CategoryListResponse {
-        return queryActivatedCategory.queryActivatedCategory(UUID.randomUUID()) //TODO User Id
+        return queryActivatedCategory.queryActivatedCategory(getUserId())
     }
 
     @PatchMapping("/{category-uuid}")
     fun activateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
         return ResponseEntity(
             HttpStatus.valueOf(
-                activateCategory.activateCategory(categoryId, UUID.randomUUID()) //TODO User Id
+                activateCategory.activateCategory(categoryId, getUserId())
             )
         )
     }
@@ -36,7 +37,7 @@ class SettingController(
     fun deActivateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
         return ResponseEntity(
             HttpStatus.valueOf(
-                deActivateCategory.deActivateCategory(categoryId, UUID.randomUUID()) //TODO User Id
+                deActivateCategory.deActivateCategory(categoryId, getUserId())
             )
         )
     }

@@ -2,6 +2,7 @@ package io.github.v1servicenotification.global.error
 
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException
+import org.apache.http.entity.ContentType
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -19,14 +20,15 @@ class ErrorHandlingFilter : OncePerRequestFilter() {
         } catch (e: NotificationException) {
             errorToJson(e.errorCode, response)
         } catch (e: Exception) {
+            e.printStackTrace()
             errorToJson(ErrorCode.INTERNAL_SERVER_ERROR, response)
         }
     }
 
     private fun errorToJson(errorCode: ErrorCode, response: HttpServletResponse) {
-        response.status = errorCode.status;
-        response.contentType = "application/json";
-        response.writer.write(ErrorResponse(errorCode).toString());
+        response.status = errorCode.status
+        response.contentType = ContentType.APPLICATION_JSON.mimeType
+        response.writer.write(ErrorResponse(errorCode).toString())
     }
 
 }
