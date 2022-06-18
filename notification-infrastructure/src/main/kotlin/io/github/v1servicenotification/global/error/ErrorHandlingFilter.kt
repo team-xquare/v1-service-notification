@@ -2,6 +2,7 @@ package io.github.v1servicenotification.global.error
 
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException
+import org.apache.http.entity.ContentType
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -26,7 +27,7 @@ class ErrorHandlingFilter : OncePerRequestFilter() {
 
     private fun errorToJson(errorCode: ErrorCode, response: HttpServletResponse) {
         response.status = errorCode.status
-        response.contentType = "application/json"
+        response.contentType = ContentType.APPLICATION_JSON.mimeType
         response.writer.write(ErrorResponse(errorCode).toString())
     }
 
