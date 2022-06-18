@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import java.util.*
@@ -9,7 +10,7 @@ import kotlin.collections.HashMap
 class InMemorySettingRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
     private val settingMap: HashMap<UUID, Setting> = hashMapOf()
-) : SettingRepositorySpi {
+) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
 
     fun saveCategory(category: Category) {
         categoryMap[category.id] = category
@@ -43,6 +44,14 @@ class InMemorySettingRepository(
         }.map {
             categoryMap[it.value.notificationCategoryId]
                 ?: throw RuntimeException()
+        }
+    }
+
+    override fun findAllUserIdByCategoryId(categoryId: UUID): List<UUID> {
+        return settingMap.filter {
+            it.value.notificationCategoryId == categoryId
+        }.map {
+            it.value.userId
         }
     }
 

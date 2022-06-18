@@ -2,20 +2,22 @@ package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.Detail
+import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
+import io.github.v1servicenotification.detail.postDetail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.queryDetail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.queryDetail.spi.dto.DetailModel
 import java.util.*
 
-class InMemoryQueryDetailRepository(
+class InMemoryDetailRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
     private val detailMap: HashMap<UUID, Detail> = hashMapOf()
-) : QueryDetailRepositorySpi {
+) : QueryDetailRepositorySpi, PostDetailRepositorySpi {
 
-    fun saveCategory(category: Category) {
+    fun save(category: Category) {
         categoryMap[category.id] = category
     }
 
-    fun saveDetail(detail: Detail) {
+    override fun save(detail: Detail) {
         detailMap[detail.id] = detail
     }
 
@@ -35,6 +37,23 @@ class InMemoryQueryDetailRepository(
                     category.destination
                 )
             }
+    }
+
+    override fun saveAllDetail(detailList: List<Detail>) {
+        detailList.forEach {
+            save(it)
+        }
+    }
+
+    override fun checkDetailByUserIdAndDetailId(userId: UUID, detailId: UUID) {
+        val detail = detailMap[detailId]
+            ?: throw NotificationDetailNotFoundException.EXCEPTION
+
+        if(detail.userId != userId) {
+            throw NotificationDetailNotFoundException.EXCEPTION
+        }
+
+        detail.checkRead()
     }
 
 }

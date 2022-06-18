@@ -6,6 +6,7 @@ import java.util.*
 
 @Spi
 interface QueryCategoryRepositorySpi {
+    fun exist(id: UUID): Boolean
     fun findById(id: UUID): Category
     fun findAllByDefaultActivatedIsTrue(): List<Category>
 }

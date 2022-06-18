@@ -1,8 +1,11 @@
 package io.github.v1servicenotification.domain.setting.domain.repository
 
+import com.querydsl.jpa.impl.JPAQueryFactory
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
+import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detailEntity
+import io.github.v1servicenotification.domain.setting.domain.QSettingEntity.settingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.mapper.SettingMapper
@@ -15,7 +18,8 @@ import java.util.*
 class CustomSettingRepositoryImpl(
     private val settingRepository: SettingRepository,
     private val settingMapper: SettingMapper,
-    private val categoryMapper: CategoryMapper
+    private val categoryMapper: CategoryMapper,
+    private val jpaQueryFactory: JPAQueryFactory
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
     override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
         return settingMapper.settingEntityToDomain(
@@ -59,13 +63,12 @@ class CustomSettingRepositoryImpl(
         )
     }
 
-    override fun findSettingByCategory(category: Category): List<Setting> {
-        val categoryEntity = categoryMapper.categoryDomainToEntity(category)
-
-        return settingRepository.findAllBySettingIdCategoryEntity(categoryEntity)
-            .stream()
-            .map { settingMapper.settingEntityToDomain(it) }
-            .toList()
+    override fun findAllUserIdByCategoryId(categoryId: UUID): List<UUID> {
+        return jpaQueryFactory
+            .select(settingEntity.settingId.userId)
+            .from(settingEntity)
+            .where(settingEntity.settingId.categoryEntity.id.eq(categoryId))
+            .fetch()
     }
 
 }
