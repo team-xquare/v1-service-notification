@@ -5,13 +5,13 @@ enum class ErrorCode(
     val code: String,
     val message: String
 ) {
-    OTHER_BAD_REQUEST(400, "FEIGN-400-1", "Other Bad Request."),
+    FEIGN_BAD_REQUEST(400, "FEIGN-400-1", "Feign Bad Request."),
 
-    OTHER_UNAUTHORIZED(401, "FEIGN-401-1", "Other Unauthorized."),
+    FEIGN_UNAUTHORIZED(401, "FEIGN-401-1", "Feign Unauthorized."),
 
-    OTHER_FORBIDDEN(403, "FEIGN-403-1", "Other Forbidden."),
+    FEIGN_FORBIDDEN(403, "FEIGN-403-1", "Feign Forbidden."),
 
-    OTHER_EXPIRED_TOKEN(419, "FEIGN-419-1", "Other Expired Token."),
+    FEIGN_EXPIRED_TOKEN(419, "FEIGN-419-1", "Feign Expired Token."),
 
 
     EMPTY_ARGUMENT(400, "NOTIFICATION-400-1", "Empty argument."),
