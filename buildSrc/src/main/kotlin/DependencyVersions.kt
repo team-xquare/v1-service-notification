@@ -3,4 +3,5 @@ object DependencyVersions{
     const val QUERYDSL = "5.0.0"
     const val ASSERTJ = "3.22.0"
     const val FIREBASE = "8.1.0"
+    const val OPENFEIGN = "3.1.3"
 }

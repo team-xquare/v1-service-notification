@@ -23,5 +23,7 @@ object Dependencies {
     const val ASSERTJ = "org.assertj:assertj-core:${DependencyVersions.ASSERTJ}"
     const val FIREBASE = "com.google.firebase:firebase-admin:${DependencyVersions.FIREBASE}"
 
+    const val OPENFEIGN = "org.springframework.cloud:spring-cloud-starter-openfeign:${DependencyVersions.OPENFEIGN}"
+
 
 }
