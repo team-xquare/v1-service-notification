@@ -27,4 +27,7 @@ cloud:
       access-key: ${AWS_ACCESS_KEY}
       secret-key: ${AWS_SECRET_KEY}
 
+user:
+  url: ${USER_URL}
+
 logging.level.com.amazonaws.util.EC2MetadataUtils: error
