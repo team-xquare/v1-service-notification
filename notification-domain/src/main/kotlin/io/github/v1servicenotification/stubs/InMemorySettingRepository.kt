@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
@@ -43,7 +44,7 @@ class InMemorySettingRepository(
             it.value.userId == userId && it.value.isActivated
         }.map {
             categoryMap[it.value.notificationCategoryId]
-                ?: throw RuntimeException()
+                ?: throw CategoryNotFoundException.EXCEPTION
         }
     }
 

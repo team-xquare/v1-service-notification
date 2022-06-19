@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
 import io.github.v1servicenotification.detail.postDetail.spi.PostDetailRepositorySpi
@@ -25,7 +26,7 @@ class InMemoryDetailRepository(
         return detailMap.filter { it.value.userId == userId }
             .map {
                 val category = categoryMap[it.value.categoryId]
-                    ?: throw RuntimeException()
+                    ?: throw CategoryNotFoundException.EXCEPTION
                 DetailModel(
                     it.value.id,
                     it.value.title,
