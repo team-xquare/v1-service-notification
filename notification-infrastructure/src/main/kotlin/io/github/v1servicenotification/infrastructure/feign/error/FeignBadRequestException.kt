@@ -3,9 +3,9 @@ package io.github.v1servicenotification.infrastructure.feign.error
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException
 
-class OtherForbiddenException private constructor(): NotificationException(ErrorCode.FEIGN_FORBIDDEN) {
+class FeignBadRequestException private constructor(): NotificationException(ErrorCode.FEIGN_BAD_REQUEST) {
     companion object {
         @JvmField
-        val EXCEPTION = OtherForbiddenException()
+        val EXCEPTION = FeignBadRequestException()
     }
 }
