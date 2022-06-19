@@ -7,7 +7,7 @@ plugins {
 
 val awsMessagingVersion = "2.2.6.RELEASE"
 
-sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+kotlin.sourceSets.main {
     kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
@@ -28,6 +28,8 @@ dependencies {
 
     implementation(Dependencies.JPA)
     runtimeOnly(Dependencies.MYSQL_CONNECTOR)
+
+    implementation(Dependencies.OPENFEIGN)
 
     implementation(Dependencies.FIREBASE)
 
