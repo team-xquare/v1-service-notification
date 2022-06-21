@@ -27,6 +27,7 @@ class DetailEntity(
 
     isRead: Boolean,
 
+    @field:Column(columnDefinition = "BINARY(16)")
     @field:NotNull
     val userId: UUID,
 
