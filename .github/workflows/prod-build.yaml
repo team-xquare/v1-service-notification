@@ -63,6 +63,8 @@ jobs:
             
             AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_PROD}}
             AWS_SECRET_KEY=${{secrets.AWS_SECRET_KEY_PROD}}
+            
+            USER_URL=${{secrets.USER_SERVICE_HOST}}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
