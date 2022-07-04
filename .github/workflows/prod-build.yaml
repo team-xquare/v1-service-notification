@@ -39,21 +39,23 @@ jobs:
             build
             --no-daemon
             
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      - name: Login to ECR
+        id: ecr
+        uses: elgohr/ecr-login-action@master
         with:
-          username: ${{secrets.DOCKER_USER}}
-          password: ${{secrets.DOCKER_HUB_TOKEN}}
+          access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          region: ${{ secrets.AWS_REGION }}
 
-      - name: Build and push Docker image
-        id: docker_build
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{secrets.DOCKER_USER}}/${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}:${{ steps.get_version.outputs.VERSION }}
-          build-args : |
+          name: ${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}
+          username: ${{ steps.ecr.outputs.username }}
+          password: ${{ steps.ecr.outputs.password }}
+          registry: ${{ steps.ecr.outputs.registry }}
+          tags: ${{ github.sha }}
+          buildargs: |
             DB_URL=${{secrets.DB_URL_PROD}}
             DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
             DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}

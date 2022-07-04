@@ -39,17 +39,18 @@ jobs:
         id: ecr
         uses: elgohr/ecr-login-action@master
         with:
-          access_key: ${{ secrets.AWS_ACCESS_KEY_STAGE }}
-          secret_access_key: ${{ secrets.AWS_SECRET_KEY_STAGE }}
+          access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           region: ${{ secrets.AWS_REGION }}
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ${{ secrets.ECR_REPO_NAME }}
+          name: ${{env.SERVICE_NAME}}-${{env.SERVICE_TYPE}}
           username: ${{ steps.ecr.outputs.username }}
           password: ${{ steps.ecr.outputs.password }}
           registry: ${{ steps.ecr.outputs.registry }}
+          tags: ${{ github.sha }}
           buildargs: |
             DB_URL=${{secrets.DB_URL_STAGE}}
             DB_USERNAME=${{secrets.DB_USERNAME_STAGE}}
