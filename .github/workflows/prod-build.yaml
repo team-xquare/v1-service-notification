@@ -54,7 +54,7 @@ jobs:
           username: ${{ steps.ecr.outputs.username }}
           password: ${{ steps.ecr.outputs.password }}
           registry: ${{ steps.ecr.outputs.registry }}
-          tags: ${{ github.sha }}
+          tags: ${{ steps.get_version.outputs.VERSION }}
           buildargs: |
             DB_URL=${{secrets.DB_URL_PROD}}
             DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
