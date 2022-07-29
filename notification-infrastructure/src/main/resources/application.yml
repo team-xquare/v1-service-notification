@@ -31,3 +31,7 @@ user:
   url: ${USER_URL}
 
 logging.level.com.amazonaws.util.EC2MetadataUtils: error
+
+server:
+  servlet:
+    contextPath: /notifications
