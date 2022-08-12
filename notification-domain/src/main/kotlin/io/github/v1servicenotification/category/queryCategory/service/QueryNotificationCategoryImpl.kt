@@ -11,9 +11,9 @@ class QueryNotificationCategoryImpl(
     private val queryCategoryRepositorySpi: QueryCategoryRepositorySpi
 ) : QueryNotificationCategory {
 
-    override fun queryNotificationCategory(): CategoryListResponse {
+    override fun queryNotificationCategory(defaultActivated: Boolean): CategoryListResponse {
         return CategoryListResponse(
-            queryCategoryRepositorySpi.findAllByDefaultActivatedIsTrue()
+            queryCategoryRepositorySpi.findAllByDefaultActivated(defaultActivated)
                 .map { CategoryElement(it.id, it.name, it.destination) }
                 .toList()
         )
