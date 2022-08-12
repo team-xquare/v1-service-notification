@@ -22,14 +22,14 @@ class CreateCategoryImplTest {
             defaultActivated = defaultActivated
         )
 
-        updateCategorySpi.findAllByDefaultActivatedIsTrue()
+        updateCategorySpi.findAllByDefaultActivated(true)
             .forEach {
                 assertThat(it.name).isEqualTo(name)
                 assertThat(it.destination).isEqualTo(destination)
                 assertThat(it.defaultActivated).isEqualTo(defaultActivated)
             }
 
-        assertThat(updateCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(1)
+        assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(1)
     }
 
     @Test
@@ -44,7 +44,7 @@ class CreateCategoryImplTest {
             defaultActivated = defaultActivated
         )
         
-        assertThat(updateCategorySpi.findAllByDefaultActivatedIsTrue().size).isEqualTo(0)
+        assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(0)
     }
 
 }
