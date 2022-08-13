@@ -8,5 +8,5 @@ import java.util.*
 interface QueryCategoryRepositorySpi {
     fun exist(id: UUID): Boolean
     fun findById(id: UUID): Category
-    fun findAllByDefaultActivatedIsTrue(): List<Category>
+    fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category>
 }

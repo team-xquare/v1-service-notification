@@ -7,5 +7,5 @@ import java.util.*
 
 @Repository
 interface CategoryRepository : CrudRepository<CategoryEntity, UUID> {
-    fun findAllByDefaultActivatedIsTrue(): List<CategoryEntity>
+    fun findAllByDefaultActivated(defaultActivated: Boolean): List<CategoryEntity>
 }

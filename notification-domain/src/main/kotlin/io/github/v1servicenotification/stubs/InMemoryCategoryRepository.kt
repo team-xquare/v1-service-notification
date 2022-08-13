@@ -33,9 +33,9 @@ class InMemoryCategoryRepository(
             ?: throw NullPointerException()
     }
 
-    override fun findAllByDefaultActivatedIsTrue(): List<Category> {
+    override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {
         return categoryMap.filter {
-            it.value.defaultActivated
+            it.value.defaultActivated == defaultActivated
         }.map { it.value }
     }
 

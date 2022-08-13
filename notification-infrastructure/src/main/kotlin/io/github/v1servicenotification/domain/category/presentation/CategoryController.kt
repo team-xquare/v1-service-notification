@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
@@ -25,8 +26,8 @@ class CategoryController(
 ) {
 
     @GetMapping
-    fun queryNotificationCategoryList(): CategoryListResponse {
-        return queryNotificationCategory.queryNotificationCategory()
+    fun queryNotificationCategoryList(@RequestParam("default_activated") defaultActivated: Boolean): CategoryListResponse {
+        return queryNotificationCategory.queryNotificationCategory(defaultActivated)
     }
 
     @ResponseStatus(HttpStatus.CREATED)

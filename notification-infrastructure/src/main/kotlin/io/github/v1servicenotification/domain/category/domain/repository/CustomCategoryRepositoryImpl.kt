@@ -41,8 +41,8 @@ class CustomCategoryRepositoryImpl(
         return categoryMapper.categoryEntityToDomain(category)
     }
 
-    override fun findAllByDefaultActivatedIsTrue(): List<Category> {
-        return categoryRepository.findAllByDefaultActivatedIsTrue()
+    override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {
+        return categoryRepository.findAllByDefaultActivated(defaultActivated)
             .stream()
             .map { categoryMapper.categoryEntityToDomain(it) }
             .toList()
