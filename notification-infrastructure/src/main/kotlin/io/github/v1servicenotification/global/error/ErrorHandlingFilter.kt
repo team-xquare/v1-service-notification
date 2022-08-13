@@ -2,7 +2,6 @@ package io.github.v1servicenotification.global.error
 
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException
-import org.apache.http.entity.ContentType
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
@@ -21,8 +20,12 @@ class ErrorHandlingFilter : OncePerRequestFilter() {
         } catch (e: NotificationException) {
             errorToJson(e.errorCode, response)
         } catch (e: Exception) {
-            e.printStackTrace()
-            errorToJson(ErrorCode.INTERNAL_SERVER_ERROR, response)
+            if (e.cause is NotificationException) {
+                errorToJson((e.cause as NotificationException).errorCode, response)
+            } else {
+                e.printStackTrace()
+                errorToJson(ErrorCode.INTERNAL_SERVER_ERROR, response)
+            }
         }
     }
 
