@@ -6,7 +6,6 @@ import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRe
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import java.util.*
-import kotlin.collections.HashMap
 
 class InMemorySettingRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
@@ -48,9 +47,9 @@ class InMemorySettingRepository(
         }
     }
 
-    override fun findAllUserIdByCategoryId(categoryId: UUID): List<UUID> {
+    override fun findAllUserIdByCategoryIdAndIsActivated(categoryId: UUID, isActivated: Boolean): List<UUID> {
         return settingMap.filter {
-            it.value.notificationCategoryId == categoryId
+            it.value.notificationCategoryId == categoryId && it.value.isActivated == isActivated
         }.map {
             it.value.userId
         }
