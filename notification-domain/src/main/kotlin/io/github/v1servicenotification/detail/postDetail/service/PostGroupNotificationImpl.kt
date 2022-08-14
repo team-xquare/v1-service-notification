@@ -19,14 +19,22 @@ class PostGroupNotificationImpl(
     private val queryCategoryRepositorySpi: QueryCategoryRepositorySpi,
     private val postDetailFcmSpi: PostDetailFcmSpi,
     private val postDetailUserSpi: PostDetailUserSpi
-): PostGroupNotification {
+) : PostGroupNotification {
 
     override fun postGroupNotification(categoryId: UUID, title: String, content: String) {
-        if(!queryCategoryRepositorySpi.exist(categoryId)) {
+        if (!queryCategoryRepositorySpi.exist(categoryId)) {
             throw CategoryNotFoundException.EXCEPTION
         }
 
-        val userIdList = postDetailSettingRepositorySpi.findAllUserIdByCategoryId(categoryId)
+        val userIdList = if (queryCategoryRepositorySpi.findById(categoryId).defaultActivated) {
+            // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
+            postDetailUserSpi.getExcludeUserIdList(
+                postDetailSettingRepositorySpi.findAllUserIdByCategoryIdAndIsActivated(categoryId, false)
+            )
+        } else {
+            postDetailSettingRepositorySpi.findAllUserIdByCategoryIdAndIsActivated(categoryId, true)
+        }
+
 
         val detailList = userIdList
             .stream()
