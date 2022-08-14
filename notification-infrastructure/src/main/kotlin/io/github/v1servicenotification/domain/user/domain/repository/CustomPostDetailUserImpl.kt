@@ -10,6 +10,9 @@ import java.util.*
 class CustomPostDetailUserImpl(
     private val userClient: UserClient
 ): PostDetailUserSpi {
+    override fun getExcludeUserIdList(userIdList: List<UUID>): List<UUID> {
+        return userClient.getExcludeUserIdList(userIdList).userIdList
+    }
 
     override fun getDeviceToken(userId: UUID): String {
         val result = userClient.token(listOf(userId)).tokens
