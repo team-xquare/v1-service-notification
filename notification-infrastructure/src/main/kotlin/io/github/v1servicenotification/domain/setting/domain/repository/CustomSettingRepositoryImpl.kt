@@ -48,12 +48,22 @@ class CustomSettingRepositoryImpl(
     }
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
-        return settingRepository
-            .findBySettingIdUserIdAndIsActivatedIsTrue(userId)
+        return jpaQueryFactory
+            .select(categoryEntity)
+            .from(categoryEntity)
+            .leftJoin(categoryEntity.settingList, settingEntity)
+            .on(settingEntity.settingId.userId.eq(userId))
+            .where(
+                settingEntity.isActivated.isTrue
+                    .or(
+                        categoryEntity.defaultActivated.isTrue
+                            .and(settingEntity.isActivated.isNull)
+                    )
+            )
+            .fetch()
             .map {
-                categoryMapper.categoryEntityToDomain(it.settingId.categoryEntity)
+                categoryMapper.categoryEntityToDomain(it)
             }
-            .toList()
     }
 
     private fun getSettingId(category: Category, userId: UUID): SettingId {
@@ -67,7 +77,6 @@ class CustomSettingRepositoryImpl(
         return jpaQueryFactory
             .select(settingEntity.settingId.userId)
             .from(settingEntity)
-            .leftJoin(categoryEntity)
             .where(settingEntity.isActivated.eq(isActivated))
             .fetch()
     }

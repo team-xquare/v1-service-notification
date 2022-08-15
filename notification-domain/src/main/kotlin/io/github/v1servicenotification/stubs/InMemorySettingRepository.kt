@@ -16,6 +16,12 @@ class InMemorySettingRepository(
         categoryMap[category.id] = category
     }
 
+    fun findSetting(userId: UUID, categoryId: UUID): Setting? {
+        return settingMap
+            .filter { it.value.userId == userId && it.value.notificationCategoryId == categoryId }
+            .map { it.value }[0]
+    }
+
     override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
         val setting = Setting(userId, category.id, isActivated)
         settingMap[UUID.randomUUID()] = setting
@@ -39,12 +45,10 @@ class InMemorySettingRepository(
     }
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
-        return settingMap.filter {
-            it.value.userId == userId && it.value.isActivated
-        }.map {
-            categoryMap[it.value.notificationCategoryId]
-                ?: throw CategoryNotFoundException.EXCEPTION
-        }
+        return categoryMap.filter {
+            val setting = findSetting(userId, it.value.id)
+            setting?.isActivated ?: it.value.defaultActivated
+        }.map { it.value }
     }
 
     override fun findAllUserIdByCategoryIdAndIsActivated(categoryId: UUID, isActivated: Boolean): List<UUID> {
