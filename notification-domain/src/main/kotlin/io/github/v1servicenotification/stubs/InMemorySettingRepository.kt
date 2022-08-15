@@ -19,7 +19,7 @@ class InMemorySettingRepository(
     fun findSetting(userId: UUID, categoryId: UUID): Setting? {
         return settingMap
             .filter { it.value.userId == userId && it.value.notificationCategoryId == categoryId }
-            .map { it.value }[0]
+            .map { it.value }.firstOrNull()
     }
 
     override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
