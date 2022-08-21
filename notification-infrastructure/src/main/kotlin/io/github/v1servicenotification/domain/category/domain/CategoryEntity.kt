@@ -24,5 +24,5 @@ class CategoryEntity(
     val defaultActivated: Boolean,
 
     @OneToMany(mappedBy = "settingId.categoryEntity", fetch = FetchType.LAZY)
-    val settingList: Set<SettingEntity> = HashSet()
+    val settingList: List<SettingEntity> = emptyList()
 ) : BaseUUIDEntity(id)
