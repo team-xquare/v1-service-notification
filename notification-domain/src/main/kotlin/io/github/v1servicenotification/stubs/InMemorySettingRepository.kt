@@ -1,7 +1,6 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
@@ -14,6 +13,12 @@ class InMemorySettingRepository(
 
     fun saveCategory(category: Category) {
         categoryMap[category.id] = category
+    }
+
+    fun findSetting(userId: UUID, categoryId: UUID): Setting? {
+        return settingMap
+            .filter { it.value.userId == userId && it.value.notificationCategoryId == categoryId }
+            .map { it.value }.firstOrNull()
     }
 
     override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
@@ -39,12 +44,10 @@ class InMemorySettingRepository(
     }
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
-        return settingMap.filter {
-            it.value.userId == userId && it.value.isActivated
-        }.map {
-            categoryMap[it.value.notificationCategoryId]
-                ?: throw CategoryNotFoundException.EXCEPTION
-        }
+        return categoryMap.filter {
+            val setting = findSetting(userId, it.value.id)
+            setting?.isActivated ?: it.value.defaultActivated
+        }.map { it.value }
     }
 
     override fun findAllUserIdByCategoryIdAndIsActivated(categoryId: UUID, isActivated: Boolean): List<UUID> {

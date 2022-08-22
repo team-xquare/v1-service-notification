@@ -2,6 +2,6 @@ package io.github.v1servicenotification.infrastructure.feign.client.dto.response
 
 import java.util.*
 
-class UserResponse(
+class UserIdListResponse(
     val userIdList: List<UUID>
 )
