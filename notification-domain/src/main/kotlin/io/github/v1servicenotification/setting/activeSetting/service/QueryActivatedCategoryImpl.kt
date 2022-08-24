@@ -1,8 +1,8 @@
 package io.github.v1servicenotification.setting.activeSetting.service
 
 import io.github.v1servicenotification.annotation.DomainService
-import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryElement
-import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
+import io.github.v1servicenotification.category.api.response.CategoryElement
+import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.setting.activeSetting.api.QueryActivatedCategory
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import java.util.*

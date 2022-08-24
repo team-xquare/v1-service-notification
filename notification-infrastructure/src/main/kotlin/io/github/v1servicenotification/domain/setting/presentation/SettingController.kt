@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.domain.setting.presentation
 
-import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
+import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.global.extension.getUserId
 import io.github.v1servicenotification.setting.activeSetting.api.ActivateCategory
 import io.github.v1servicenotification.setting.activeSetting.api.DeActivateCategory

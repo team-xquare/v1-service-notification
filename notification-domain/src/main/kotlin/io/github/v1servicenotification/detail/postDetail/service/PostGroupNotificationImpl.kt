@@ -1,8 +1,8 @@
 package io.github.v1servicenotification.detail.postDetail.service
 
 import io.github.v1servicenotification.annotation.DomainService
-import io.github.v1servicenotification.category.queryCategory.spi.QueryCategoryRepositorySpi
-import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
+import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
+import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.postDetail.api.PostGroupNotification
 import io.github.v1servicenotification.detail.postDetail.spi.PostDetailFcmSpi

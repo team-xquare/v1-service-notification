@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
+import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.postDetail.service.PostNotificationImpl
 import io.github.v1servicenotification.stubs.*
 import org.assertj.core.api.Assertions.assertThat
