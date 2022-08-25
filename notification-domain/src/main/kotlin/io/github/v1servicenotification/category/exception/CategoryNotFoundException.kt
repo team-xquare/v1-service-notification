@@ -1,4 +1,4 @@
-package io.github.v1servicenotification.category.updateCategory.exception
+package io.github.v1servicenotification.category.exception
 
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException

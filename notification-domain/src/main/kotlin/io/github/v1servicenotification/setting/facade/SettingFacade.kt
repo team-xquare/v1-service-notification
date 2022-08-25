@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.setting.facade
 
 import io.github.v1servicenotification.annotation.Facade
-import io.github.v1servicenotification.category.queryCategory.spi.QueryCategoryRepositorySpi
+import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import java.util.*
 

@@ -1,4 +1,4 @@
-package io.github.v1servicenotification.category.queryCategory.api.dto.response
+package io.github.v1servicenotification.category.api.response
 
 import java.util.*
 

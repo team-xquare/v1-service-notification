@@ -1,9 +1,7 @@
 package io.github.v1servicenotification.domain.category.presentation
 
-import io.github.v1servicenotification.category.queryCategory.api.QueryNotificationCategory
-import io.github.v1servicenotification.category.queryCategory.api.dto.response.CategoryListResponse
-import io.github.v1servicenotification.category.updateCategory.api.CreateCategory
-import io.github.v1servicenotification.category.updateCategory.api.RemoveCategory
+import io.github.v1servicenotification.category.api.CategoryApi
+import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.domain.category.presentation.dto.request.CreateCategoryRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -20,20 +18,18 @@ import java.util.UUID
 @RequestMapping("/categories")
 @RestController
 class CategoryController(
-    private val queryNotificationCategory: QueryNotificationCategory,
-    private val createCategory: CreateCategory,
-    private val removeCategory: RemoveCategory
+    private val categoryApi: CategoryApi
 ) {
 
     @GetMapping
     fun queryNotificationCategoryList(@RequestParam("default_activated") defaultActivated: Boolean): CategoryListResponse {
-        return queryNotificationCategory.queryNotificationCategory(defaultActivated)
+        return categoryApi.queryNotificationCategory(defaultActivated)
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun createCategory(@RequestBody request: CreateCategoryRequest) {
-        createCategory.createCategory(
+        categoryApi.createCategory(
             name = request.name,
             destination = request.destination,
             defaultActivated = request.defaultActivated
@@ -43,7 +39,7 @@ class CategoryController(
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{category-uuid}")
     fun removeCategory(@PathVariable("category-uuid") categoryId: UUID) {
-        removeCategory.removeCategory(categoryId)
+        categoryApi.removeCategory(categoryId)
     }
 
 }

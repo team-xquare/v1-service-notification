@@ -1,9 +1,9 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.category.queryCategory.spi.QueryCategoryRepositorySpi
-import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
-import io.github.v1servicenotification.category.updateCategory.spi.UpdateCategoryRepositorySpi
+import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
+import io.github.v1servicenotification.category.exception.CategoryNotFoundException
+import io.github.v1servicenotification.category.spi.UpdateCategoryRepositorySpi
 import java.util.*
 
 class InMemoryCategoryRepository(

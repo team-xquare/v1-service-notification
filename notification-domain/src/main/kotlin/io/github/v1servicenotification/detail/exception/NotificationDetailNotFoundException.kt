@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.detail.exception
 
-import io.github.v1servicenotification.category.updateCategory.exception.CategoryNotFoundException
+import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.error.ErrorCode
 import io.github.v1servicenotification.error.NotificationException
 
