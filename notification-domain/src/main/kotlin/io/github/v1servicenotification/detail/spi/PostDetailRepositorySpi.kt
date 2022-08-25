@@ -1,4 +1,4 @@
-package io.github.v1servicenotification.detail.postDetail.spi
+package io.github.v1servicenotification.detail.spi
 
 import io.github.v1servicenotification.detail.Detail
 import java.util.UUID
