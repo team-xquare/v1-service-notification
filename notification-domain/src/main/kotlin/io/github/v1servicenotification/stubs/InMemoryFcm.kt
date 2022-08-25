@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.stubs
 
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailFcmSpi
+import io.github.v1servicenotification.detail.spi.PostDetailFcmSpi
 
 class InMemoryFcm: PostDetailFcmSpi {
     override fun sendMessage(token: String, title: String, content: String) {
