@@ -10,7 +10,7 @@ import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.domain.setting.mapper.SettingMapper
 import io.github.v1servicenotification.setting.Setting
-import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
+import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import org.springframework.stereotype.Repository
 import java.util.*
 
