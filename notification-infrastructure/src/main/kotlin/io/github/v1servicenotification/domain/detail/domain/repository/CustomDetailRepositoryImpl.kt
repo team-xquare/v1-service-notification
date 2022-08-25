@@ -3,9 +3,9 @@ package io.github.v1servicenotification.domain.detail.domain.repository
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailRepositorySpi
-import io.github.v1servicenotification.detail.queryDetail.spi.QueryDetailRepositorySpi
-import io.github.v1servicenotification.detail.queryDetail.spi.dto.DetailModel
+import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
+import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
+import io.github.v1servicenotification.detail.spi.dto.DetailModel
 import io.github.v1servicenotification.domain.category.domain.QCategoryEntity.categoryEntity
 import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detailEntity
 import io.github.v1servicenotification.domain.detail.domain.repository.vo.QDetailVO

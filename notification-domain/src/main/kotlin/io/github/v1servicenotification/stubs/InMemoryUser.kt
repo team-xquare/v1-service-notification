@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.stubs
 
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailUserSpi
+import io.github.v1servicenotification.detail.spi.PostDetailUserSpi
 import java.util.*
 
 class InMemoryUser: PostDetailUserSpi {

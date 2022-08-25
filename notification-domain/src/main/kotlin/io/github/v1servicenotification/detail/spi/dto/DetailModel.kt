@@ -1,15 +1,25 @@
-package io.github.v1servicenotification.detail.queryDetail.api.dto.response
+package io.github.v1servicenotification.detail.spi.dto
 
 import java.time.LocalDateTime
 import java.util.*
 
-class DetailElement(
+class DetailModel(
     val id: UUID,
+
     val title: String,
+
     val content: String,
+
     val sentAt: LocalDateTime,
-    val isRead: Boolean,
+
+    isRead: Boolean,
+
     val userId: UUID,
+
     val name: String,
+
     val destination: String
-)
+) {
+    var isRead: Boolean = isRead
+        private set
+}

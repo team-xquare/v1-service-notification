@@ -1,8 +1,7 @@
 package io.github.v1servicenotification.global.fcm
 
 import com.google.firebase.messaging.*
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailFcmSpi
-import io.github.v1servicenotification.global.fcm.dto.NotificationRequest
+import io.github.v1servicenotification.detail.spi.PostDetailFcmSpi
 import org.springframework.stereotype.Service
 
 @Service

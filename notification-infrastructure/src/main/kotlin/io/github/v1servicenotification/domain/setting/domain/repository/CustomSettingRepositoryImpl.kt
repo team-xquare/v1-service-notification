@@ -2,7 +2,7 @@ package io.github.v1servicenotification.domain.setting.domain.repository
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
+import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.domain.category.domain.QCategoryEntity.categoryEntity
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.domain.setting.domain.QSettingEntity.settingEntity

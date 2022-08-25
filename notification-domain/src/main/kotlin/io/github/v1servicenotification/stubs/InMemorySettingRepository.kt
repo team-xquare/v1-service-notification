@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.detail.postDetail.spi.PostDetailSettingRepositorySpi
+import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.activeSetting.spi.SettingRepositorySpi
 import java.util.*
