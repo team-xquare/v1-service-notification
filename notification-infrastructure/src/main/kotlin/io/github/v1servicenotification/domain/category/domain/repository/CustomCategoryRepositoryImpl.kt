@@ -6,6 +6,7 @@ import io.github.v1servicenotification.category.spi.UpdateCategoryRepositorySpi
 import io.github.v1servicenotification.domain.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.global.extension.findOne
+import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -13,7 +14,7 @@ import java.util.*
 class CustomCategoryRepositoryImpl(
     private val categoryMapper: CategoryMapper,
     private val categoryRepository: CategoryRepository
-) : UpdateCategoryRepositorySpi, QueryCategoryRepositorySpi {
+) : UpdateCategoryRepositorySpi, QueryCategoryRepositorySpi, SettingCategorySpi {
 
     override fun saveCategory(category: Category) {
         val categoryEntity = categoryMapper.categoryDomainToEntity(category)
