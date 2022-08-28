@@ -1,4 +1,4 @@
-package io.github.v1servicenotification.setting.activeSetting.spi
+package io.github.v1servicenotification.setting.spi
 
 import io.github.v1servicenotification.annotation.Spi
 import io.github.v1servicenotification.category.Category

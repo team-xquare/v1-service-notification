@@ -4,11 +4,12 @@ import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.spi.UpdateCategoryRepositorySpi
+import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import java.util.*
 
 class InMemoryCategoryRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf()
-) : QueryCategoryRepositorySpi, UpdateCategoryRepositorySpi {
+) : QueryCategoryRepositorySpi, UpdateCategoryRepositorySpi, SettingCategorySpi {
 
     override fun saveCategory(category: Category) {
         categoryMap[category.id] = category
