@@ -2,7 +2,7 @@ spring:
   application:
     name: v1-application-service
   profiles:
-    active: live
+    active: ${PROFILE}
   config:
     import: optional:configserver:https://api.xquare.app/cloud-config/
   cloud:

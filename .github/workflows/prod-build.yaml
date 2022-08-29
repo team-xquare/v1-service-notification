@@ -58,6 +58,7 @@ jobs:
           buildargs: |
             CLOUD_CONFIG_USERNAME=${{secrets.CLOUD_CONFIG_USERNAME}}
             CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
+            PROFILE=live
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
