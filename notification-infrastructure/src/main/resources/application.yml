@@ -1,37 +1,11 @@
 spring:
-  jpa:
-    generate-ddl: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    hibernate:
-      ddl-auto: validate
-
-  datasource:
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${DB_USERNAME}
-    url: jdbc:mysql://${DB_URL}:3306/${DB_NAME}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&tinyInt1isBit=false
-  jackson:
-    property-naming-strategy: SNAKE_CASE
-
-fcm:
-  value: ${FCM_VALUE}
-
-cloud:
-  aws:
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
-    credentials:
-      access-key: ${AWS_ACCESS_KEY}
-      secret-key: ${AWS_SECRET_KEY}
-
-user:
-  url: ${USER_URL}
-
-logging.level.com.amazonaws.util.EC2MetadataUtils: error
-
-server:
-  servlet:
-    contextPath: /notifications
+  application:
+    name: v1-application-service
+  profiles:
+    active: live
+  config:
+    import: optional:configserver:https://api.xquare.app/cloud-config/
+  cloud:
+    config:
+      username: ${CLOUD_CONFIG_USERNAME}
+      password: ${CLOUD_CONFIG_PASSWORD}
