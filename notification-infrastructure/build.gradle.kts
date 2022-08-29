@@ -15,6 +15,7 @@ dependencies {
     implementation(Dependencies.SPRING_STARTER)
     implementation(Dependencies.SPRING_VALIDATION)
     implementation(Dependencies.SPRING_SECURITY)
+    implementation(Dependencies.SPRING_CONFIG)
 
     implementation(Dependencies.JACKSON)
 

@@ -5,6 +5,7 @@ object Dependencies {
     const val SPRING_STARTER = "org.springframework.boot:spring-boot-starter-web"
     const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
+    const val SPRING_CONFIG = "org.springframework.cloud:spring-cloud-config-client"
 
     const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
 
