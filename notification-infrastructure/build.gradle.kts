@@ -11,6 +11,12 @@ kotlin.sourceSets.main {
     kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
+dependencyManagement {
+    imports {
+        mavenBom(Dependencies.SPRING_CLOUD)
+    }
+}
+
 dependencies {
     implementation(Dependencies.SPRING_STARTER)
     implementation(Dependencies.SPRING_VALIDATION)
