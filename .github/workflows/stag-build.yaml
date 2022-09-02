@@ -52,17 +52,9 @@ jobs:
           registry: ${{ steps.ecr.outputs.registry }}
           tags: ${{ github.sha }}
           buildargs: |
-            DB_URL=${{secrets.DB_URL_STAGE}}
-            DB_USERNAME=${{secrets.DB_USERNAME_STAGE}}
-            DB_PASSWORD=${{secrets.DB_PASSWORD_STAGE}}
-            DB_NAME=${{secrets.DB_NAME_STAGE}}
-
-            FCM_VALUE=${{secrets.FCM_VALUE_STAGE}}
-
-            AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_STAGE}}
-            AWS_SECRET_KEY=${{secrets.AWS_SECRET_KEY_STAGE}}
-            
-            USER_URL=${{secrets.USER_SERVICE_HOST_STAG}}
+            CLOUD_CONFIG_USERNAME=${{secrets.CLOUD_CONFIG_USERNAME}}
+            CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
+            PROFILE=stag
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1

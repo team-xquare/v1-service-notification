@@ -56,17 +56,10 @@ jobs:
           registry: ${{ steps.ecr.outputs.registry }}
           tags: ${{ steps.get_version.outputs.VERSION }}
           buildargs: |
-            DB_URL=${{secrets.DB_URL_PROD}}
-            DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
-            DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}
-            DB_NAME=${{secrets.DB_NAME_PROD}}
+            CLOUD_CONFIG_USERNAME=${{secrets.CLOUD_CONFIG_USERNAME}}
+            CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
+            PROFILE=live
 
-            FCM_VALUE=${{secrets.FCM_VALUE_PROD}}
-            
-            AWS_ACCESS_KEY=${{secrets.AWS_ACCESS_KEY_PROD}}
-            AWS_SECRET_KEY=${{secrets.AWS_SECRET_KEY_PROD}}
-            
-            USER_URL=${{secrets.USER_SERVICE_HOST}}
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
