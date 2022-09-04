@@ -4,7 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !notification-domain/src/main/**/build/
 !notification-domain/src/test/**/build/
-!notification-infrastructure/src/main/**/build/
+!notification-infrastructure/src/main/**/build/ 
 !notification-infrastructure/src/test/**/build/
 
 ### STS ###
