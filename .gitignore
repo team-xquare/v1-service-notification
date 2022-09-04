@@ -13,7 +13,7 @@ build/
 .factorypath
 .project
 .settings
-.springBeans
+.springBeans 
 .sts4-cache
 bin/
 !notification-domain/src/main/**/bin/
