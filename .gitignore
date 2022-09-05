@@ -30,7 +30,7 @@ out/
 !notification-domain/src/main/**/out/
 !notification-domain/src/test/**/out/
 !notification-infrastructure/src/main/**/out/
-!notification-infrastructure/src/test/**/out/
+!notification-infrastructure/src/test/**/out/ 
 
 ### NetBeans ###
 /nbproject/private/
