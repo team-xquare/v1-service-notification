@@ -14,7 +14,7 @@ build/
 .project
 .settings
 .springBeans
-.sts4-cache
+.sts4-cache 
 bin/
 !notification-domain/src/main/**/bin/
 !notification-domain/src/test/**/bin/
