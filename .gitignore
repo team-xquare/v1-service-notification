@@ -21,7 +21,7 @@ bin/
 !notification-infrastructure/src/main/**/bin/
 !notification-infrastructure/src/test/**/bin/
 
-### IntelliJ IDEA ###
+### IntelliJ IDEA ### 
 .idea
 *.iws
 *.iml
