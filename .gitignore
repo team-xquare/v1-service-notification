@@ -18,7 +18,7 @@ build/
 bin/
 !notification-domain/src/main/**/bin/
 !notification-domain/src/test/**/bin/
-!notification-infrastructure/src/main/**/bin/
+!notification-infrastructure/src/main/**/bin/ 
 !notification-infrastructure/src/test/**/bin/
 
 ### IntelliJ IDEA ###
