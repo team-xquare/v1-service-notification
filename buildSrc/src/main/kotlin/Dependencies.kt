@@ -9,6 +9,8 @@ object Dependencies {
     const val SPRING_SECURITY = "org.springframework.boot:spring-boot-starter-security"
     const val SPRING_CONFIG = "org.springframework.cloud:spring-cloud-config-client"
 
+    const val SWAGGER = "org.springdoc:springdoc-openapi-ui:${DependencyVersions.SWAGGER_VERSION}"
+
     const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
 
     const val AWS_MESSAGING = "org.springframework.cloud:spring-cloud-starter-aws-messaging:${DependencyVersions.AWS_MESSAGING}"
