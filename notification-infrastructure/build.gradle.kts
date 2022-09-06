@@ -23,6 +23,8 @@ dependencies {
     implementation(Dependencies.SPRING_SECURITY)
     implementation(Dependencies.SPRING_CONFIG)
 
+    implementation(Dependencies.SWAGGER)
+
     implementation(Dependencies.JACKSON)
 
     implementation(Dependencies.AWS_MESSAGING)
