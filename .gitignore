@@ -26,7 +26,7 @@ bin/
 *.iws
 *.iml
 *.ipr
-out/
+out/ 
 !notification-domain/src/main/**/out/
 !notification-domain/src/test/**/out/
 !notification-infrastructure/src/main/**/out/
