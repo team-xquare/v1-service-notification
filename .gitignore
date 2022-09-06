@@ -28,7 +28,7 @@ bin/
 *.ipr
 out/
 !notification-domain/src/main/**/out/
-!notification-domain/src/test/**/out/
+!notification-domain/src/te st/**/out/
 !notification-infrastructure/src/main/**/out/
 !notification-infrastructure/src/test/**/out/
 
