@@ -7,7 +7,7 @@ build/
 !notification-infrastructure/src/main/**/build/
 !notification-infrastructure/src/test/**/build/
 
-### STS ###
+### STS ### 
 .apt_generated
 .classpath
 .factorypath
