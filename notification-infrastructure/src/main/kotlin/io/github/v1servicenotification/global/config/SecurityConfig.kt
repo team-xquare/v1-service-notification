@@ -19,6 +19,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http
             .authorizeRequests()
+            .antMatchers("/swagger-ui/**").permitAll()
+            .antMatchers("/v3/api-docs/**").permitAll()
             .anyRequest().authenticated()
             .and().apply(FilterConfig())
 
