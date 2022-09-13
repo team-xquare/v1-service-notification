@@ -10,12 +10,6 @@ import org.springframework.context.annotation.Configuration
 class SwaggerConfig {
 
     @Bean
-    fun publicApi(): GroupedOpenApi = GroupedOpenApi.builder()
-        .group("v1-notification-service")
-        .pathsToMatch("/notifications/*")
-        .build()
-
-    @Bean
     fun springShopOpenApi(): OpenAPI {
         return OpenAPI()
             .info(
