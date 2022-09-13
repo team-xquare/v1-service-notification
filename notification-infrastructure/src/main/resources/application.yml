@@ -1,6 +1,6 @@
 spring:
   application:
-    name: v1-application-service
+    name: v1-notification-service
   profiles:
     active: ${PROFILE}
   config:
