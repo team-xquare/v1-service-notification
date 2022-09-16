@@ -2,8 +2,11 @@ package io.github.v1servicenotification.domain.setting.presentation
 
 import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.global.extension.getUserId
+import io.github.v1servicenotification.global.util.CustomHttpStatus
 import io.github.v1servicenotification.setting.api.SettingApi
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 
 import org.springframework.http.HttpStatus
@@ -25,6 +28,10 @@ class SettingController(
     }
 
     @Operation(summary = "알림 카테고리 활성화")
+    @ApiResponses(value = [
+        ApiResponse(responseCode = CustomHttpStatus.CREATED),
+        ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
+    ])
     @PatchMapping("/{category-uuid}")
     fun activateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
         return ResponseEntity(
@@ -35,7 +42,10 @@ class SettingController(
     }
 
     @Operation(summary = "알림 카테고리 비활성회")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiResponses(value = [
+        ApiResponse(responseCode = CustomHttpStatus.CREATED),
+        ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
+    ])
     @DeleteMapping("/{category-uuid}")
     fun deActivateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
         return ResponseEntity(
