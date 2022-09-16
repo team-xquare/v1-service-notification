@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration
 class SwaggerConfig {
 
     @Bean
-    fun springShopOpenApi(): OpenAPI {
+    fun openApi(): OpenAPI {
         return OpenAPI()
             .info(
                 Info().title("XQUARE-Notification API")
                     .description("XQUARE Notification의 Api 명세서입니다.")
-                    .version("v0.0.0")
+                    .version("v1")
             )
     }
 
