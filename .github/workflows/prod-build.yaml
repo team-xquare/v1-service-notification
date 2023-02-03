@@ -63,7 +63,7 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITOPS_DEPLOY_STAGE_TOKEN }}
+          token: ${{ secrets.GITOPS_DEPLOY_PRODUCTION_TOKEN }}
           repository: team-xquare/xquare-gitops-repo-production
           event-type: update_image
           client-payload: '{
