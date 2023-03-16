@@ -40,6 +40,11 @@ class InMemoryDetailRepository(
             }
     }
 
+    override fun findAllByUseridAndIsReadFalse(userId: UUID): Int {
+        return detailMap.filter { it.value.userId == userId && !it.value.isRead }
+            .size
+    }
+
     override fun saveAllDetail(detailList: List<Detail>) {
         detailList.forEach {
             save(it)
@@ -50,11 +55,10 @@ class InMemoryDetailRepository(
         val detail = detailMap[detailId]
             ?: throw NotificationDetailNotFoundException.EXCEPTION
 
-        if(detail.userId != userId) {
+        if (detail.userId != userId) {
             throw NotificationDetailNotFoundException.EXCEPTION
         }
 
         detail.checkRead()
     }
-
 }
