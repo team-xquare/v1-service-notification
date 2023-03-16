@@ -7,4 +7,5 @@ import java.util.*
 @Spi
 interface QueryDetailRepositorySpi {
     fun findAllByUserId(userId: UUID): List<DetailModel>
+    fun findAllByUseridAndIsReadFalse(userId: UUID): Int
 }

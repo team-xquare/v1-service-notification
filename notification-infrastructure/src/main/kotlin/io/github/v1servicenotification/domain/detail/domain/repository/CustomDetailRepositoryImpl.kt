@@ -51,6 +51,16 @@ class CustomDetailRepositoryImpl(
             .toList()
     }
 
+    override fun findAllByUseridAndIsReadFalse(userId: UUID): Int {
+        return query
+            .selectFrom(detailEntity)
+            .where(
+                detailEntity.userId.eq(userId),
+                detailEntity.isRead.eq(false)
+            )
+            .fetch().size
+    }
+
     override fun save(detail: Detail) {
         detailRepository.save(
             detailMapper.detailDomainToEntity(detail)
