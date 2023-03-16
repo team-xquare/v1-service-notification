@@ -7,6 +7,7 @@ import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.api.DetailApi
 import io.github.v1servicenotification.detail.api.dto.response.DetailElement
 import io.github.v1servicenotification.detail.api.dto.response.DetailResponse
+import io.github.v1servicenotification.detail.api.dto.response.NotificationCountResponse
 import io.github.v1servicenotification.detail.spi.PostDetailFcmSpi
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
@@ -101,4 +102,9 @@ class DetailApiImpl(
         )
     }
 
+    override fun queryUnreadNotificationCount(userId: UUID): NotificationCountResponse {
+        return NotificationCountResponse(
+            queryDetailRepositorySpi.findAllByUseridAndIsReadFalse(userId)
+        )
+    }
 }
