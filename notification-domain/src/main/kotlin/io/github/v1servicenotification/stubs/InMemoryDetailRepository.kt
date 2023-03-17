@@ -50,15 +50,4 @@ class InMemoryDetailRepository(
             save(it)
         }
     }
-
-    override fun checkDetailByUserIdAndDetailId(userId: UUID, detailId: UUID) {
-        val detail = detailMap[detailId]
-            ?: throw NotificationDetailNotFoundException.EXCEPTION
-
-        if (detail.userId != userId) {
-            throw NotificationDetailNotFoundException.EXCEPTION
-        }
-
-        detail.checkRead()
-    }
 }
