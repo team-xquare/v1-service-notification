@@ -19,7 +19,7 @@ class DetailController(
 ) {
 
     @Operation(summary = "전송된 알림 목록")
-    @GetMapping
+    @GetMapping("/list")
     fun queryNotificationDetailList(): DetailResponse {
         return detailApi.queryNotificationDetail(getUserId())
     }
