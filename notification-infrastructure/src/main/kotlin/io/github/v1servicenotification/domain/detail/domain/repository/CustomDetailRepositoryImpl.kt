@@ -2,7 +2,6 @@ package io.github.v1servicenotification.domain.detail.domain.repository
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.github.v1servicenotification.detail.Detail
-import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.dto.DetailModel
@@ -11,8 +10,7 @@ import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detail
 import io.github.v1servicenotification.domain.detail.domain.repository.vo.QDetailVO
 import io.github.v1servicenotification.domain.detail.mapper.DetailMapper
 import org.springframework.stereotype.Repository
-import java.util.UUID
-import javax.transaction.Transactional
+import java.util.*
 
 @Repository
 class CustomDetailRepositoryImpl(
@@ -75,13 +73,5 @@ class CustomDetailRepositoryImpl(
             .toList()
 
         detailRepository.saveAll(detailEntityList)
-    }
-
-    @Transactional
-    override fun checkDetailByUserIdAndDetailId(userId: UUID, detailId: UUID) {
-        val detail = detailRepository.findByUserIdAndId(userId, detailId)
-            ?: throw NotificationDetailNotFoundException.EXCEPTION
-
-        detail.checkRead()
     }
 }
