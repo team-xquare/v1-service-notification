@@ -26,10 +26,6 @@ class DetailApiImpl(
     private val queryDetailRepositorySpi: QueryDetailRepositorySpi
 ): DetailApi {
 
-    override fun checkNotification(userId: UUID, notificationId: UUID) {
-        postDetailRepositorySpi.checkDetailByUserIdAndDetailId(userId, notificationId)
-    }
-
     override fun postGroupNotification(categoryId: UUID, title: String, content: String) {
         if (!queryCategoryRepositorySpi.exist(categoryId)) {
             throw CategoryNotFoundException.EXCEPTION
