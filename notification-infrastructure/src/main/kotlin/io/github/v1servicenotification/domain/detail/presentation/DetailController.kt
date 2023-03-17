@@ -2,6 +2,7 @@ package io.github.v1servicenotification.domain.detail.presentation
 
 import io.github.v1servicenotification.detail.api.DetailApi
 import io.github.v1servicenotification.detail.api.dto.response.DetailResponse
+import io.github.v1servicenotification.detail.api.dto.response.NotificationCountResponse
 import io.github.v1servicenotification.global.extension.getUserId
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -29,4 +30,9 @@ class DetailController(
         detailApi.checkNotification(getUserId(), notificationId)
     }
 
+    @Operation(summary = "안읽은 알림 개수")
+    @GetMapping("/unread")
+    fun queryUnreadNotificationCount(): NotificationCountResponse {
+        return detailApi.queryUnreadNotificationCount(getUserId())
+    }
 }
