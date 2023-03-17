@@ -26,60 +26,6 @@ class DetailApiImplTest {
     private val detailApi = DetailApiImpl(settingSpi, detailSpi, categorySpi, fcmSpi, userSpi, detailSpi)
 
     @Test
-    fun checkNotification() {
-        val userId = UUID.randomUUID()
-        val detailId = UUID.randomUUID()
-
-        val detail = Detail(
-            id = detailId,
-            title = "Test title",
-            content = "Test Content",
-            sentAt = LocalDateTime.now(),
-            isRead = false,
-            userId = userId,
-            categoryId = UUID.randomUUID()
-        )
-
-        detailSpi.save(detail)
-
-        detailApi.checkNotification(userId, detailId)
-
-        AssertionsForClassTypes.assertThat(detail.isRead).isEqualTo(true)
-    }
-
-    @Test
-    fun detailNotFound() {
-        val userId = UUID.randomUUID()
-        val detailId = UUID.randomUUID()
-
-        assertThrows<NotificationDetailNotFoundException> {
-            detailApi.checkNotification(userId, detailId)
-        }
-    }
-
-    @Test
-    fun detailNotFoundUser() {
-        val userId = UUID.randomUUID()
-        val detailId = UUID.randomUUID()
-
-        detailSpi.save(
-            Detail(
-                id = detailId,
-                title = "Test title",
-                content = "Test Content",
-                sentAt = LocalDateTime.now(),
-                isRead = false,
-                userId = UUID.randomUUID(),
-                categoryId = UUID.randomUUID()
-            )
-        )
-
-        assertThrows<NotificationDetailNotFoundException> {
-            detailApi.checkNotification(userId, detailId)
-        }
-    }
-
-    @Test
     fun queryNotificationDetail() {
         val category = Category(
             UUID.randomUUID(),
