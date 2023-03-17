@@ -3,7 +3,7 @@ package io.github.v1servicenotification.error
 enum class ErrorCode(
     val status: Int,
     val code: String,
-    val message: String
+    val message: String,
 ) {
     FEIGN_BAD_REQUEST(400, "FEIGN-400-1", "Feign Bad Request."),
 
@@ -20,5 +20,5 @@ enum class ErrorCode(
 
     DETAIL_NOT_FOUND(404, "DETAIL-404-1", "Detail Not Found."),
 
-    INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error.")
+    INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error."),
 }

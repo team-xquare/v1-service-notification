@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import java.util.*
+import java.util.UUID
 
 class CategoryImplTest {
 
@@ -134,5 +134,4 @@ class CategoryImplTest {
     fun removeCategoryNotFound() {
         assertThrows<CategoryNotFoundException> { category.removeCategory(UUID.randomUUID()) }
     }
-
 }

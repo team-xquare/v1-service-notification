@@ -7,7 +7,7 @@ import io.github.v1servicenotification.stubs.InMemorySettingRepository
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.UUID
 
 class SettingApiImplTest {
 
@@ -65,5 +65,4 @@ class SettingApiImplTest {
         assertThat(settingApi.activateCategory(categoryId, userId))
             .isEqualTo(204)
     }
-
 }

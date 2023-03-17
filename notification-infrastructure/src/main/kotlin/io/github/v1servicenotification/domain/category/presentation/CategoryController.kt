@@ -47,5 +47,4 @@ class CategoryController(
     fun removeCategory(@PathVariable("category-uuid") categoryId: UUID) {
         categoryApi.removeCategory(categoryId)
     }
-
 }

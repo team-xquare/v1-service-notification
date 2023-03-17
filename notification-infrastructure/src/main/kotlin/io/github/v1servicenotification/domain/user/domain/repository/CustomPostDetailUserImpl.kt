@@ -4,7 +4,7 @@ import io.github.v1servicenotification.detail.spi.PostDetailUserSpi
 import io.github.v1servicenotification.infrastructure.feign.client.UserClient
 import io.github.v1servicenotification.infrastructure.feign.error.FeignBadRequestException
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.UUID
 
 @Component
 class CustomPostDetailUserImpl(
@@ -25,5 +25,4 @@ class CustomPostDetailUserImpl(
     override fun getDeviceTokenList(userIdList: List<UUID>): List<String> {
         return userClient.token(userIdList).tokens
     }
-
 }

@@ -1,13 +1,10 @@
 package io.github.v1servicenotification.domain.detail.mapper
 
 import io.github.v1servicenotification.detail.Detail
-import io.github.v1servicenotification.domain.category.domain.CategoryEntity
 import io.github.v1servicenotification.domain.category.domain.repository.CategoryRepository
-import io.github.v1servicenotification.domain.category.domain.repository.CustomCategoryRepositoryImpl
 import io.github.v1servicenotification.domain.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.domain.detail.domain.DetailEntity
 import org.springframework.stereotype.Component
-import java.util.UUID
 
 @Component
 class DetailMapperImpl(

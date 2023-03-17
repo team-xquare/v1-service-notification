@@ -7,7 +7,7 @@ import io.github.v1servicenotification.detail.exception.NotificationDetailNotFou
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.dto.DetailModel
-import java.util.*
+import java.util.UUID
 
 class InMemoryDetailRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),

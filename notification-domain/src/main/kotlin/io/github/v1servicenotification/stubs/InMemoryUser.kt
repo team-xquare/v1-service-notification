@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.detail.spi.PostDetailUserSpi
-import java.util.*
+import java.util.UUID
 
 class InMemoryUser: PostDetailUserSpi {
 
@@ -22,5 +22,4 @@ class InMemoryUser: PostDetailUserSpi {
     override fun getDeviceTokenList(userIdList: List<UUID>): List<String> {
         return listOf("Test Token")
     }
-
 }

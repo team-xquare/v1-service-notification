@@ -5,7 +5,7 @@ import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.spi.UpdateCategoryRepositorySpi
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
-import java.util.*
+import java.util.UUID
 
 class InMemoryCategoryRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf()
@@ -39,5 +39,4 @@ class InMemoryCategoryRepository(
             it.value.defaultActivated == defaultActivated
         }.map { it.value }
     }
-
 }

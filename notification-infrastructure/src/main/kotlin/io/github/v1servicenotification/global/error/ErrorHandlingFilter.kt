@@ -34,5 +34,4 @@ class ErrorHandlingFilter : OncePerRequestFilter() {
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.writer.write(ErrorResponse(errorCode).toString())
     }
-
 }

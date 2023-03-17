@@ -9,7 +9,6 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import javax.annotation.PostConstruct
 
-
 @Configuration
 class FcmConfig(
     @Value("\${fcm.value}")
@@ -29,5 +28,4 @@ class FcmConfig(
             e.printStackTrace()
         }
     }
-
 }

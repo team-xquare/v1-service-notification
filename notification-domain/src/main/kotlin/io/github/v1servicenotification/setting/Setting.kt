@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.setting
 
 import io.github.v1servicenotification.annotation.Aggregate
-import java.util.*
+import java.util.UUID
 
 @Aggregate
 class Setting(

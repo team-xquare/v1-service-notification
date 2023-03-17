@@ -4,7 +4,7 @@ import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
-import java.util.*
+import java.util.UUID
 
 class InMemorySettingRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
@@ -57,5 +57,4 @@ class InMemorySettingRepository(
             it.value.userId
         }
     }
-
 }

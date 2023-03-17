@@ -15,5 +15,4 @@ class FeignConfig {
     fun commonFeignErrorDecoder(): FeignClientErrorDecoder {
         return FeignClientErrorDecoder()
     }
-
 }

@@ -2,8 +2,7 @@ package io.github.v1servicenotification.domain.detail.domain.repository.vo
 
 import com.querydsl.core.annotations.QueryProjection
 import java.time.LocalDateTime
-import java.util.*
-
+import java.util.UUID
 
 class DetailVO @QueryProjection constructor(
     val id: UUID,

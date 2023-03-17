@@ -6,7 +6,7 @@ import io.github.v1servicenotification.category.api.response.CategoryListRespons
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
-import java.util.*
+import java.util.UUID
 
 @DomainService
 class SettingApiImpl(
@@ -55,5 +55,4 @@ class SettingApiImpl(
                 .toList()
         )
     }
-
 }

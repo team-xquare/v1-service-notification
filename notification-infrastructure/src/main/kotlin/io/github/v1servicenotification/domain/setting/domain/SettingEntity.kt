@@ -6,7 +6,6 @@ import javax.persistence.Entity
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
-
 @Table(name = "tbl_notification_setting")
 @Entity
 class SettingEntity(
@@ -22,9 +21,4 @@ class SettingEntity(
     @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     var isActivated: Boolean = isActivated
         protected set
-
-    fun changeIsActivate(isActivated: Boolean) {
-        this.isActivated = isActivated;
-    }
-
 }

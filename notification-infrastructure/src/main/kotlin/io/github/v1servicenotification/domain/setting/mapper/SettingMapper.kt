@@ -1,8 +1,6 @@
 package io.github.v1servicenotification.domain.setting.mapper
 
-import io.github.v1servicenotification.domain.category.domain.CategoryEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingEntity
-import io.github.v1servicenotification.domain.setting.domain.SettingId
 import io.github.v1servicenotification.setting.Setting
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping

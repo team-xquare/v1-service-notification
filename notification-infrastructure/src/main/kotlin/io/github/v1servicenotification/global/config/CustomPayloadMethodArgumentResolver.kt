@@ -6,7 +6,6 @@ import org.springframework.messaging.converter.MessageConverter
 import org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver
 import org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolver
 import org.springframework.validation.Validator
-import org.springframework.web.bind.MethodArgumentNotValidException
 
 class CustomPayloadMethodArgumentResolver(
     converter: MessageConverter,

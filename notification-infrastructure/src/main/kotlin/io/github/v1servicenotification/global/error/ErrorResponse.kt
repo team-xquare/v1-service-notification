@@ -17,7 +17,6 @@ class ErrorResponse(
                 "\t\"status\": " + status +
                 ",\t\"code\": \"" + code + '\"' +
                 ",\n\t\"message\": \"" + message + '\"' +
-                "\n}";
+                "\n}"
     }
-
 }

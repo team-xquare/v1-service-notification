@@ -1,7 +1,7 @@
 package io.github.v1servicenotification.detail.spi.dto
 
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 class DetailModel(
     val id: UUID,

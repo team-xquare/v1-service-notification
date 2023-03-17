@@ -8,7 +8,7 @@ import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.global.extension.findOne
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.UUID
 
 @Repository
 class CustomCategoryRepositoryImpl(
@@ -54,5 +54,4 @@ class CustomCategoryRepositoryImpl(
             categoryMapper.categoryDomainToEntity(category)
         )
     }
-
 }

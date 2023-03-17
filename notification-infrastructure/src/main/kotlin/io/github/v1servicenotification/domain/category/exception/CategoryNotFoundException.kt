@@ -9,5 +9,4 @@ class CategoryNotFoundException private constructor() : NotificationException(Er
         @JvmField
         val EXCEPTION: NotificationException = CategoryNotFoundException()
     }
-
 }

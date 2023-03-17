@@ -13,5 +13,4 @@ class FilterConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpS
         builder.addFilterBefore(AuthenticationFilter(), UsernamePasswordAuthenticationFilter::class.java)
         builder.addFilterBefore(ErrorHandlingFilter(), AuthenticationFilter::class.java)
     }
-
 }

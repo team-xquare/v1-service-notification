@@ -14,7 +14,7 @@ import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.detail.spi.PostDetailUserSpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 @DomainService
 class DetailApiImpl(
@@ -76,7 +76,7 @@ class DetailApiImpl(
                 sentAt = LocalDateTime.now(),
                 isRead = false,
                 userId = userId,
-                categoryId = categoryId
+                categoryId = categoryId,
             )
         )
 
@@ -95,7 +95,7 @@ class DetailApiImpl(
                         isRead = it.isRead,
                         userId = it.userId,
                         name = it.name,
-                        destination = it.destination
+                        destination = it.destination,
                     )
                 }
                 .toList()

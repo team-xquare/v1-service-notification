@@ -2,7 +2,7 @@ package io.github.v1servicenotification.category.spi
 
 import io.github.v1servicenotification.annotation.Spi
 import io.github.v1servicenotification.category.Category
-import java.util.*
+import java.util.UUID
 
 @Spi
 interface QueryCategoryRepositorySpi {

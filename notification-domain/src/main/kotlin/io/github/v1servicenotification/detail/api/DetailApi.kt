@@ -1,8 +1,8 @@
 package io.github.v1servicenotification.detail.api
 
 import io.github.v1servicenotification.detail.api.dto.response.DetailResponse
+import java.util.UUID
 import io.github.v1servicenotification.detail.api.dto.response.NotificationCountResponse
-import java.util.*
 
 interface DetailApi {
     fun checkNotification(userId: UUID, notificationId: UUID)

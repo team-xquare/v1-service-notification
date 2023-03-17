@@ -8,7 +8,7 @@ import io.github.v1servicenotification.category.api.response.CategoryListRespons
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.category.spi.UpdateCategoryRepositorySpi
-import java.util.*
+import java.util.UUID
 
 @DomainService
 class CategoryApiImpl(
@@ -29,7 +29,7 @@ class CategoryApiImpl(
             Category(
                 name = name,
                 destination = destination,
-                defaultActivated = defaultActivated
+                defaultActivated = defaultActivated,
             )
         )
     }

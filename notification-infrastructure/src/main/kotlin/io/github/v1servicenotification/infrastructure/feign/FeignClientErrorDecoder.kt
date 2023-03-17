@@ -22,5 +22,4 @@ class FeignClientErrorDecoder: ErrorDecoder {
 
         return FeignException.errorStatus(methodKey, response)
     }
-
 }

@@ -25,5 +25,4 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and().apply(FilterConfig())
 
     }
-
 }

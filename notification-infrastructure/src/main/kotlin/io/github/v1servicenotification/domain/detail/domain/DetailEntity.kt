@@ -5,8 +5,14 @@ import io.github.v1servicenotification.global.entity.BaseUUIDEntity
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
-import java.util.*
-import javax.persistence.*
+import java.util.UUID
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EntityListeners
+import javax.persistence.FetchType
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -37,8 +43,6 @@ class DetailEntity(
 
 ) : BaseUUIDEntity(id) {
 
-
-
     @CreatedDate
     @field:NotNull
     var sentAt: LocalDateTime = sentAt
@@ -51,14 +55,6 @@ class DetailEntity(
 
     fun getCategoryId(): UUID {
         return categoryEntity.id
-    }
-
-    fun getCategoryName(): String {
-        return categoryEntity.name
-    }
-
-    fun getCategoryDestination(): String {
-        return categoryEntity.destination
     }
 
     fun checkRead() {

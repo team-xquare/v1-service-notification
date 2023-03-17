@@ -12,7 +12,7 @@ import io.github.v1servicenotification.domain.setting.mapper.SettingMapper
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.UUID
 
 @Repository
 class CustomSettingRepositoryImpl(
@@ -80,5 +80,4 @@ class CustomSettingRepositoryImpl(
             .where(settingEntity.isActivated.eq(isActivated))
             .fetch()
     }
-
 }

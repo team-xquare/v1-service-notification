@@ -2,7 +2,7 @@ package io.github.v1servicenotification.detail.spi
 
 import io.github.v1servicenotification.annotation.Spi
 import io.github.v1servicenotification.detail.spi.dto.DetailModel
-import java.util.*
+import java.util.UUID
 
 @Spi
 interface QueryDetailRepositorySpi {

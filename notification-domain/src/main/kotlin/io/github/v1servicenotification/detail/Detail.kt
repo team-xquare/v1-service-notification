@@ -2,7 +2,7 @@ package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.annotation.Aggregate
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 @Aggregate
 class Detail(
