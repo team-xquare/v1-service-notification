@@ -34,6 +34,8 @@ class CustomDetailRepositoryImpl(
                     categoryEntity.destination
                 )
             )
+            .from(detailEntity)
+            .where(detailEntity.userId.eq(userId))
             .join(detailEntity.categoryEntity, categoryEntity)
             .fetch()
             .map {
