@@ -10,7 +10,7 @@ import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detail
 import io.github.v1servicenotification.domain.detail.domain.repository.vo.QDetailVO
 import io.github.v1servicenotification.domain.detail.mapper.DetailMapper
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.UUID
 
 @Repository
 class CustomDetailRepositoryImpl(
