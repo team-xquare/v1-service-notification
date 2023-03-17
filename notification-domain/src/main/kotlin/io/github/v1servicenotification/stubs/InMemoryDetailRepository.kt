@@ -3,7 +3,6 @@ package io.github.v1servicenotification.stubs
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.Detail
-import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.dto.DetailModel
