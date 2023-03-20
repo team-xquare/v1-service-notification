@@ -31,7 +31,8 @@ class DetailApiImplTest {
             UUID.randomUUID(),
             "Test category",
             "Test destination",
-            true
+            true,
+            "https://~~"
         )
         val userId = UUID.randomUUID()
 
@@ -59,12 +60,14 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
-            defaultActivated = true
+            defaultActivated = true,
+            categoryImageUrl = categoryImage,
         )
 
         categorySpi.saveCategory(category)
@@ -95,12 +98,14 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
-            defaultActivated = true
+            defaultActivated = true,
+            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)
@@ -129,12 +134,14 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
-            defaultActivated = false
+            defaultActivated = false,
+            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)
@@ -173,12 +180,14 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
-            defaultActivated = true
+            defaultActivated = true,
+            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)

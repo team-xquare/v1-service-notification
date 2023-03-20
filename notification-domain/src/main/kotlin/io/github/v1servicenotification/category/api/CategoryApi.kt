@@ -5,6 +5,6 @@ import java.util.UUID
 
 interface CategoryApi {
     fun queryNotificationCategory(defaultActivated: Boolean): CategoryListResponse
-    fun createCategory(name: String, destination: String, defaultActivated: Boolean)
+    fun createCategory(name: String, destination: String, defaultActivated: Boolean, categoryImage: String)
     fun removeCategory(categoryId: UUID)
 }

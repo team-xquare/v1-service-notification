@@ -12,4 +12,5 @@ class DetailElement(
     val userId: UUID,
     val name: String,
     val destination: String,
+    val categoryImage: String,
 )

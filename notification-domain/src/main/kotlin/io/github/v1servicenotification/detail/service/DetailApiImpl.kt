@@ -92,6 +92,7 @@ class DetailApiImpl(
                         userId = it.userId,
                         name = it.name,
                         destination = it.destination,
+                        categoryImage = it.categoryImage
                     )
                 }
                 .toList()
