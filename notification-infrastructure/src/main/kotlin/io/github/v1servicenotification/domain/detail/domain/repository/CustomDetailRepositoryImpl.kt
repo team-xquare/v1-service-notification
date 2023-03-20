@@ -30,7 +30,6 @@ class CustomDetailRepositoryImpl(
                     detailEntity.userId,
                     categoryEntity.name,
                     categoryEntity.destination,
-                    categoryEntity.categoryImageUrl
                 )
             )
             .from(detailEntity)
@@ -47,7 +46,6 @@ class CustomDetailRepositoryImpl(
                     userId = it.userId,
                     name = it.name,
                     destination = it.destination,
-                    categoryImage = it.categoryImage
                 )
             }
             .toList()

@@ -19,8 +19,6 @@ class DetailModel(
     val name: String,
 
     val destination: String,
-
-    val categoryImage: String,
 ) {
     var isRead: Boolean = isRead
         private set

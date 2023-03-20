@@ -13,7 +13,6 @@ class CategoryMapperImpl: CategoryMapper {
             name = category.name,
             destination = category.destination,
             defaultActivated = category.defaultActivated,
-            categoryImageUrl = category.categoryImageUrl
         )
     }
 
@@ -23,7 +22,6 @@ class CategoryMapperImpl: CategoryMapper {
             name = categoryEntity.name,
             destination = categoryEntity.destination,
             defaultActivated = categoryEntity.defaultActivated,
-            categoryImageUrl = categoryEntity.categoryImageUrl
         )
     }
 }
