@@ -49,7 +49,8 @@ class SettingApiImpl(
                     CategoryElement(
                         id = it.id,
                         name = it.name,
-                        destination = it.destination
+                        destination = it.destination,
+                        categoryImage = it.categoryImageUrl
                     )
                 }
                 .toList()

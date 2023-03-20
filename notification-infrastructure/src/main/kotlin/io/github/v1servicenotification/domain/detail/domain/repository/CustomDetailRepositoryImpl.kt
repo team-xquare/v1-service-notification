@@ -29,7 +29,8 @@ class CustomDetailRepositoryImpl(
                     detailEntity.isRead,
                     detailEntity.userId,
                     categoryEntity.name,
-                    categoryEntity.destination
+                    categoryEntity.destination,
+                    categoryEntity.categoryImageUrl
                 )
             )
             .from(detailEntity)
@@ -45,7 +46,8 @@ class CustomDetailRepositoryImpl(
                     isRead = it.isRead,
                     userId = it.userId,
                     name = it.name,
-                    destination = it.destination
+                    destination = it.destination,
+                    categoryImage = it.categoryImage
                 )
             }
             .toList()

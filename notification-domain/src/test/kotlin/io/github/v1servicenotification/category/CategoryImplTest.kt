@@ -21,11 +21,13 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = true
+        val categoryImage = "https://~~"
 
         category.createCategory(
             name = name,
             destination = destination,
-            defaultActivated = defaultActivated
+            defaultActivated = defaultActivated,
+            categoryImage = categoryImage,
         )
 
         updateCategorySpi.findAllByDefaultActivated(true)
@@ -43,11 +45,13 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = false
+        val categoryImage = "https://~~"
 
         category.createCategory(
             name = name,
             destination = destination,
-            defaultActivated = defaultActivated
+            defaultActivated = defaultActivated,
+            categoryImage = categoryImage,
         )
 
         Assertions.assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(0)
@@ -60,7 +64,8 @@ class CategoryImplTest {
                 UUID.randomUUID(),
                 "Test category",
                 "Test destination",
-                true
+                true,
+                "https://~~"
             )
         )
         assertThat(category.queryNotificationCategory(true).categories.size)
@@ -74,7 +79,8 @@ class CategoryImplTest {
                 UUID.randomUUID(),
                 "Test category",
                 "Test destination",
-                false
+                false,
+                "https://~~"
             )
         )
 
@@ -89,7 +95,8 @@ class CategoryImplTest {
                 UUID.randomUUID(),
                 "Test category",
                 "Test destination",
-                false
+                false,
+                "https://~~"
             )
         )
         assertThat(category.queryNotificationCategory(false).categories.size)
@@ -103,7 +110,8 @@ class CategoryImplTest {
                 UUID.randomUUID(),
                 "Test category",
                 "Test destination",
-                true
+                true,
+                "https://~~"
             )
         )
 
@@ -117,13 +125,15 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = false
+        val categoryImage = "https://~~"
 
         updateCategorySpi.saveCategory(
             Category(
                 id = id,
                 name = name,
                 destination = destination,
-                defaultActivated = defaultActivated
+                defaultActivated = defaultActivated,
+                categoryImageUrl = categoryImage,
             )
         )
 

@@ -34,7 +34,8 @@ class InMemoryDetailRepository(
                     it.value.isRead,
                     it.value.userId,
                     category.name,
-                    category.destination
+                    category.destination,
+                    category.categoryImageUrl
                 )
             }
     }

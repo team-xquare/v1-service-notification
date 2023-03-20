@@ -37,7 +37,8 @@ class CategoryController(
         categoryApi.createCategory(
             name = request.name,
             destination = request.destination,
-            defaultActivated = request.defaultActivated
+            defaultActivated = request.defaultActivated,
+            categoryImage = request.categoryImage
         )
     }
 
