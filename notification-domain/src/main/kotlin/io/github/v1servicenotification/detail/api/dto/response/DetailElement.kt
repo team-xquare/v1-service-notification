@@ -10,6 +10,6 @@ class DetailElement(
     val sentAt: LocalDateTime,
     val isRead: Boolean,
     val userId: UUID,
-    val name: String,
+    val categoryName: String,
     val destination: String,
 )
