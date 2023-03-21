@@ -92,6 +92,7 @@ class DetailApiImpl(
                         userId = it.userId,
                         categoryName = it.name,
                         destination = it.destination,
+                        topic = it.topic
                     )
                 }
                 .toList()

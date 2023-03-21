@@ -50,6 +50,7 @@ class SettingApiImpl(
                         id = it.id,
                         name = it.name,
                         destination = it.destination,
+                        topic = it.topic
                     )
                 }
                 .toList()

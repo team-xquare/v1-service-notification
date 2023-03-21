@@ -6,6 +6,7 @@ import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.dto.DetailModel
+import io.github.v1servicenotification.detail.spi.dto.TopicDetailModel
 import java.util.UUID
 
 class InMemoryDetailRepository(
@@ -21,12 +22,12 @@ class InMemoryDetailRepository(
         detailMap[detail.id] = detail
     }
 
-    override fun findAllByUserId(userId: UUID): List<DetailModel> {
+    override fun findAllByUserId(userId: UUID): List<TopicDetailModel> {
         return detailMap.filter { it.value.userId == userId }
             .map {
                 val category = categoryMap[it.value.categoryId]
                     ?: throw CategoryNotFoundException.EXCEPTION
-                DetailModel(
+                TopicDetailModel(
                     it.value.id,
                     it.value.title,
                     it.value.content,
@@ -35,6 +36,7 @@ class InMemoryDetailRepository(
                     it.value.userId,
                     category.name,
                     category.destination,
+                    category.topic
                 )
             }
     }

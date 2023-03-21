@@ -4,7 +4,7 @@ import io.github.v1servicenotification.category.Topic
 import java.time.LocalDateTime
 import java.util.UUID
 
-class DetailModel(
+class TopicDetailModel(
     val id: UUID,
 
     val title: String,
@@ -20,6 +20,8 @@ class DetailModel(
     val name: String,
 
     val destination: String,
+
+    val topic: Topic,
 ) {
     var isRead: Boolean = isRead
         private set

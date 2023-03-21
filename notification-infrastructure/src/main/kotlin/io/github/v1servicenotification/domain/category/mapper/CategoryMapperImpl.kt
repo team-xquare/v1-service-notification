@@ -13,6 +13,7 @@ class CategoryMapperImpl: CategoryMapper {
             name = category.name,
             destination = category.destination,
             defaultActivated = category.defaultActivated,
+            topic = category.topic,
         )
     }
 
@@ -22,6 +23,7 @@ class CategoryMapperImpl: CategoryMapper {
             name = categoryEntity.name,
             destination = categoryEntity.destination,
             defaultActivated = categoryEntity.defaultActivated,
+            topic = categoryEntity.topic,
         )
     }
 }

@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.Topic
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
 import io.github.v1servicenotification.detail.service.DetailApiImpl
@@ -32,6 +33,7 @@ class DetailApiImplTest {
             "Test category",
             "Test destination",
             true,
+            topic = Topic.ALL
         )
         val userId = UUID.randomUUID()
 
@@ -65,6 +67,7 @@ class DetailApiImplTest {
             name = categoryName,
             destination = destination,
             defaultActivated = true,
+            topic = Topic.ALL
         )
 
         categorySpi.saveCategory(category)
@@ -102,6 +105,7 @@ class DetailApiImplTest {
             name = categoryName,
             destination = destination,
             defaultActivated = true,
+            topic = Topic.ALL
         )
 
         categorySpi.saveCategory(category)
@@ -136,6 +140,7 @@ class DetailApiImplTest {
             name = categoryName,
             destination = destination,
             defaultActivated = false,
+            topic = Topic.ALL
         )
 
         categorySpi.saveCategory(category)
@@ -180,6 +185,7 @@ class DetailApiImplTest {
             name = categoryName,
             destination = destination,
             defaultActivated = true,
+            topic = Topic.ALL
         )
 
         categorySpi.saveCategory(category)
