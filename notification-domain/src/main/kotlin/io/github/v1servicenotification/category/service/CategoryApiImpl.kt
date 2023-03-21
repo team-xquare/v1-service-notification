@@ -2,6 +2,7 @@ package io.github.v1servicenotification.category.service
 
 import io.github.v1servicenotification.annotation.DomainService
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.Topic
 import io.github.v1servicenotification.category.api.CategoryApi
 import io.github.v1servicenotification.category.api.response.CategoryElement
 import io.github.v1servicenotification.category.api.response.CategoryListResponse
@@ -19,17 +20,18 @@ class CategoryApiImpl(
     override fun queryNotificationCategory(defaultActivated: Boolean): CategoryListResponse {
         return CategoryListResponse(
             queryCategoryRepositorySpi.findAllByDefaultActivated(defaultActivated)
-                .map { CategoryElement(it.id, it.name, it.destination) }
+                .map { CategoryElement(it.id, it.name, it.destination, it.topic) }
                 .toList()
         )
     }
 
-    override fun createCategory(name: String, destination: String, defaultActivated: Boolean) {
+    override fun createCategory(name: String, destination: String, defaultActivated: Boolean, topic: Topic) {
         updateCategoryRepositorySpi.saveCategory(
             Category(
                 name = name,
                 destination = destination,
                 defaultActivated = defaultActivated,
+                topic = topic
             )
         )
     }

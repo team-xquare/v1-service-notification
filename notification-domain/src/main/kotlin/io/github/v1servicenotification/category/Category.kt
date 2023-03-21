@@ -12,4 +12,6 @@ class Category(
     val destination: String,
 
     val defaultActivated: Boolean,
+
+    val topic: Topic,
 )

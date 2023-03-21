@@ -26,6 +26,7 @@ class CategoryImplTest {
             name = name,
             destination = destination,
             defaultActivated = defaultActivated,
+            topic = Topic.ALL
         )
 
         updateCategorySpi.findAllByDefaultActivated(true)
@@ -48,6 +49,7 @@ class CategoryImplTest {
             name = name,
             destination = destination,
             defaultActivated = defaultActivated,
+            topic = Topic.ALL
         )
 
         Assertions.assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(0)
@@ -61,6 +63,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
+                topic = Topic.ALL
             )
         )
         assertThat(category.queryNotificationCategory(true).categories.size)
@@ -75,6 +78,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
+                topic = Topic.ALL
             )
         )
 
@@ -90,6 +94,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
+                topic = Topic.ALL
             )
         )
         assertThat(category.queryNotificationCategory(false).categories.size)
@@ -104,6 +109,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
+                topic = Topic.ALL
             )
         )
 
@@ -124,6 +130,7 @@ class CategoryImplTest {
                 name = name,
                 destination = destination,
                 defaultActivated = defaultActivated,
+                topic = Topic.ALL
             )
         )
 
