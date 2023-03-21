@@ -38,7 +38,6 @@ class CategoryController(
             name = request.name,
             destination = request.destination,
             defaultActivated = request.defaultActivated,
-            categoryImage = request.categoryImage
         )
     }
 

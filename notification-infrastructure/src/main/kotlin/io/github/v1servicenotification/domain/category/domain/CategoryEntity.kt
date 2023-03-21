@@ -30,11 +30,4 @@ class CategoryEntity(
     @OneToMany(mappedBy = "settingId.categoryEntity", fetch = FetchType.LAZY)
     val settingList: List<SettingEntity> = emptyList(),
 
-    categoryImageUrl: String,
-
-) : BaseUUIDEntity(id) {
-
-    @field:NotNull
-    var categoryImageUrl = categoryImageUrl
-        protected set
-}
+) : BaseUUIDEntity(id)

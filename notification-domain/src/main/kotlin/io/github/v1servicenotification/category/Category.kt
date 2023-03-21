@@ -12,6 +12,4 @@ class Category(
     val destination: String,
 
     val defaultActivated: Boolean,
-
-    val categoryImageUrl: String,
 )

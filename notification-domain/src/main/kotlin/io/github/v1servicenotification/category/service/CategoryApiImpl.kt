@@ -19,18 +19,17 @@ class CategoryApiImpl(
     override fun queryNotificationCategory(defaultActivated: Boolean): CategoryListResponse {
         return CategoryListResponse(
             queryCategoryRepositorySpi.findAllByDefaultActivated(defaultActivated)
-                .map { CategoryElement(it.id, it.name, it.destination, it.categoryImageUrl) }
+                .map { CategoryElement(it.id, it.name, it.destination) }
                 .toList()
         )
     }
 
-    override fun createCategory(name: String, destination: String, defaultActivated: Boolean, categoryImage: String) {
+    override fun createCategory(name: String, destination: String, defaultActivated: Boolean) {
         updateCategoryRepositorySpi.saveCategory(
             Category(
                 name = name,
                 destination = destination,
                 defaultActivated = defaultActivated,
-                categoryImageUrl = categoryImage
             )
         )
     }

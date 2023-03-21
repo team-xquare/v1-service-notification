@@ -32,7 +32,6 @@ class DetailApiImplTest {
             "Test category",
             "Test destination",
             true,
-            "https://~~"
         )
         val userId = UUID.randomUUID()
 
@@ -60,14 +59,12 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
-        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
             defaultActivated = true,
-            categoryImageUrl = categoryImage,
         )
 
         categorySpi.saveCategory(category)
@@ -105,7 +102,6 @@ class DetailApiImplTest {
             name = categoryName,
             destination = destination,
             defaultActivated = true,
-            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)
@@ -134,14 +130,12 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
-        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
             defaultActivated = false,
-            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)
@@ -180,14 +174,12 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
-        val categoryImage = "https://~~"
 
         val category = Category(
             id = UUID.randomUUID(),
             name = categoryName,
             destination = destination,
             defaultActivated = true,
-            categoryImageUrl = categoryImage
         )
 
         categorySpi.saveCategory(category)

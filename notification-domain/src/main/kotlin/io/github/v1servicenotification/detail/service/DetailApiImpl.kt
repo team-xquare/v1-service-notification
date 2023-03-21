@@ -90,9 +90,8 @@ class DetailApiImpl(
                         sentAt = it.sentAt,
                         isRead = it.isRead,
                         userId = it.userId,
-                        name = it.name,
+                        categoryName = it.name,
                         destination = it.destination,
-                        categoryImage = it.categoryImage
                     )
                 }
                 .toList()

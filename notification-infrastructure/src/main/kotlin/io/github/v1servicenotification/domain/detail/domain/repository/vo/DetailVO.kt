@@ -21,7 +21,6 @@ class DetailVO @QueryProjection constructor(
 
     val destination: String,
 
-    val categoryImage: String,
 ) {
     var isRead: Boolean = isRead
         private set

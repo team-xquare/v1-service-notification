@@ -21,13 +21,11 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = true
-        val categoryImage = "https://~~"
 
         category.createCategory(
             name = name,
             destination = destination,
             defaultActivated = defaultActivated,
-            categoryImage = categoryImage,
         )
 
         updateCategorySpi.findAllByDefaultActivated(true)
@@ -45,13 +43,11 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = false
-        val categoryImage = "https://~~"
 
         category.createCategory(
             name = name,
             destination = destination,
             defaultActivated = defaultActivated,
-            categoryImage = categoryImage,
         )
 
         Assertions.assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(0)
@@ -65,7 +61,6 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
-                "https://~~"
             )
         )
         assertThat(category.queryNotificationCategory(true).categories.size)
@@ -80,7 +75,6 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
-                "https://~~"
             )
         )
 
@@ -96,7 +90,6 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
-                "https://~~"
             )
         )
         assertThat(category.queryNotificationCategory(false).categories.size)
@@ -111,7 +104,6 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
-                "https://~~"
             )
         )
 
@@ -125,7 +117,6 @@ class CategoryImplTest {
         val name = "Test name"
         val destination = "Test destination"
         val defaultActivated = false
-        val categoryImage = "https://~~"
 
         updateCategorySpi.saveCategory(
             Category(
@@ -133,7 +124,6 @@ class CategoryImplTest {
                 name = name,
                 destination = destination,
                 defaultActivated = defaultActivated,
-                categoryImageUrl = categoryImage,
             )
         )
 

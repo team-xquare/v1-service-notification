@@ -50,7 +50,6 @@ class SettingApiImpl(
                         id = it.id,
                         name = it.name,
                         destination = it.destination,
-                        categoryImage = it.categoryImageUrl
                     )
                 }
                 .toList()

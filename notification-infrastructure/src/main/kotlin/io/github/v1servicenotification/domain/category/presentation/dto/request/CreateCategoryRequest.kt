@@ -15,8 +15,4 @@ class CreateCategoryRequest {
 
     var defaultActivated by Delegates.notNull<Boolean>()
         private set
-
-    @NotNull
-    lateinit var categoryImage: String
-        private set
 }
