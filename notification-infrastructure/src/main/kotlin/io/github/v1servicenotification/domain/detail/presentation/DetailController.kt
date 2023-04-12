@@ -32,7 +32,7 @@ class DetailController(
     }
 
     @Operation(summary = "테스트 알림 전송")
-    @PostMapping("/")
+    @PostMapping("/test")
     fun postNotification(@RequestBody @Valid request: PostTestNotificationRequset) {
         detailApi.postNotification(request.userId, request.categoryId, request.title, request.content)
     }
