@@ -23,7 +23,7 @@ class DetailApiImpl(
     private val queryCategoryRepositorySpi: QueryCategoryRepositorySpi,
     private val postDetailFcmSpi: PostDetailFcmSpi,
     private val postDetailUserSpi: PostDetailUserSpi,
-    private val queryDetailRepositorySpi: QueryDetailRepositorySpi
+    private val queryDetailRepositorySpi: QueryDetailRepositorySpi,
 ): DetailApi {
 
     override fun postGroupNotification(categoryId: UUID, title: String, content: String) {

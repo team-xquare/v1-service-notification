@@ -23,5 +23,4 @@ class QueueController(
     fun notification(@Payload @Valid personal: Personal) {
         detailApi.postNotification(personal.userId, personal.categoryId, personal.title, personal.content)
     }
-
 }
