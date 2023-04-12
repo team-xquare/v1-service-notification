@@ -10,9 +10,9 @@ import java.util.UUID
 @FeignClient(name = "UserClient", url = "\${service.scheme}://\${service.user.host}")
 interface UserClient {
 
-    @GetMapping("/device-token")
+    @GetMapping("/users/device-token")
     fun token(@RequestParam("users") userList: List<UUID>): TokenResponse
 
-    @GetMapping("/exclude")
+    @GetMapping("/users/exclude")
     fun getExcludeUserIdList(@RequestParam("users") userList: List<UUID>): UserIdListResponse
 }
