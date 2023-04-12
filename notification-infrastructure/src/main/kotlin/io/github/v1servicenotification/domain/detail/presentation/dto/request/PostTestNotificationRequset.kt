@@ -1,19 +1,19 @@
 package io.github.v1servicenotification.domain.detail.presentation.dto.request
 
 import java.util.UUID
-import javax.validation.constraints.NotNull
+import javax.validation.constraints.NotBlank
 
 data class PostTestNotificationRequset(
 
-    @field:NotNull
+    @field:NotBlank
     val userId: UUID,
 
-    @field:NotNull
+    @field:NotBlank
     val categoryId: UUID,
 
-    @field:NotNull
+    @field:NotBlank
     val title: String,
 
-    @field:NotNull
+    @field:NotBlank
     val content: String,
 )
