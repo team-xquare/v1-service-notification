@@ -16,6 +16,7 @@ class CustomPostDetailUserImpl(
 
     override fun getDeviceToken(userId: UUID): String {
         val result = userClient.token(listOf(userId)).tokens
+
         if(result.isEmpty()) {
             throw FeignBadRequestException.EXCEPTION
         }
