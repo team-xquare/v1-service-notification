@@ -28,7 +28,7 @@ class CustomDetailRepositoryImpl(
                     detailEntity.sentAt,
                     detailEntity.isRead,
                     detailEntity.userId,
-                    categoryEntity.name,
+                    categoryEntity.title,
                     categoryEntity.destination,
                     categoryEntity.topic
                 )
@@ -45,8 +45,6 @@ class CustomDetailRepositoryImpl(
                     sentAt = it.sentAt,
                     isRead = it.isRead,
                     userId = it.userId,
-                    name = it.name,
-                    destination = it.destination,
                     topic = it.topic,
                 )
             }

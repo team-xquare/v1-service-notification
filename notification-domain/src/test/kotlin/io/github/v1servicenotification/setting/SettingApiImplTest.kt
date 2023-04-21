@@ -1,7 +1,6 @@
 package io.github.v1servicenotification.setting
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.category.Topic
 import io.github.v1servicenotification.setting.service.SettingApiImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import io.github.v1servicenotification.stubs.InMemorySettingRepository

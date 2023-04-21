@@ -35,7 +35,7 @@ class CategoryController(
     @PostMapping
     fun createCategory(@RequestBody request: CreateCategoryRequest) {
         categoryApi.createCategory(
-            name = request.name,
+            title = request.title,
             destination = request.destination,
             defaultActivated = request.defaultActivated,
             topic = request.topic

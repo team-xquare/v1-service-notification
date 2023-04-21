@@ -25,13 +25,16 @@ class InMemoryCategoryRepository(
         categoryMap.remove(category.id)
     }
 
-    override fun exist(id: UUID): Boolean {
-        return categoryMap[id] != null
+    override fun existByTopic(topic: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun findByTopic(topic: String): Category {
+        TODO("Not yet implemented")
     }
 
     override fun findById(id: UUID): Category {
-        return categoryMap[id]
-            ?: throw NullPointerException()
+        TODO("Not yet implemented")
     }
 
     override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {

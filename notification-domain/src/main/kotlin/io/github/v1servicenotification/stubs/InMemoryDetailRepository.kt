@@ -34,9 +34,7 @@ class InMemoryDetailRepository(
                     it.value.sentAt,
                     it.value.isRead,
                     it.value.userId,
-                    category.name,
-                    category.destination,
-                    category.topic
+                    category.topic,
                 )
             }
     }

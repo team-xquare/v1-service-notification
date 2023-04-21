@@ -1,10 +1,7 @@
 package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
-import io.github.v1servicenotification.category.Topic
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
-import io.github.v1servicenotification.detail.exception.NotificationDetailNotFoundException
-import io.github.v1servicenotification.detail.service.DetailApiImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import io.github.v1servicenotification.stubs.InMemoryDetailRepository
 import io.github.v1servicenotification.stubs.InMemoryFcm
@@ -14,7 +11,6 @@ import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 import java.util.UUID
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.AssertionsForClassTypes
 import org.junit.jupiter.api.assertThrows
 
 class DetailApiImplTest {

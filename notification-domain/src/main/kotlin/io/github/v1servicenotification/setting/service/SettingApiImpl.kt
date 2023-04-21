@@ -48,7 +48,7 @@ class SettingApiImpl(
                 .map {
                     CategoryElement(
                         id = it.id,
-                        name = it.name,
+                        title = it.title,
                         destination = it.destination,
                         topic = it.topic
                     )
