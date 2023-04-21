@@ -8,10 +8,7 @@ data class Personal(
     @JsonProperty("user_id")
     val userId: UUID,
 
-    @JsonProperty("category_id")
-    val categoryId: UUID,
-
-    val title: String,
+    val topic: String,
 
     val content: String,
 )

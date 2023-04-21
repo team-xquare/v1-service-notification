@@ -1,7 +1,6 @@
 package io.github.v1servicenotification.domain.detail.domain.repository.vo
 
 import com.querydsl.core.annotations.QueryProjection
-import io.github.v1servicenotification.category.Topic
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -22,7 +21,7 @@ class DetailVO @QueryProjection constructor(
 
     val destination: String,
 
-    val topic: Topic,
+    val topic: String,
 ) {
     var isRead: Boolean = isRead
         private set

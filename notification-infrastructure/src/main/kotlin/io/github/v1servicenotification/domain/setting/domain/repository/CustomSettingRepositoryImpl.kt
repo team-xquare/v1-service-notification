@@ -73,11 +73,15 @@ class CustomSettingRepositoryImpl(
         )
     }
 
-    override fun findAllUserIdByCategoryIdAndIsActivated(categoryId: UUID, isActivated: Boolean): List<UUID> {
+    override fun findAllUserIdByTopicAndIsActivated(topic: String, isActivated: Boolean): List<UUID> {
         return jpaQueryFactory
             .select(settingEntity.settingId.userId)
             .from(settingEntity)
-            .where(settingEntity.isActivated.eq(isActivated))
+            .leftJoin(categoryEntity.settingList, settingEntity)
+            .where(
+                settingEntity.isActivated.eq(isActivated)
+                    .and(categoryEntity.topic.`in`(topic))
+            )
             .fetch()
     }
 }
