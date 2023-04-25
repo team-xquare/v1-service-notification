@@ -9,5 +9,3 @@ spring:
     config:
       username: ${CLOUD_CONFIG_USERNAME}
       password: ${CLOUD_CONFIG_PASSWORD}
-server:
-  port: 8081
