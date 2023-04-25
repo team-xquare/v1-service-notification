@@ -11,4 +11,7 @@ data class Personal(
     val topic: String,
 
     val content: String,
+
+    @JsonProperty("thread_id")
+    val threadId: String
 )
