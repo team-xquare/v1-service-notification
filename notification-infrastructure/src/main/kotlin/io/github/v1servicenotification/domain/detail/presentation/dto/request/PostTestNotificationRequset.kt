@@ -13,4 +13,7 @@ data class PostTestNotificationRequset(
 
     @field:NotBlank
     val content: String,
+
+    @field:NotBlank
+    val threadId: String,
 )
