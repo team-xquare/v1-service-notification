@@ -2,18 +2,17 @@ package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
-import io.github.v1servicenotification.detail.api.NotificationDetailApi
 import io.github.v1servicenotification.detail.service.NotificationDetailApiImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import io.github.v1servicenotification.stubs.InMemoryDetailRepository
 import io.github.v1servicenotification.stubs.InMemoryFcm
 import io.github.v1servicenotification.stubs.InMemorySettingRepository
 import io.github.v1servicenotification.stubs.InMemoryUser
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.time.LocalDateTime
 import java.util.UUID
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.assertThrows
 
 class DetailApiImplTest {
 
@@ -96,7 +95,6 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
-        val categoryImage = "https://~~"
         val threadId = "threadId"
 
         val category = Category(
@@ -161,8 +159,6 @@ class DetailApiImplTest {
 
     @Test
     fun groupCategoryNotFound() {
-        val categoryId = UUID.randomUUID()
-        val title = "Test Title"
         val content = "Test Content"
         val topic = "ALL"
         val threadId = "threadId"
@@ -203,8 +199,6 @@ class DetailApiImplTest {
     @Test
     fun singleCategoryNotFound() {
         val userId = UUID.randomUUID()
-        val categoryId = UUID.randomUUID()
-        val title = "Test Title"
         val topic = "ALL"
         val content = "Test Content"
         val threadId = "threadId"
