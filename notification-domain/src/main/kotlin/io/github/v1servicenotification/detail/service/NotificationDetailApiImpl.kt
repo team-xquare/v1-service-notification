@@ -4,7 +4,7 @@ import io.github.v1servicenotification.annotation.DomainService
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.detail.Detail
-import io.github.v1servicenotification.detail.api.DetailApi
+import io.github.v1servicenotification.detail.api.NotificationDetailApi
 import io.github.v1servicenotification.detail.api.dto.response.DetailElement
 import io.github.v1servicenotification.detail.api.dto.response.DetailResponse
 import io.github.v1servicenotification.detail.api.dto.response.NotificationCountResponse
@@ -17,27 +17,29 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @DomainService
-class DetailApiImpl(
+class NotificationDetailApiImpl(
     private val postDetailSettingRepositorySpi: PostDetailSettingRepositorySpi,
     private val postDetailRepositorySpi: PostDetailRepositorySpi,
     private val queryCategoryRepositorySpi: QueryCategoryRepositorySpi,
     private val postDetailFcmSpi: PostDetailFcmSpi,
     private val postDetailUserSpi: PostDetailUserSpi,
     private val queryDetailRepositorySpi: QueryDetailRepositorySpi,
-): DetailApi {
+): NotificationDetailApi {
 
-    override fun postGroupNotification(categoryId: UUID, title: String, content: String) {
-        if (!queryCategoryRepositorySpi.exist(categoryId)) {
+    override fun postGroupNotification(topic: String, content: String) {
+        if (!queryCategoryRepositorySpi.existByTopic(topic)) {
             throw CategoryNotFoundException.EXCEPTION
         }
 
-        val userIdList = if (queryCategoryRepositorySpi.findById(categoryId).defaultActivated) {
+        val category = queryCategoryRepositorySpi.findByTopic(topic)
+
+        val userIdList = if (category.defaultActivated) {
             // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
             postDetailUserSpi.getExcludeUserIdList(
-                postDetailSettingRepositorySpi.findAllUserIdByCategoryIdAndIsActivated(categoryId, false)
+                postDetailSettingRepositorySpi.findAllUserIdByTopicAndIsActivated(topic, false)
             )
         } else {
-            postDetailSettingRepositorySpi.findAllUserIdByCategoryIdAndIsActivated(categoryId, true)
+            postDetailSettingRepositorySpi.findAllUserIdByTopicAndIsActivated(topic, true)
         }
 
 
@@ -45,38 +47,40 @@ class DetailApiImpl(
             .stream()
             .map {
                 Detail(
-                    title = title,
+                    title = category.title,
                     content = content,
                     sentAt = LocalDateTime.now(),
                     isRead = false,
                     userId = it,
-                    categoryId = categoryId
+                    categoryId = category.id
                 )
             }.toList()
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
-        postDetailFcmSpi.sendGroupMessage(postDetailUserSpi.getDeviceTokenList(userIdList), title, content)
+        postDetailFcmSpi.sendGroupMessage(postDetailUserSpi.getDeviceTokenList(userIdList), category.title, content)
 
     }
 
-    override fun postNotification(userId: UUID, categoryId: UUID, title: String, content: String) {
-        if(!queryCategoryRepositorySpi.exist(categoryId)) {
+    override fun postNotification(userId: UUID, topic: String, content: String) {
+        if(!queryCategoryRepositorySpi.existByTopic(topic)) {
             throw CategoryNotFoundException.EXCEPTION
         }
 
+        val category = queryCategoryRepositorySpi.findByTopic(topic)
+
         postDetailRepositorySpi.save(
             Detail(
-                title = title,
+                title = category.title,
                 content = content,
                 sentAt = LocalDateTime.now(),
                 isRead = false,
                 userId = userId,
-                categoryId = categoryId,
+                categoryId = category.id,
             )
         )
 
-        postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), title, content)
+        postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content)
     }
 
     override fun queryNotificationDetail(userId: UUID): DetailResponse {
@@ -90,8 +94,6 @@ class DetailApiImpl(
                         sentAt = it.sentAt,
                         isRead = it.isRead,
                         userId = it.userId,
-                        categoryName = it.name,
-                        destination = it.destination,
                         topic = it.topic
                     )
                 }

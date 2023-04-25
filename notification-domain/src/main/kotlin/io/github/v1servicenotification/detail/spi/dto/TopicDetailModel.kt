@@ -1,6 +1,5 @@
 package io.github.v1servicenotification.detail.spi.dto
 
-import io.github.v1servicenotification.category.Topic
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -17,11 +16,7 @@ class TopicDetailModel(
 
     val userId: UUID,
 
-    val name: String,
-
-    val destination: String,
-
-    val topic: Topic,
+    val topic: String,
 ) {
     var isRead: Boolean = isRead
         private set

@@ -1,6 +1,5 @@
 package io.github.v1servicenotification.detail.spi.dto
 
-import io.github.v1servicenotification.category.Topic
 import java.time.LocalDateTime
 import java.util.UUID
 

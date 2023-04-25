@@ -8,4 +8,7 @@ import java.util.UUID
 @Repository
 interface CategoryRepository : CrudRepository<CategoryEntity, UUID> {
     fun findAllByDefaultActivated(defaultActivated: Boolean): List<CategoryEntity>
+    fun existsByTopic(topic: String): Boolean
+
+    fun findByTopic(topic: String): CategoryEntity?
 }

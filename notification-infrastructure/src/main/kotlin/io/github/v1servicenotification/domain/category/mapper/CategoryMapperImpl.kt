@@ -10,7 +10,7 @@ class CategoryMapperImpl: CategoryMapper {
     override fun categoryDomainToEntity(category: Category): CategoryEntity {
         return CategoryEntity(
             id = category.id,
-            name = category.name,
+            title = category.title,
             destination = category.destination,
             defaultActivated = category.defaultActivated,
             topic = category.topic,
@@ -20,7 +20,7 @@ class CategoryMapperImpl: CategoryMapper {
     override fun categoryEntityToDomain(categoryEntity: CategoryEntity): Category {
         return Category(
             id = categoryEntity.id,
-            name = categoryEntity.name,
+            title = categoryEntity.title,
             destination = categoryEntity.destination,
             defaultActivated = categoryEntity.defaultActivated,
             topic = categoryEntity.topic,

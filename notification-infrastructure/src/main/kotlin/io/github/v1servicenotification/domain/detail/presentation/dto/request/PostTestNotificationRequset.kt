@@ -9,10 +9,7 @@ data class PostTestNotificationRequset(
     val userId: UUID,
 
     @field:NotBlank
-    val categoryId: UUID,
-
-    @field:NotBlank
-    val title: String,
+    val topic: String,
 
     @field:NotBlank
     val content: String,

@@ -1,14 +1,11 @@
 package io.github.v1servicenotification.domain.category.domain
 
-import io.github.v1servicenotification.category.Topic
 import io.github.v1servicenotification.domain.setting.domain.SettingEntity
 import io.github.v1servicenotification.global.entity.BaseUUIDEntity
 import java.util.UUID
 import javax.persistence.Table
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.OneToMany
 import javax.validation.constraints.NotNull
@@ -21,7 +18,7 @@ class CategoryEntity(
 
     @field:Size(max = 20)
     @field:NotNull
-    val name: String,
+    val title: String,
 
     @field:NotNull
     val destination: String,
@@ -33,7 +30,6 @@ class CategoryEntity(
     @OneToMany(mappedBy = "settingId.categoryEntity", fetch = FetchType.LAZY)
     val settingList: List<SettingEntity> = emptyList(),
 
-    @field:NotNull
-    @Enumerated(EnumType.STRING)
-    val topic: Topic
+    @Column(unique = true, nullable = false)
+    val topic: String,
 ) : BaseUUIDEntity(id)

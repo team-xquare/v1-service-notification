@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.domain.notification.presentation
 
-import io.github.v1servicenotification.detail.api.DetailApi
+import io.github.v1servicenotification.detail.api.NotificationDetailApi
 import io.github.v1servicenotification.domain.notification.presentation.dto.Group
 import io.github.v1servicenotification.domain.notification.presentation.dto.Personal
 import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy
@@ -11,16 +11,16 @@ import javax.validation.Valid
 
 @Component
 class QueueController(
-    private val detailApi: DetailApi
+    private val notificationDetailApi: NotificationDetailApi
 ) {
 
     @SqsListener(value = ["group-notification.fifo"], deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
     fun groupNotification(@Payload @Valid group: Group) {
-        detailApi.postGroupNotification(group.categoryId, group.title, group.content)
+        notificationDetailApi.postGroupNotification(group.topic,  group.content)
     }
 
     @SqsListener(value = ["notification.fifo"], deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
     fun notification(@Payload @Valid personal: Personal) {
-        detailApi.postNotification(personal.userId, personal.categoryId, personal.title, personal.content)
+        notificationDetailApi.postNotification(personal.userId, personal.topic, personal.content)
     }
 }

@@ -7,11 +7,11 @@ import java.util.UUID
 class Category(
     val id: UUID = UUID(0, 0),
 
-    val name: String,
+    val title: String,
 
     val destination: String,
 
     val defaultActivated: Boolean,
 
-    val topic: Topic,
+    val topic: String,
 )

@@ -29,8 +29,15 @@ class CustomCategoryRepositoryImpl(
         }
     }
 
-    override fun exist(id: UUID): Boolean {
-        return categoryRepository.existsById(id)
+    override fun existByTopic(topic: String): Boolean {
+        return categoryRepository.existsByTopic(topic)
+    }
+
+    override fun findByTopic(topic: String): Category {
+        val category = categoryRepository.findByTopic(topic)
+            ?: throw CategoryNotFoundException.EXCEPTION
+
+        return categoryMapper.categoryEntityToDomain(category)
     }
 
     override fun findById(id: UUID): Category {
