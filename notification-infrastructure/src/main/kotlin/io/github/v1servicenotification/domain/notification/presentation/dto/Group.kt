@@ -7,6 +7,6 @@ data class Group(
 
     val content: String,
 
-    @JsonProperty("thread-id")
+    @JsonProperty("thread_id")
     val threadId: String,
 )
