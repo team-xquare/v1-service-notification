@@ -2,6 +2,8 @@ package io.github.v1servicenotification.detail
 
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
+import io.github.v1servicenotification.detail.api.NotificationDetailApi
+import io.github.v1servicenotification.detail.service.NotificationDetailApiImpl
 import io.github.v1servicenotification.stubs.InMemoryCategoryRepository
 import io.github.v1servicenotification.stubs.InMemoryDetailRepository
 import io.github.v1servicenotification.stubs.InMemoryFcm
@@ -20,7 +22,7 @@ class DetailApiImplTest {
     private val categorySpi = InMemoryCategoryRepository()
     private val fcmSpi = InMemoryFcm()
     private val userSpi = InMemoryUser()
-    private val detailApi = DetailApiImpl(settingSpi, detailSpi, categorySpi, fcmSpi, userSpi, detailSpi)
+    private val detailApi = NotificationDetailApiImpl(settingSpi, detailSpi, categorySpi, fcmSpi, userSpi, detailSpi)
 
     @Test
     fun queryNotificationDetail() {
@@ -29,7 +31,7 @@ class DetailApiImplTest {
             "Test category",
             "Test destination",
             true,
-            topic = Topic.ALL
+            topic = "ALL"
         )
         val userId = UUID.randomUUID()
 
@@ -57,13 +59,14 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            name = categoryName,
+            title = categoryName,
             destination = destination,
             defaultActivated = true,
-            topic = Topic.ALL
+            topic = "ALL"
         )
 
         categorySpi.saveCategory(category)
@@ -72,7 +75,7 @@ class DetailApiImplTest {
 
         detailSpi.save(category)
 
-        detailApi.postGroupNotification(category.id, title, content)
+        detailApi.postGroupNotification(category.topic, content, threadId)
 
         assertThat(detailSpi.findAllByUserId(userId).size).isEqualTo(1)
 
@@ -80,9 +83,8 @@ class DetailApiImplTest {
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
-                assertThat(it.destination).isEqualTo(destination)
                 assertThat(it.userId).isEqualTo(userId)
-                assertThat(it.name).isEqualTo(categoryName)
+                assertThat(it.title).isEqualTo(categoryName)
             }
 
     }
@@ -95,13 +97,14 @@ class DetailApiImplTest {
         val destination = "/test"
         val categoryName = "Test Category"
         val categoryImage = "https://~~"
+        val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            name = categoryName,
+            title = categoryName,
             destination = destination,
             defaultActivated = true,
-            topic = Topic.ALL
+            topic = "ALL"
         )
 
         categorySpi.saveCategory(category)
@@ -110,15 +113,14 @@ class DetailApiImplTest {
 
         detailSpi.save(category)
 
-        detailApi.postGroupNotification(category.id, title, content)
+        detailApi.postGroupNotification(category.topic, content, threadId)
 
         detailSpi.findAllByUserId(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
-                assertThat(it.destination).isEqualTo(destination)
                 assertThat(it.userId).isNotEqualTo(userId)
-                assertThat(it.name).isEqualTo(categoryName)
+                assertThat(it.title).isEqualTo(categoryName)
             }
     }
 
@@ -130,32 +132,30 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            name = categoryName,
+            title = categoryName,
             destination = destination,
-            defaultActivated = false,
-            topic = Topic.ALL
+            defaultActivated = true,
+            topic = "ALL"
         )
 
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, true)
+        settingSpi.saveSetting(category, userId, false)
 
         detailSpi.save(category)
 
-        detailApi.postGroupNotification(category.id, title, content)
-
-        assertThat(detailSpi.findAllByUserId(userId).size).isEqualTo(1)
+        detailApi.postGroupNotification(category.topic, content, threadId)
 
         detailSpi.findAllByUserId(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
-                assertThat(it.destination).isEqualTo(destination)
-                assertThat(it.userId).isEqualTo(userId)
-                assertThat(it.name).isEqualTo(categoryName)
+                assertThat(it.userId).isNotEqualTo(userId)
+                assertThat(it.title).isEqualTo(categoryName)
             }
     }
 
@@ -164,8 +164,10 @@ class DetailApiImplTest {
         val categoryId = UUID.randomUUID()
         val title = "Test Title"
         val content = "Test Content"
+        val topic = "ALL"
+        val threadId = "threadId"
 
-        assertThrows<CategoryNotFoundException> { detailApi.postGroupNotification(categoryId, title, content) }
+        assertThrows<CategoryNotFoundException> { detailApi.postGroupNotification(topic, content, threadId) }
     }
 
     @Test
@@ -175,27 +177,26 @@ class DetailApiImplTest {
         val content = "Test Content"
         val destination = "/test"
         val categoryName = "Test Category"
+        val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            name = categoryName,
+            title = categoryName,
             destination = destination,
             defaultActivated = true,
-            topic = Topic.ALL
+            topic = "ALL"
         )
 
         categorySpi.saveCategory(category)
         detailSpi.save(category)
 
-        detailApi.postNotification(userId, category.id, title, content)
+        detailApi.postNotification(userId, category.topic, title, threadId)
 
         detailSpi.findAllByUserId(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
-                assertThat(it.destination).isEqualTo(destination)
                 assertThat(it.userId).isEqualTo(userId)
-                assertThat(it.name).isEqualTo(categoryName)
             }
     }
 
@@ -204,8 +205,10 @@ class DetailApiImplTest {
         val userId = UUID.randomUUID()
         val categoryId = UUID.randomUUID()
         val title = "Test Title"
+        val topic = "ALL"
         val content = "Test Content"
+        val threadId = "threadId"
 
-        assertThrows<CategoryNotFoundException> { detailApi.postNotification(categoryId, userId, title, content) }
+        assertThrows<CategoryNotFoundException> { detailApi.postNotification(userId, topic, content, threadId) }
     }
 }

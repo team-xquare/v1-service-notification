@@ -22,7 +22,7 @@ class SettingApiImplTest {
         val userId = UUID.randomUUID()
         val categoryId = UUID.randomUUID()
 
-        val category = Category(categoryId, "Test name", "Test destination", false, Topic.ALL)
+        val category = Category(categoryId, "Test name", "Test destination", false, "ALL")
 
         settingSpi.saveCategory(category)
 
@@ -35,7 +35,7 @@ class SettingApiImplTest {
         val result = settingApi.queryActivatedCategory(userId).categories[0]
 
         assertThat(result.id).isEqualTo(categoryId)
-        assertThat(result.name).isEqualTo(category.name)
+        assertThat(result.title).isEqualTo(category.title)
         assertThat(result.destination).isEqualTo(category.destination)
 
     }
@@ -45,7 +45,7 @@ class SettingApiImplTest {
         val userId = UUID.randomUUID()
         val categoryId = UUID.randomUUID()
         categorySpi.saveCategory(
-            Category(categoryId, "Test name", "Test destination", false, Topic.ALL)
+            Category(categoryId, "Test name", "Test destination", false, "ALL")
         )
         Assertions.assertThat(settingApi.deActivateCategory(categoryId, userId))
             .isEqualTo(201)
@@ -58,7 +58,7 @@ class SettingApiImplTest {
         val userId = UUID.randomUUID()
         val categoryId = UUID.randomUUID()
         categorySpi.saveCategory(
-            Category(categoryId, "Test name", "Test destination", false, Topic.ALL)
+            Category(categoryId, "Test name", "Test destination", false, "ALL")
         )
         assertThat(settingApi.activateCategory(categoryId, userId))
             .isEqualTo(201)
