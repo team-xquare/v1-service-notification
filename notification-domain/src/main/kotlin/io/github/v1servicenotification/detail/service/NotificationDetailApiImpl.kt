@@ -26,7 +26,7 @@ class NotificationDetailApiImpl(
     private val queryDetailRepositorySpi: QueryDetailRepositorySpi,
 ): NotificationDetailApi {
 
-    override fun postGroupNotification(topic: String, content: String) {
+    override fun postGroupNotification(topic: String, content: String, threadId: String) {
         if (!queryCategoryRepositorySpi.existByTopic(topic)) {
             throw CategoryNotFoundException.EXCEPTION
         }
@@ -58,11 +58,11 @@ class NotificationDetailApiImpl(
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
-        postDetailFcmSpi.sendGroupMessage(postDetailUserSpi.getDeviceTokenList(userIdList), category.title, content)
+        postDetailFcmSpi.sendGroupMessage(postDetailUserSpi.getDeviceTokenList(userIdList), category.title, content, threadId)
 
     }
 
-    override fun postNotification(userId: UUID, topic: String, content: String) {
+    override fun postNotification(userId: UUID, topic: String, content: String, threadId: String) {
         if(!queryCategoryRepositorySpi.existByTopic(topic)) {
             throw CategoryNotFoundException.EXCEPTION
         }
@@ -80,7 +80,7 @@ class NotificationDetailApiImpl(
             )
         )
 
-        postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content)
+        postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId)
     }
 
     override fun queryNotificationDetail(userId: UUID): DetailResponse {

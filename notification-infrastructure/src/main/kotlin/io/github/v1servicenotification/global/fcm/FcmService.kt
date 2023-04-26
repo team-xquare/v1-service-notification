@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 @Service
 class FcmService: PostDetailFcmSpi {
 
-    override fun sendGroupMessage(tokenList: List<String>, title: String, content: String) {
+    override fun sendGroupMessage(tokenList: List<String>, title: String, content: String, threadId: String) {
         val multicast = MulticastMessage.builder()
             .addAllTokens(tokenList)
             .setNotification(
@@ -26,6 +26,7 @@ class FcmService: PostDetailFcmSpi {
                     .setAps(
                         Aps.builder()
                             .setSound("default")
+                            .setThreadId(threadId)
                             .build()
                     ).build()
             )
@@ -34,7 +35,7 @@ class FcmService: PostDetailFcmSpi {
         FirebaseMessaging.getInstance().sendMulticastAsync(multicast)
     }
 
-    override fun sendMessage(token: String, title: String, content: String) {
+    override fun sendMessage(token: String, title: String, content: String, threadId: String) {
         val message = Message.builder()
             .setToken(token)
             .setNotification(
@@ -48,6 +49,7 @@ class FcmService: PostDetailFcmSpi {
                     .setAps(
                         Aps.builder()
                             .setSound("default")
+                            .setThreadId(threadId)
                             .build()
                     ).build()
             )

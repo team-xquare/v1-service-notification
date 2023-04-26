@@ -23,15 +23,15 @@ class CategoryImplTest {
         val defaultActivated = true
 
         category.createCategory(
-            name = name,
+            title = name,
             destination = destination,
             defaultActivated = defaultActivated,
-            topic = Topic.ALL
+            topic = "ALL"
         )
 
         updateCategorySpi.findAllByDefaultActivated(true)
             .forEach {
-                Assertions.assertThat(it.name).isEqualTo(name)
+                Assertions.assertThat(it.title).isEqualTo(name)
                 Assertions.assertThat(it.destination).isEqualTo(destination)
                 Assertions.assertThat(it.defaultActivated).isEqualTo(defaultActivated)
             }
@@ -46,10 +46,10 @@ class CategoryImplTest {
         val defaultActivated = false
 
         category.createCategory(
-            name = name,
+            title = name,
             destination = destination,
             defaultActivated = defaultActivated,
-            topic = Topic.ALL
+            topic = "ALL"
         )
 
         Assertions.assertThat(updateCategorySpi.findAllByDefaultActivated(true).size).isEqualTo(0)
@@ -63,7 +63,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
-                topic = Topic.ALL
+                topic = "ALL"
             )
         )
         assertThat(category.queryNotificationCategory(true).categories.size)
@@ -78,7 +78,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
-                topic = Topic.ALL
+                topic = "ALL"
             )
         )
 
@@ -94,7 +94,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 false,
-                topic = Topic.ALL
+                topic = "ALL"
             )
         )
         assertThat(category.queryNotificationCategory(false).categories.size)
@@ -109,7 +109,7 @@ class CategoryImplTest {
                 "Test category",
                 "Test destination",
                 true,
-                topic = Topic.ALL
+                topic = "ALL"
             )
         )
 
@@ -127,10 +127,10 @@ class CategoryImplTest {
         updateCategorySpi.saveCategory(
             Category(
                 id = id,
-                name = name,
+                title = name,
                 destination = destination,
                 defaultActivated = defaultActivated,
-                topic = Topic.ALL
+                topic = "ALL"
             )
         )
 
