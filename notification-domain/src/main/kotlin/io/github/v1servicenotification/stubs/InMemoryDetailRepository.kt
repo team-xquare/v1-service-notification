@@ -49,4 +49,10 @@ class InMemoryDetailRepository(
             save(it)
         }
     }
+
+    override fun updateAllDetailByUserIdAndIsReadFalse(userId: UUID) {
+        detailMap.filter { it.value.userId == userId && !it.value.isRead }.map {
+            it.value.checkRead()
+        }
+    }
 }
