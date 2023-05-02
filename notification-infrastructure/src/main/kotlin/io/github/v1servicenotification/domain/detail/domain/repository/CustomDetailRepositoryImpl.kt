@@ -10,6 +10,7 @@ import io.github.v1servicenotification.domain.detail.domain.QDetailEntity.detail
 import io.github.v1servicenotification.domain.detail.domain.repository.vo.QDetailVO
 import io.github.v1servicenotification.domain.detail.mapper.DetailMapper
 import org.springframework.stereotype.Repository
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Repository
@@ -75,10 +76,12 @@ class CustomDetailRepositoryImpl(
         detailRepository.saveAll(detailEntityList)
     }
 
+    @Transactional
     override fun updateAllDetailByUserIdAndIsReadFalse(userId: UUID) {
         query
             .update(detailEntity)
             .set(detailEntity.isRead, true)
-            .where(detailEntity.isRead.eq(false))
+            .where(detailEntity.userId.eq(userId).and(detailEntity.isRead.isFalse))
+            .execute()
     }
 }
