@@ -52,7 +52,7 @@ class NotificationDetailApiImpl(
                     sentAt = LocalDateTime.now(),
                     isRead = false,
                     userId = it,
-                    categoryId = category.id
+                    categoryId = category.id,
                 )
             }.toList()
 
@@ -62,7 +62,7 @@ class NotificationDetailApiImpl(
             postDetailUserSpi.getDeviceTokenList(userIdList),
             category.title,
             content,
-            threadId
+            threadId,
         )
 
     }
@@ -100,7 +100,7 @@ class NotificationDetailApiImpl(
                         sentAt = it.sentAt,
                         isRead = it.isRead,
                         userId = it.userId,
-                        topic = it.topic
+                        topic = it.topic,
                     )
                 }
                 .toList()
