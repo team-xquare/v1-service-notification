@@ -74,4 +74,11 @@ class CustomDetailRepositoryImpl(
 
         detailRepository.saveAll(detailEntityList)
     }
+
+    override fun updateAllDetailByUserIdAndIsReadFalse(userId: UUID) {
+        query
+            .update(detailEntity)
+            .set(detailEntity.isRead, true)
+            .where(detailEntity.isRead.eq(false))
+    }
 }
