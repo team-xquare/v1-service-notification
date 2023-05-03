@@ -51,6 +51,8 @@ class InMemorySettingRepository(
     }
 
     override fun findAllUserIdByTopicAndIsActivated(topic: String, isActivated: Boolean): List<UUID> {
-        TODO("Not yet implemented")
+        return settingMap.values.filter {
+            it.isActivated == isActivated && categoryMap[it.notificationCategoryId]?.topic == topic
+        }.map { it.userId }
     }
 }
