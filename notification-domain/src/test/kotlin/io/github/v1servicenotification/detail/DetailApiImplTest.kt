@@ -57,12 +57,11 @@ class DetailApiImplTest {
         val title = "Test Title"
         val content = "Test Content"
         val destination = "/test"
-        val categoryName = "Test Category"
         val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            title = categoryName,
+            title = title,
             destination = destination,
             defaultActivated = true,
             topic = "ALL"
@@ -83,7 +82,6 @@ class DetailApiImplTest {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
                 assertThat(it.userId).isEqualTo(userId)
-                assertThat(it.title).isEqualTo(categoryName)
             }
 
     }
@@ -94,12 +92,11 @@ class DetailApiImplTest {
         val title = "Test Title"
         val content = "Test Content"
         val destination = "/test"
-        val categoryName = "Test Category"
         val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            title = categoryName,
+            title = title,
             destination = destination,
             defaultActivated = true,
             topic = "ALL"
@@ -118,7 +115,6 @@ class DetailApiImplTest {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
                 assertThat(it.userId).isNotEqualTo(userId)
-                assertThat(it.title).isEqualTo(categoryName)
             }
     }
 
@@ -129,12 +125,11 @@ class DetailApiImplTest {
         val title = "Test Title"
         val content = "Test Content"
         val destination = "/test"
-        val categoryName = "Test Category"
         val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            title = categoryName,
+            title = title,
             destination = destination,
             defaultActivated = true,
             topic = "ALL"
@@ -152,8 +147,7 @@ class DetailApiImplTest {
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
-                assertThat(it.userId).isNotEqualTo(userId)
-                assertThat(it.title).isEqualTo(categoryName)
+                assertThat(it.userId).isEqualTo(userId)
             }
     }
 
@@ -172,12 +166,11 @@ class DetailApiImplTest {
         val title = "Test Title"
         val content = "Test Content"
         val destination = "/test"
-        val categoryName = "Test Category"
         val threadId = "threadId"
 
         val category = Category(
             id = UUID.randomUUID(),
-            title = categoryName,
+            title = title,
             destination = destination,
             defaultActivated = true,
             topic = "ALL"
@@ -186,7 +179,7 @@ class DetailApiImplTest {
         categorySpi.saveCategory(category)
         detailSpi.save(category)
 
-        detailApi.postNotification(userId, category.topic, title, threadId)
+        detailApi.postNotification(userId, category.topic, content, threadId)
 
         detailSpi.findAllByUserId(userId)
             .forEach {

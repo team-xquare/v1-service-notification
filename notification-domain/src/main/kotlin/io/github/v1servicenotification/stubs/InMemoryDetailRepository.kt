@@ -5,7 +5,6 @@ import io.github.v1servicenotification.category.exception.CategoryNotFoundExcept
 import io.github.v1servicenotification.detail.Detail
 import io.github.v1servicenotification.detail.spi.PostDetailRepositorySpi
 import io.github.v1servicenotification.detail.spi.QueryDetailRepositorySpi
-import io.github.v1servicenotification.detail.spi.dto.DetailModel
 import io.github.v1servicenotification.detail.spi.dto.TopicDetailModel
 import java.util.UUID
 

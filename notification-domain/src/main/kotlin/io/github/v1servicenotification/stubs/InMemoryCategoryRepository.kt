@@ -26,15 +26,17 @@ class InMemoryCategoryRepository(
     }
 
     override fun existByTopic(topic: String): Boolean {
-        TODO("Not yet implemented")
+        return categoryMap.any { it.value.topic == topic }
     }
 
     override fun findByTopic(topic: String): Category {
-        TODO("Not yet implemented")
+        return categoryMap.values.firstOrNull { it.topic == topic }
+            ?: throw CategoryNotFoundException.EXCEPTION
     }
 
     override fun findById(id: UUID): Category {
-        TODO("Not yet implemented")
+        return categoryMap[id]
+            ?: throw CategoryNotFoundException.EXCEPTION
     }
 
     override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {
