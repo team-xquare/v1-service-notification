@@ -77,10 +77,10 @@ class CustomSettingRepositoryImpl(
         return jpaQueryFactory
             .select(settingEntity.settingId.userId)
             .from(settingEntity)
-            .leftJoin(categoryEntity.settingList, settingEntity)
+            .leftJoin(settingEntity.settingId.categoryEntity, categoryEntity)
             .where(
                 settingEntity.isActivated.eq(isActivated)
-                    .and(categoryEntity.topic.`in`(topic))
+                    .and(categoryEntity.topic.eq(topic))
             )
             .fetch()
     }
