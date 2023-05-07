@@ -12,4 +12,4 @@ ENV CLOUD_CONFIG_USERNAME ${CLOUD_CONFIG_USERNAME}
 ENV CLOUD_CONFIG_PASSWORD ${CLOUD_CONFIG_PASSWORD}
 ENV PROFILE ${PROFILE}
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Duser.timezone=Asia/Seoul", "/app.jar"]
