@@ -75,9 +75,9 @@ class DetailApiImplTest {
 
         detailApi.postGroupNotification(category.topic, content, threadId)
 
-        assertThat(detailSpi.findAllByUserId(userId).size).isEqualTo(1)
+        assertThat(detailSpi.findAllByUserIdOrderBySentAtDesc(userId).size).isEqualTo(1)
 
-        detailSpi.findAllByUserId(userId)
+        detailSpi.findAllByUserIdOrderBySentAtDesc(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
@@ -110,7 +110,7 @@ class DetailApiImplTest {
 
         detailApi.postGroupNotification(category.topic, content, threadId)
 
-        detailSpi.findAllByUserId(userId)
+        detailSpi.findAllByUserIdOrderBySentAtDesc(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
@@ -143,7 +143,7 @@ class DetailApiImplTest {
 
         detailApi.postGroupNotification(category.topic, content, threadId)
 
-        detailSpi.findAllByUserId(userId)
+        detailSpi.findAllByUserIdOrderBySentAtDesc(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
@@ -181,7 +181,7 @@ class DetailApiImplTest {
 
         detailApi.postNotification(userId, category.topic, content, threadId)
 
-        detailSpi.findAllByUserId(userId)
+        detailSpi.findAllByUserIdOrderBySentAtDesc(userId)
             .forEach {
                 assertThat(it.title).isEqualTo(title)
                 assertThat(it.content).isEqualTo(content)
