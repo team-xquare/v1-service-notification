@@ -91,7 +91,7 @@ class NotificationDetailApiImpl(
     override fun queryNotificationDetail(userId: UUID): DetailResponse {
         postDetailRepositorySpi.updateAllDetailByUserIdAndIsReadFalse(userId)
         return DetailResponse(
-            queryDetailRepositorySpi.findAllByUserId(userId)
+            queryDetailRepositorySpi.findAllByUserIdOrderBySentAtDesc(userId)
                 .map {
                     DetailElement(
                         id = it.id,

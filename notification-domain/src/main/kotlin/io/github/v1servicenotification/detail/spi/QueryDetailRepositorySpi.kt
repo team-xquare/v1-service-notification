@@ -6,6 +6,6 @@ import java.util.UUID
 
 @Spi
 interface QueryDetailRepositorySpi {
-    fun findAllByUserId(userId: UUID): List<TopicDetailModel>
+    fun findAllByUserIdOrderBySentAtDesc(userId: UUID): List<TopicDetailModel>
     fun findAllByUseridAndIsReadFalse(userId: UUID): Int
 }

@@ -21,7 +21,7 @@ class InMemoryDetailRepository(
         detailMap[detail.id] = detail
     }
 
-    override fun findAllByUserId(userId: UUID): List<TopicDetailModel> {
+    override fun findAllByUserIdOrderBySentAtDesc(userId: UUID): List<TopicDetailModel> {
         return detailMap.filter { it.value.userId == userId }
             .map {
                 val category = categoryMap[it.value.categoryId]
@@ -35,7 +35,7 @@ class InMemoryDetailRepository(
                     it.value.userId,
                     category.topic,
                 )
-            }
+            }.sortedByDescending { it.sentAt }
     }
 
     override fun findAllByUseridAndIsReadFalse(userId: UUID): Int {

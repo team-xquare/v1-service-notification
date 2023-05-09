@@ -19,7 +19,7 @@ class CustomDetailRepositoryImpl(
     private val detailMapper: DetailMapper,
     private val query: JPAQueryFactory,
 ) : QueryDetailRepositorySpi, PostDetailRepositorySpi {
-    override fun findAllByUserId(userId: UUID): List<TopicDetailModel> {
+    override fun findAllByUserIdOrderBySentAtDesc(userId: UUID): List<TopicDetailModel> {
         return query
             .select(
                 QDetailVO(
@@ -49,7 +49,7 @@ class CustomDetailRepositoryImpl(
                     topic = it.topic,
                 )
             }
-            .toList()
+            .toList().sortedByDescending { it.sentAt }
     }
 
     override fun findAllByUseridAndIsReadFalse(userId: UUID): Int {
