@@ -8,14 +8,17 @@ import com.google.firebase.messaging.MulticastMessage
 import com.google.firebase.messaging.Notification
 import io.github.v1servicenotification.detail.spi.PostDetailFcmSpi
 import io.github.v1servicenotification.error.NotificationDeviceTokenLengthException
-import io.github.v1servicenotification.error.NotificationException
 import org.springframework.stereotype.Service
 
 @Service
 class FcmService: PostDetailFcmSpi {
 
+    companion object {
+        const val MAX_TOKEN_LENGTH = 163
+    }
+
     override fun sendGroupMessage(tokenList: List<String>, title: String, content: String, threadId: String) {
-        val validTokens = tokenList.filter { it.length == 163 }
+        val validTokens = tokenList.filter { it.length == MAX_TOKEN_LENGTH }
         if (validTokens.isNotEmpty()) {
             val multicast = MulticastMessage.builder()
                 .addAllTokens(validTokens)
@@ -41,7 +44,7 @@ class FcmService: PostDetailFcmSpi {
     }
 
     override fun sendMessage(token: String, title: String, content: String, threadId: String) {
-        if (token.length >= 163) {
+        if (token.length >= MAX_TOKEN_LENGTH) {
             val message = Message.builder()
                 .setToken(token)
                 .setNotification(
