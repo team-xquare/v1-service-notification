@@ -21,4 +21,6 @@ enum class ErrorCode(
     DETAIL_NOT_FOUND(404, "DETAIL-404-1", "Detail Not Found."),
 
     INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error."),
+
+    DEVICE_TOKEN_LENGTH(400, "DEVICE-400-1", "Device Token Length Error.");
 }
