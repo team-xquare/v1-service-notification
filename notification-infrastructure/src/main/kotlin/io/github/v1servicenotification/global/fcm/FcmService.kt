@@ -7,7 +7,7 @@ import com.google.firebase.messaging.Message
 import com.google.firebase.messaging.MulticastMessage
 import com.google.firebase.messaging.Notification
 import io.github.v1servicenotification.detail.spi.PostDetailFcmSpi
-import io.github.v1servicenotification.error.NotificationDeviceTokenLengthException
+import io.github.v1servicenotification.error.InvalidDeviceTokenLengthException
 import org.springframework.stereotype.Service
 
 @Service
@@ -65,7 +65,7 @@ class FcmService: PostDetailFcmSpi {
                 .build()
             FirebaseMessaging.getInstance().sendAsync(message)
         } else {
-            throw NotificationDeviceTokenLengthException.EXCEPTION
+            throw InvalidDeviceTokenLengthException.EXCEPTION
         }
     }
 
