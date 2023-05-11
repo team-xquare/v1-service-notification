@@ -22,5 +22,5 @@ enum class ErrorCode(
 
     INTERNAL_SERVER_ERROR(500, "GLOBAL-500-1", "Internal Server Error."),
 
-    DEVICE_TOKEN_LENGTH(400, "DEVICE-400-1", "Device Token Length Error.")
+    DEVICE_TOKEN_LENGTH(401, "DEVICE-400-1", "Device Token Length Error.")
 }
