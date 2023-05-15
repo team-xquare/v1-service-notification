@@ -5,13 +5,13 @@ import io.github.v1servicenotification.infrastructure.feign.client.UserClient
 import io.github.v1servicenotification.infrastructure.feign.client.dto.request.ExcludeUserIdsRequest
 import io.github.v1servicenotification.infrastructure.feign.error.FeignBadRequestException
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.UUID
 
 @Component
 class CustomPostDetailUserImpl(
     private val userClient: UserClient
 ) : PostDetailUserSpi {
-    override fun getExcludeUserIdList(userIdList: List<UUID>): List<UUID> {
+    override fun getExcludeUserIdList(userIdList: List<UUID>?): List<UUID> {
         val userIdsRequest = ExcludeUserIdsRequest(userIdList)
         return userClient.getExcludeUserIdList(userIdsRequest).userIdList
     }
