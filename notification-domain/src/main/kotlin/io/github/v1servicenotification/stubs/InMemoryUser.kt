@@ -11,7 +11,7 @@ class InMemoryUser: PostDetailUserSpi {
         this.userId = userId
     }
 
-    override fun getExcludeUserIdList(userIdList: List<UUID>): List<UUID> {
+    override fun getExcludeUserIdList(userIdList: List<UUID>?): List<UUID> {
         return listOf(userId)
     }
 
