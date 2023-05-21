@@ -21,33 +21,43 @@ class CustomSettingRepositoryImpl(
     private val categoryMapper: CategoryMapper,
     private val jpaQueryFactory: JPAQueryFactory
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
+
     override fun saveAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
-        return getSettingIdList(categories, userId).map {
-            updateIsActiveById(it, isActivated)
+        val settingEntities = categories.map { category ->
+            SettingEntity(
+                settingId = SettingId(userId, categoryMapper.categoryDomainToEntity(category)),
+                isActivated = isActivated
+            )
         }
+        val savedSettingEntities = settingRepository.saveAll(settingEntities)
+        return savedSettingEntities.map { settingMapper.settingEntityToDomain(it) }
     }
+
 
     override fun updateAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
-        return getSettingIdList(categories, userId).map {
-            updateIsActiveById(it, isActivated)
-        }
-    }
-
-    private fun updateIsActiveById(settingId: SettingId, isActivated: Boolean): Setting {
-        return settingMapper.settingEntityToDomain(
-            settingRepository.save(
-                SettingEntity(
-                    settingId = settingId,
-                    isActivated = isActivated
-                )
+        val settingEntities = categories.map { category ->
+            SettingEntity(
+                settingId = SettingId(userId, categoryMapper.categoryDomainToEntity(category)),
+                isActivated = isActivated
             )
-        )
+        }
+        val savedSettingEntities = settingRepository.saveAll(settingEntities)
+        return savedSettingEntities.map { settingMapper.settingEntityToDomain(it) }
     }
 
     override fun settingExist(categories: List<Category>, userId: UUID): Boolean {
         return getSettingIdList(categories, userId).map { settingId ->
             settingRepository.existsById(settingId)
         }.all { it }
+    }
+
+    private fun getSettingIdList(categories: List<Category>, userId: UUID): List<SettingId> {
+        return categories.map { category ->
+            SettingId(
+                userId = userId,
+                categoryEntity = categoryMapper.categoryDomainToEntity(category)
+            )
+        }
     }
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
@@ -67,15 +77,6 @@ class CustomSettingRepositoryImpl(
             .map {
                 categoryMapper.categoryEntityToDomain(it)
             }
-    }
-
-    private fun getSettingIdList(categories: List<Category>, userId: UUID): List<SettingId> {
-        return categories.map { category ->
-            SettingId(
-                userId = userId,
-                categoryEntity = categoryMapper.categoryDomainToEntity(category)
-            )
-        }
     }
 
     override fun findAllUserIdByTopicAndIsActivated(topic: String, isActivated: Boolean): List<UUID> {
