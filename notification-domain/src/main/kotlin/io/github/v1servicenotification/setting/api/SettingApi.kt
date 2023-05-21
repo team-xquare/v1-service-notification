@@ -6,5 +6,5 @@ import java.util.UUID
 interface SettingApi {
     fun activateCategory(categoryId: UUID, userId: UUID): Int
     fun deActivateCategory(categoryId: UUID, userId: UUID): Int
-    fun queryActivatedCategory(userId: UUID): CategoryListResponse
+    fun queryUserCategoryStatus(userId: UUID): CategoryListResponse
 }

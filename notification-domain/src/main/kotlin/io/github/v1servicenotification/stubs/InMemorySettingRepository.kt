@@ -43,16 +43,14 @@ class InMemorySettingRepository(
         }.isNotEmpty()
     }
 
-    override fun queryActivatedCategory(userId: UUID): List<Category> {
-        return categoryMap.filter {
-            val setting = findSetting(userId, it.value.id)
-            setting?.isActivated ?: it.value.defaultActivated
-        }.map { it.value }
-    }
 
     override fun findAllUserIdByTopicAndIsActivated(topic: String, isActivated: Boolean): List<UUID> {
         return settingMap.values.filter {
             it.isActivated == isActivated && categoryMap[it.notificationCategoryId]?.topic == topic
         }.map { it.userId }
+    }
+
+    override fun queryUserIdSetting(userId: UUID): List<Setting> {
+        return settingMap.filter { it.value.userId == userId }.map { it.value }
     }
 }

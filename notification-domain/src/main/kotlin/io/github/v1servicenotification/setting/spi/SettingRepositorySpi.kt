@@ -10,5 +10,6 @@ interface SettingRepositorySpi {
     fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting
     fun updateSetting(category: Category, userId: UUID, isActivated: Boolean): Setting
     fun settingExist(category: Category, userId: UUID): Boolean
-    fun queryActivatedCategory(userId: UUID): List<Category>
+    fun queryUserIdSetting(userId: UUID): List<Setting>
+    fun queryUserCategory(userId: UUID): List<Category>
 }

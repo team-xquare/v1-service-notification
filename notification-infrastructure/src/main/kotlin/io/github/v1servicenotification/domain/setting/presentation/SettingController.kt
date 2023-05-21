@@ -26,10 +26,10 @@ class SettingController(
     private val settingApi: SettingApi
 ) {
 
-    @Operation(summary = "활성화된 알림 카테고리 목록")
+    @Operation(summary = "유저 알림 카테고리 상태 목록")
     @GetMapping
-    fun queryActivatedCategory(): CategoryListResponse {
-        return settingApi.queryActivatedCategory(getUserId())
+    fun queryUserCategoryStatus(): CategoryListResponse {
+        return settingApi.queryUserCategoryStatus(getUserId())
     }
 
     @Operation(summary = "알림 카테고리 활성화")

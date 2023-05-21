@@ -32,7 +32,7 @@ class SettingApiImplTest {
             true
         )
 
-        val result = settingApi.queryActivatedCategory(userId).categories[0]
+        val result = settingApi.queryUserCategoryStatus(userId).categories[0]
 
         assertThat(result.id).isEqualTo(categoryId)
         assertThat(result.title).isEqualTo(category.title)

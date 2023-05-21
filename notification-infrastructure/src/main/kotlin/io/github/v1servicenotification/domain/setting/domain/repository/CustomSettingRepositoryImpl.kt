@@ -3,6 +3,7 @@ package io.github.v1servicenotification.domain.setting.domain.repository
 import com.querydsl.jpa.impl.JPAQueryFactory
 import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
+import io.github.v1servicenotification.domain.category.domain.CategoryEntity
 import io.github.v1servicenotification.domain.category.domain.QCategoryEntity.categoryEntity
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.domain.setting.domain.QSettingEntity.settingEntity
@@ -47,19 +48,21 @@ class CustomSettingRepositoryImpl(
         return settingRepository.existsById(getSettingId(category, userId))
     }
 
-    override fun queryActivatedCategory(userId: UUID): List<Category> {
+
+    override fun queryUserIdSetting(userId: UUID): List<Setting> {
         return jpaQueryFactory
-            .select(categoryEntity)
-            .from(categoryEntity)
-            .leftJoin(categoryEntity.settingList, settingEntity)
-            .on(settingEntity.settingId.userId.eq(userId))
-            .where(
-                settingEntity.isActivated.isTrue
-                    .or(
-                        categoryEntity.defaultActivated.isTrue
-                            .and(settingEntity.isActivated.isNull)
-                    )
-            )
+            .selectFrom(settingEntity)
+            .where(settingEntity.settingId.userId.eq(userId))
+            .fetch()
+            .map {
+                settingMapper.settingEntityToDomain(it)
+            }
+    }
+
+    override fun queryUserCategory(userId: UUID): List<Category> {
+        return jpaQueryFactory
+            .selectFrom(categoryEntity)
+            .where(categoryEntity.eq(settingEntity.settingId.categoryEntity))
             .fetch()
             .map {
                 categoryMapper.categoryEntityToDomain(it)

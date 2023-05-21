@@ -42,18 +42,18 @@ class SettingApiImpl(
         }
     }
 
-    override fun queryActivatedCategory(userId: UUID): CategoryListResponse {
-        return CategoryListResponse(
-            settingRepositorySpi.queryActivatedCategory(userId)
-                .map {
-                    CategoryElement(
-                        id = it.id,
-                        title = it.title,
-                        destination = it.destination,
-                        topic = it.topic
-                    )
+    override fun queryUserCategoryStatus(userId: UUID): CategoryListResponse {
+        val settingList = settingRepositorySpi.queryUserIdSetting(userId)
+        val categoryList = settingRepositorySpi.queryUserCategory(userId)
+        val activatedCategories = settingList
+            .mapNotNull { setting ->
+                val category = categoryList.find { it.id == setting.notificationCategoryId }
+                category?.let {
+                    val topicPrefix = it.topic.substringBefore("_")
+                    CategoryElement(topicPrefix, setting.isActivated)
                 }
-                .toList()
-        )
+            }
+
+        return CategoryListResponse(activatedCategories)
     }
 }
