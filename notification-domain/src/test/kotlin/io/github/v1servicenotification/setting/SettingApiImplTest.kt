@@ -26,7 +26,7 @@ class SettingApiImplTest {
 
         settingSpi.saveCategory(category)
 
-        settingSpi.saveSetting(
+        settingSpi.saveAllSetting(
             category,
             userId,
             true

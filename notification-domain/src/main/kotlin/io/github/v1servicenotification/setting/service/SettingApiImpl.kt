@@ -26,10 +26,10 @@ class SettingApiImpl(
         val category = settingCategorySpi.findByStartingWithTopic(topic)
 
         return if (settingRepositorySpi.settingExist(category, userId)) {
-            settingRepositorySpi.updateSetting(category, userId, isActivate)
+            settingRepositorySpi.updateAllSetting(category, userId, isActivate)
             204
         } else {
-            settingRepositorySpi.saveSetting(category, userId, isActivate)
+            settingRepositorySpi.saveAllSetting(category, userId, isActivate)
             201
         }
     }

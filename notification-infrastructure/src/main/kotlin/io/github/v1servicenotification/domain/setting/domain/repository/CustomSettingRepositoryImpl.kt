@@ -21,19 +21,19 @@ class CustomSettingRepositoryImpl(
     private val categoryMapper: CategoryMapper,
     private val jpaQueryFactory: JPAQueryFactory
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
-    override fun saveSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+    override fun saveAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
         return getSettingIdList(categories, userId).map {
-            saveSettingId(it, isActivated)
+            updateIsActiveById(it, isActivated)
         }
     }
 
-    override fun updateSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+    override fun updateAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
         return getSettingIdList(categories, userId).map {
-            saveSettingId(it, isActivated)
+            updateIsActiveById(it, isActivated)
         }
     }
 
-    private fun saveSettingId(settingId: SettingId, isActivated: Boolean): Setting {
+    private fun updateIsActiveById(settingId: SettingId, isActivated: Boolean): Setting {
         return settingMapper.settingEntityToDomain(
             settingRepository.save(
                 SettingEntity(

@@ -69,7 +69,7 @@ class DetailApiImplTest {
 
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, true)
+        settingSpi.saveAllSetting(category, userId, true)
 
         detailSpi.save(category)
 
@@ -104,7 +104,7 @@ class DetailApiImplTest {
 
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, false)
+        settingSpi.saveAllSetting(category, userId, false)
 
         detailSpi.save(category)
 
@@ -137,7 +137,7 @@ class DetailApiImplTest {
 
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, false)
+        settingSpi.saveAllSetting(category, userId, false)
 
         detailSpi.save(category)
 

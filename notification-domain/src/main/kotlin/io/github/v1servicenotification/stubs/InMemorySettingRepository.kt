@@ -21,7 +21,7 @@ class InMemorySettingRepository(
             .map { it.value }.firstOrNull()
     }
 
-    override fun saveSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+    override fun saveAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
         return categories.map {
             val setting = Setting(
                 userId = userId,
@@ -33,7 +33,7 @@ class InMemorySettingRepository(
         }
     }
 
-    override fun updateSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+    override fun updateAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
         return categories.map {
             val setting = findSetting(userId, it.id)
             setting?.changeIsActivate(isActivated)
