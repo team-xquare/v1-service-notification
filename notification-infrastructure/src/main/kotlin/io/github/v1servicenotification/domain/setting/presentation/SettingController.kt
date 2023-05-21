@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.RequestParam
 import java.util.UUID
 
 @Tag(name = "알림 카테고리 활성화 설정", description = "알림 카테고리 활성화 관련 Api 입니다.")
@@ -33,31 +34,21 @@ class SettingController(
     }
 
     @Operation(summary = "알림 카테고리 활성화")
-    @ApiResponses(value = [
-        ApiResponse(responseCode = CustomHttpStatus.CREATED),
-        ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
-    ])
-    @PatchMapping("/{category-uuid}")
-    fun activateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = CustomHttpStatus.CREATED),
+            ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
+        ]
+    )
+    @PatchMapping
+    fun activateNotificationCategory(
+        @RequestParam("is-activate") isActivate: Boolean,
+        @RequestParam("topic") topic: String
+    ): ResponseEntity<Unit> {
         return ResponseEntity(
             HttpStatus.valueOf(
-                settingApi.activateCategory(categoryId, getUserId())
+                settingApi.activateCategory(isActivate, topic, getUserId())
             )
         )
     }
-
-    @Operation(summary = "알림 카테고리 비활성회")
-    @ApiResponses(value = [
-        ApiResponse(responseCode = CustomHttpStatus.CREATED),
-        ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
-    ])
-    @DeleteMapping("/{category-uuid}")
-    fun deActivateNotificationCategory(@PathVariable("category-uuid") categoryId: UUID): ResponseEntity<Unit> {
-        return ResponseEntity(
-            HttpStatus.valueOf(
-                settingApi.deActivateCategory(categoryId, getUserId())
-            )
-        )
-    }
-
 }

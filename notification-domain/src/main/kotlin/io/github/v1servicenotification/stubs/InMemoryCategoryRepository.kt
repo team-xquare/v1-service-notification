@@ -34,14 +34,15 @@ class InMemoryCategoryRepository(
             ?: throw CategoryNotFoundException.EXCEPTION
     }
 
-    override fun findById(id: UUID): Category {
-        return categoryMap[id]
-            ?: throw CategoryNotFoundException.EXCEPTION
-    }
-
     override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {
         return categoryMap.filter {
             it.value.defaultActivated == defaultActivated
         }.map { it.value }
+    }
+
+    override fun findByStartingWithTopic(topic: String): List<Category> {
+        return categoryMap.values.filter {
+            it.topic.startsWith(topic)
+        }
     }
 }

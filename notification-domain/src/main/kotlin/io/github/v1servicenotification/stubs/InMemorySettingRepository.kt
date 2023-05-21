@@ -21,25 +21,29 @@ class InMemorySettingRepository(
             .map { it.value }.firstOrNull()
     }
 
-    override fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
-        val setting = Setting(userId, category.id, isActivated)
-        settingMap[UUID.randomUUID()] = setting
-
-        return setting
+    override fun saveSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+        return categories.map {
+            val setting = Setting(
+                userId = userId,
+                notificationCategoryId = it.id,
+                isActivated = isActivated
+            )
+            settingMap[setting.notificationCategoryId] = setting
+            setting
+        }
     }
 
-    override fun updateSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
-        return settingMap.filter {
-            it.value.notificationCategoryId == category.id && it.value.userId == userId
-        }.map {
-            it.value.changeIsActivate(isActivated)
-            it.value
-        }[0]
+    override fun updateSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
+        return categories.map {
+            val setting = findSetting(userId, it.id)
+            setting?.changeIsActivate(isActivated)
+            setting
+        }.filterNotNull()
     }
 
-    override fun settingExist(category: Category, userId: UUID): Boolean {
-        return settingMap.filter {
-            it.value.notificationCategoryId == category.id && it.value.userId == userId
+    override fun settingExist(categories: List<Category>, userId: UUID): Boolean {
+        return categories.mapNotNull {
+            findSetting(userId, it.id)
         }.isNotEmpty()
     }
 

@@ -12,26 +12,18 @@ import java.util.UUID
 class SettingApiImpl(
     private val settingRepositorySpi: SettingRepositorySpi,
     private val settingCategorySpi: SettingCategorySpi
-): SettingApi {
+) : SettingApi {
 
-    override fun activateCategory(categoryId: UUID, userId: UUID): Int {
+    override fun activateCategory(isActivate: Boolean, topic: String, userId: UUID): Int {
         return saveOrUpdateSetting(
-            categoryId = categoryId,
+            isActivate = isActivate,
+            topic = topic,
             userId = userId,
-            isActivate = true
-        )
+            )
     }
 
-    override fun deActivateCategory(categoryId: UUID, userId: UUID): Int {
-        return saveOrUpdateSetting(
-            categoryId = categoryId,
-            userId = userId,
-            isActivate = false
-        )
-    }
-
-    private fun saveOrUpdateSetting(categoryId: UUID, userId: UUID, isActivate: Boolean): Int {
-        val category = settingCategorySpi.findById(categoryId)
+    private fun saveOrUpdateSetting(isActivate: Boolean, topic: String, userId: UUID): Int {
+        val category = settingCategorySpi.findByStartingWithTopic(topic)
 
         return if (settingRepositorySpi.settingExist(category, userId)) {
             settingRepositorySpi.updateSetting(category, userId, isActivate)
