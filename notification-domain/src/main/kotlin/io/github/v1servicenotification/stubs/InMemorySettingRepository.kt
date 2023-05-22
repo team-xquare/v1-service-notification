@@ -53,4 +53,10 @@ class InMemorySettingRepository(
     override fun queryUserIdSetting(userId: UUID): List<Setting> {
         return settingMap.filter { it.value.userId == userId }.map { it.value }
     }
+
+    override fun queryUserCategory(userId: UUID): List<Category> {
+        return settingMap.filter { it.value.userId == userId }.map {
+            categoryMap[it.value.notificationCategoryId] ?: throw RuntimeException()
+        }
+    }
 }

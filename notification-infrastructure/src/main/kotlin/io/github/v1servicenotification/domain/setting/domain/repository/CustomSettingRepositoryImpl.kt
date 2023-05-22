@@ -62,10 +62,20 @@ class CustomSettingRepositoryImpl(
     override fun queryUserCategory(userId: UUID): List<Category> {
         return jpaQueryFactory
             .selectFrom(categoryEntity)
-            .where(categoryEntity.eq(settingEntity.settingId.categoryEntity))
+            .leftJoin(categoryEntity.settingList, settingEntity)
+            .where(settingEntity.settingId.userId.eq(userId))
             .fetch()
             .map {
-                categoryMapper.categoryEntityToDomain(it)
+                categoryMapper.categoryEntityToDomain(
+                    CategoryEntity(
+                        it.id,
+                        it.title,
+                        it.destination,
+                        it.defaultActivated,
+                        it.settingList,
+                        it.topic.substringBefore("_"),
+                        )
+                )
             }
     }
 

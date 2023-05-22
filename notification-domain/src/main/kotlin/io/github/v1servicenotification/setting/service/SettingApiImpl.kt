@@ -5,6 +5,8 @@ import io.github.v1servicenotification.category.api.response.CategoryElement
 import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
+import io.github.v1servicenotification.setting.api.response.SettingElement
+import io.github.v1servicenotification.setting.api.response.SettingListResponse
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import java.util.UUID
 
@@ -42,7 +44,7 @@ class SettingApiImpl(
         }
     }
 
-    override fun queryUserCategoryStatus(userId: UUID): CategoryListResponse {
+    override fun queryUserCategoryStatus(userId: UUID): SettingListResponse {
         val settingList = settingRepositorySpi.queryUserIdSetting(userId)
         val categoryList = settingRepositorySpi.queryUserCategory(userId)
 
@@ -51,11 +53,10 @@ class SettingApiImpl(
         val activatedCategories = settingList.mapNotNull { setting ->
             val category = categoryMap[setting.notificationCategoryId]
             category?.let {
-                val topicPrefix = it.topic.substringBefore("_")
-                CategoryElement(topicPrefix, setting.isActivated)
+                SettingElement(it.topic, setting.isActivated)
             }
-        }
+        }.distinctBy { it.topic }
 
-        return CategoryListResponse(activatedCategories)
+        return SettingListResponse(activatedCategories)
     }
 }

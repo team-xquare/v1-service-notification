@@ -1,9 +1,9 @@
 package io.github.v1servicenotification.domain.setting.presentation
 
-import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.global.extension.getUserId
 import io.github.v1servicenotification.global.util.CustomHttpStatus
 import io.github.v1servicenotification.setting.api.SettingApi
+import io.github.v1servicenotification.setting.api.response.SettingListResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -28,11 +28,11 @@ class SettingController(
 
     @Operation(summary = "유저 알림 카테고리 상태 목록")
     @GetMapping
-    fun queryUserCategoryStatus(): CategoryListResponse {
+    fun queryUserCategoryStatus(): SettingListResponse {
         return settingApi.queryUserCategoryStatus(getUserId())
     }
 
-    @Operation(summary = "알림 카테고리 활성화")
+    @Operation(summary = "알림 카테고리 활성화/비활성화")
     @ApiResponses(value = [
         ApiResponse(responseCode = CustomHttpStatus.CREATED),
         ApiResponse(responseCode = CustomHttpStatus.NO_CONTENT)
