@@ -43,14 +43,13 @@ class CustomCategoryRepositoryImpl(
         return categoryMapper.categoryEntityToDomain(category)
     }
 
-    override fun findByStartingWithTopic(topic: String): List<Category> {
+    override fun findByStartingWithTopic(topic: String): List<UUID> {
         return jpaQueryFactory
-            .selectFrom(categoryEntity)
+            .select(categoryEntity.id)
+            .from(categoryEntity)
             .where(categoryEntity.topic.startsWith(topic))
             .fetch()
-            .map {
-                categoryMapper.categoryEntityToDomain(it)
-            }
+
     }
 
     override fun findAllByDefaultActivated(defaultActivated: Boolean): List<Category> {

@@ -4,6 +4,6 @@ import io.github.v1servicenotification.category.api.response.CategoryListRespons
 import java.util.UUID
 
 interface SettingApi {
-    fun activateCategory(isActivate: Boolean, topic: String, userId: UUID): Int
+    fun activateOrDeActivateCategory(isActivate: Boolean, topic: String, userId: UUID)
     fun queryActivatedCategory(userId: UUID): CategoryListResponse
 }

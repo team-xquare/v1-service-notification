@@ -40,9 +40,11 @@ class InMemoryCategoryRepository(
         }.map { it.value }
     }
 
-    override fun findByStartingWithTopic(topic: String): List<Category> {
-        return categoryMap.values.filter {
-            it.topic.startsWith(topic)
+    override fun findByStartingWithTopic(topic: String): List<UUID> {
+        return categoryMap.filter {
+            it.value.topic.startsWith(topic)
+        }.map {
+            it.key
         }
     }
 }

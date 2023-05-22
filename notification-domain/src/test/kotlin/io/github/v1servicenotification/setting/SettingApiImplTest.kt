@@ -60,9 +60,9 @@ class SettingApiImplTest {
         categorySpi.saveCategory(
             Category(categoryId, "Test name", "Test destination", false, "ALL")
         )
-        assertThat(settingApi.activateCategory(categoryId, userId))
+        assertThat(settingApi.activateOrDeActivateCategory(categoryId, userId))
             .isEqualTo(201)
-        assertThat(settingApi.activateCategory(categoryId, userId))
+        assertThat(settingApi.activateOrDeActivateCategory(categoryId, userId))
             .isEqualTo(204)
     }
 }

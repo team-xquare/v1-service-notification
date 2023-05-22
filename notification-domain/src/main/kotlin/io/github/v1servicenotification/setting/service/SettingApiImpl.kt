@@ -5,6 +5,7 @@ import io.github.v1servicenotification.category.api.response.CategoryElement
 import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
+import io.github.v1servicenotification.setting.exception.SettingNotFoundException
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import java.util.UUID
 
@@ -14,24 +15,13 @@ class SettingApiImpl(
     private val settingCategorySpi: SettingCategorySpi
 ) : SettingApi {
 
-    override fun activateCategory(isActivate: Boolean, topic: String, userId: UUID): Int {
-        return saveOrUpdateSetting(
-            isActivate = isActivate,
-            topic = topic,
-            userId = userId,
-            )
-    }
-
-    private fun saveOrUpdateSetting(isActivate: Boolean, topic: String, userId: UUID): Int {
+    override fun activateOrDeActivateCategory(isActivate: Boolean, topic: String, userId: UUID) {
         val category = settingCategorySpi.findByStartingWithTopic(topic)
 
-        return if (settingRepositorySpi.settingExist(category, userId)) {
-            settingRepositorySpi.updateAllSetting(category, userId, isActivate)
-            204
-        } else {
-            settingRepositorySpi.saveAllSetting(category, userId, isActivate)
-            201
+        if (!settingRepositorySpi.settingExist(category, userId)) {
+            throw SettingNotFoundException.EXCEPTION
         }
+        settingRepositorySpi.updateAllSetting(category, userId, isActivate)
     }
 
     override fun queryActivatedCategory(userId: UUID): CategoryListResponse {

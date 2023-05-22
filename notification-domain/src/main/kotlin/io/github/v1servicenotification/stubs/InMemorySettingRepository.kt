@@ -15,35 +15,17 @@ class InMemorySettingRepository(
         categoryMap[category.id] = category
     }
 
-    fun findSetting(userId: UUID, categoryId: UUID): Setting? {
-        return settingMap
-            .filter { it.value.userId == userId && it.value.notificationCategoryId == categoryId }
-            .map { it.value }.firstOrNull()
-    }
 
-    override fun saveAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
-        return categories.map {
-            val setting = Setting(
-                userId = userId,
-                notificationCategoryId = it.id,
-                isActivated = isActivated
-            )
-            settingMap[setting.notificationCategoryId] = setting
-            setting
+    override fun updateAllSetting(categoryIds: List<UUID>, userId: UUID, isActivated: Boolean) {
+        categoryIds.forEach {
+            val setting = findSetting(userId, it)
+            setting?.changeIsActivate(isActivated)
         }
     }
 
-    override fun updateAllSetting(categories: List<Category>, userId: UUID, isActivated: Boolean): List<Setting> {
-        return categories.map {
-            val setting = findSetting(userId, it.id)
-            setting?.changeIsActivate(isActivated)
-            setting
-        }.filterNotNull()
-    }
-
-    override fun settingExist(categories: List<Category>, userId: UUID): Boolean {
-        return categories.mapNotNull {
-            findSetting(userId, it.id)
+    override fun settingExist(categoryIds: List<UUID>, userId: UUID): Boolean {
+        return categoryIds.mapNotNull {
+            findSetting(userId, it)
         }.isNotEmpty()
     }
 
@@ -52,6 +34,12 @@ class InMemorySettingRepository(
             val setting = findSetting(userId, it.value.id)
             setting?.isActivated ?: it.value.defaultActivated
         }.map { it.value }
+    }
+
+    private fun findSetting(userId: UUID, categoryId: UUID): Setting? {
+        return settingMap
+            .filter { it.value.userId == userId && it.value.notificationCategoryId == categoryId }
+            .map { it.value }.firstOrNull()
     }
 
     override fun findAllUserIdByTopicAndIsActivated(topic: String, isActivated: Boolean): List<UUID> {
