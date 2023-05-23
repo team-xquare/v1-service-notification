@@ -1,8 +1,6 @@
 package io.github.v1servicenotification.setting.service
 
 import io.github.v1servicenotification.annotation.DomainService
-import io.github.v1servicenotification.category.api.response.CategoryElement
-import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
 import io.github.v1servicenotification.setting.api.response.SettingElement
