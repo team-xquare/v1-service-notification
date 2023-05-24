@@ -67,9 +67,11 @@ class DetailApiImplTest {
             topic = "ALL"
         )
 
+        val categoryIds = listOf(category.id)
+
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, true)
+        settingSpi.updateAllSetting(categoryIds, userId, true)
 
         detailSpi.save(category)
 
@@ -102,9 +104,11 @@ class DetailApiImplTest {
             topic = "ALL"
         )
 
+        val categoryIds = listOf(category.id)
+
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, false)
+        settingSpi.updateAllSetting(categoryIds, userId, false)
 
         detailSpi.save(category)
 
@@ -135,9 +139,11 @@ class DetailApiImplTest {
             topic = "ALL"
         )
 
+        val categoryIds = listOf(category.id)
+
         categorySpi.saveCategory(category)
 
-        settingSpi.saveSetting(category, userId, false)
+        settingSpi.updateAllSetting(categoryIds, userId, false)
 
         detailSpi.save(category)
 
