@@ -24,9 +24,7 @@ class InMemorySettingRepository(
     }
 
     override fun settingExist(categoryIds: List<UUID>, userId: UUID): Boolean {
-        return categoryIds.mapNotNull {
-            findSetting(userId, it)
-        }.isNotEmpty()
+        return categoryIds.map { findSetting(userId, it) }.any { it != null }
     }
 
     override fun queryActivatedCategory(userId: UUID): List<Category> {
