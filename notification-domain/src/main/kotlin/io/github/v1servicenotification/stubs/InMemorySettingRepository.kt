@@ -32,10 +32,6 @@ class InMemorySettingRepository(
         }
     }
 
-    override fun settingExist(category: Category, userId: UUID): Boolean {
-        return settingMap.values.any { it.userId == userId && it.notificationCategoryId == category.id }
-    }
-
     override fun settingExist(categoryIds: List<UUID>, userId: UUID): Boolean {
         return categoryIds.map { findSetting(userId, it) }.any { it != null }
     }

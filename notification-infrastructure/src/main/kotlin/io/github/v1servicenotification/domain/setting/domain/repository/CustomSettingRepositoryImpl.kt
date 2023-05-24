@@ -9,6 +9,8 @@ import io.github.v1servicenotification.domain.category.domain.repository.Categor
 import io.github.v1servicenotification.domain.category.mapper.CategoryMapper
 import io.github.v1servicenotification.domain.setting.domain.QSettingEntity.settingEntity
 import io.github.v1servicenotification.domain.setting.domain.SettingId
+import io.github.v1servicenotification.domain.setting.mapper.SettingMapper
+import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import org.springframework.stereotype.Repository
 import java.util.UUID
@@ -20,6 +22,7 @@ class CustomSettingRepositoryImpl(
     private val categoryMapper: CategoryMapper,
     private val jpaQueryFactory: JPAQueryFactory,
     private val categoryRepository: CategoryRepository,
+    private val settingMapper: SettingMapper
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
 
     @Transactional
