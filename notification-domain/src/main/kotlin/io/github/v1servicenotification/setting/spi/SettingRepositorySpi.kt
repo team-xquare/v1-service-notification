@@ -7,7 +7,6 @@ import java.util.UUID
 
 @Spi
 interface SettingRepositorySpi {
-    fun settingExist(category: Category, userId: UUID): Boolean
     fun queryUserIdSetting(userId: UUID): List<Setting>
     fun queryUserCategory(userId: UUID): List<Category>
     fun updateAllSetting(categoryIds: List<UUID>, userId: UUID, isActivated: Boolean)
