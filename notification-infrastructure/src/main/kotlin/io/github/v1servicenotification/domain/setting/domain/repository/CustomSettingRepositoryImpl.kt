@@ -35,18 +35,6 @@ class CustomSettingRepositoryImpl(
         }
     }
 
-    private fun setSettingIsActivate(categoryIds: List<UUID>, userId: UUID, isActivated: Boolean) {
-        categoryIds.forEach {
-            jpaQueryFactory
-                .update(settingEntity)
-                .set(settingEntity.isActivated, isActivated)
-                .where(
-                    settingEntity.settingId.categoryEntity.id.eq(it)
-                        .and(settingEntity.settingId.userId.eq(userId))
-                )
-        }
-    }
-
     override fun settingExist(categoryIds: List<UUID>, userId: UUID): Boolean {
         return getSettingIdList(categoryIds, userId).map { settingId ->
             settingRepository.existsById(settingId)
