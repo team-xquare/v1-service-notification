@@ -12,6 +12,14 @@ class InMemorySettingRepository(
     private val settingMap: HashMap<UUID, Setting> = hashMapOf()
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
 
+
+    fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
+        val setting = Setting(userId, category.id, isActivated)
+        settingMap[UUID.randomUUID()] = setting
+
+        return setting
+    }
+
     fun saveCategory(category: Category) {
         categoryMap[category.id] = category
     }

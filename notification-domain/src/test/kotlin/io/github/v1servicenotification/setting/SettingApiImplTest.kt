@@ -27,16 +27,13 @@ class SettingApiImplTest {
 
         settingSpi.saveCategory(category)
 
-        val categoryIds = listOf(category.id)
-
-
-        settingSpi.updateAllSetting(
-            categoryIds,
+        settingSpi.saveSetting(
+            category,
             userId,
             true
         )
 
-        val result = settingApi.queryUserCategoryStatus(userId).settings[0]
+        val result = settingApi.queryUserCategoryStatus(userId).settings.first()
 
         assertThat(result.topic).isEqualTo(category.topic)
         assertThat(result.isActivate).isEqualTo(setting.isActivated)
