@@ -32,6 +32,9 @@ class InMemorySettingRepository(
         return categoryIds.map { findSetting(userId, it) }.any { it != null }
     }
 
+    override fun queryUserIdSetting(userId: UUID): List<Setting> {
+        return settingMap.values.filter { it.userId == userId }
+    }
 
     private fun findSetting(userId: UUID, categoryId: UUID): Setting? {
         return settingMap
