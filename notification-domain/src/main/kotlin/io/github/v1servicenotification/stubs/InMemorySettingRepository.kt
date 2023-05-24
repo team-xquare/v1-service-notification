@@ -24,6 +24,10 @@ class InMemorySettingRepository(
         }
     }
 
+    override fun settingExist(category: Category, userId: UUID): Boolean {
+        return settingMap.values.any { it.userId == userId && it.notificationCategoryId == category.id }
+    }
+
     override fun settingExist(categoryIds: List<UUID>, userId: UUID): Boolean {
         return categoryIds.map { findSetting(userId, it) }.any { it != null }
     }
@@ -39,10 +43,6 @@ class InMemorySettingRepository(
         return settingMap.values.filter {
             it.isActivated == isActivated && categoryMap[it.notificationCategoryId]?.topic == topic
         }.map { it.userId }
-    }
-
-    override fun queryUserIdSetting(userId: UUID): List<Setting> {
-        return settingMap.filter { it.value.userId == userId }.map { it.value }
     }
 
     override fun queryUserCategory(userId: UUID): List<Category> {
