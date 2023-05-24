@@ -14,4 +14,8 @@ class Category(
     val defaultActivated: Boolean,
 
     val topic: String,
-)
+) {
+    fun getTopicSubStringBy_(): String {
+        return topic.substringBefore("_")
+    }
+}

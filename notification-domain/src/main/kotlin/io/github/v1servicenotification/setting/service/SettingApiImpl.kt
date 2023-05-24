@@ -33,7 +33,7 @@ class SettingApiImpl(
         val activatedCategories = settingList.mapNotNull { setting ->
             val category = categoryMap[setting.notificationCategoryId]
             category?.let {
-                SettingElement(it.topic, setting.isActivated)
+                SettingElement(it.getTopicSubStringBy_(), setting.isActivated)
             }
         }.distinctBy { it.topic }
 

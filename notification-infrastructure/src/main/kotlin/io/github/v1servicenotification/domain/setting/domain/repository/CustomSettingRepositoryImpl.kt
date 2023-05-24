@@ -77,16 +77,7 @@ class CustomSettingRepositoryImpl(
             .where(settingEntity.settingId.userId.eq(userId))
             .fetch()
             .map {
-                categoryMapper.categoryEntityToDomain(
-                    CategoryEntity(
-                        it.id,
-                        it.title,
-                        it.destination,
-                        it.defaultActivated,
-                        it.settingList,
-                        it.topic.substringBefore("_"),
-                        )
-                )
+                categoryMapper.categoryEntityToDomain(it)
             }
     }
 
