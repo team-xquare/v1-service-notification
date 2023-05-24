@@ -27,8 +27,11 @@ class SettingApiImplTest {
 
         settingSpi.saveCategory(category)
 
-        settingSpi.saveSetting(
-            category,
+        val categoryIds = listOf(category.id)
+
+
+        settingSpi.updateAllSetting(
+            categoryIds,
             userId,
             true
         )
@@ -37,31 +40,5 @@ class SettingApiImplTest {
 
         assertThat(result.topic).isEqualTo(category.topic)
         assertThat(result.isActivate).isEqualTo(setting.isActivated)
-    }
-
-    @Test
-    fun deActivatedCategory() {
-        val userId = UUID.randomUUID()
-        val categoryId = UUID.randomUUID()
-        categorySpi.saveCategory(
-            Category(categoryId, "Test name", "Test destination", false, "ALL")
-        )
-        Assertions.assertThat(settingApi.deActivateCategory(categoryId, userId))
-            .isEqualTo(201)
-        Assertions.assertThat(settingApi.deActivateCategory(categoryId, userId))
-            .isEqualTo(204)
-    }
-
-    @Test
-    fun activateCategory() {
-        val userId = UUID.randomUUID()
-        val categoryId = UUID.randomUUID()
-        categorySpi.saveCategory(
-            Category(categoryId, "Test name", "Test destination", false, "ALL")
-        )
-        assertThat(settingApi.activateCategory(categoryId, userId))
-            .isEqualTo(201)
-        assertThat(settingApi.activateCategory(categoryId, userId))
-            .isEqualTo(204)
     }
 }

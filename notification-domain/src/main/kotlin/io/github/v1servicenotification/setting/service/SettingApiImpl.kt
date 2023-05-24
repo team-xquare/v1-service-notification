@@ -5,6 +5,7 @@ import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
 import io.github.v1servicenotification.setting.api.response.SettingElement
 import io.github.v1servicenotification.setting.api.response.SettingListResponse
+import io.github.v1servicenotification.setting.exception.SettingNotFoundException
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import java.util.UUID
 
@@ -12,34 +13,15 @@ import java.util.UUID
 class SettingApiImpl(
     private val settingRepositorySpi: SettingRepositorySpi,
     private val settingCategorySpi: SettingCategorySpi
-): SettingApi {
+) : SettingApi {
 
-    override fun activateCategory(categoryId: UUID, userId: UUID): Int {
-        return saveOrUpdateSetting(
-            categoryId = categoryId,
-            userId = userId,
-            isActivate = true
-        )
-    }
+    override fun activateOrDeActivateCategory(isActivate: Boolean, topic: String, userId: UUID) {
+        val category = settingCategorySpi.findByStartingWithTopic(topic)
 
-    override fun deActivateCategory(categoryId: UUID, userId: UUID): Int {
-        return saveOrUpdateSetting(
-            categoryId = categoryId,
-            userId = userId,
-            isActivate = false
-        )
-    }
-
-    private fun saveOrUpdateSetting(categoryId: UUID, userId: UUID, isActivate: Boolean): Int {
-        val category = settingCategorySpi.findById(categoryId)
-
-        return if (settingRepositorySpi.settingExist(category, userId)) {
-            settingRepositorySpi.updateSetting(category, userId, isActivate)
-            204
-        } else {
-            settingRepositorySpi.saveSetting(category, userId, isActivate)
-            201
+        if (!settingRepositorySpi.settingExist(category, userId)) {
+            throw SettingNotFoundException.EXCEPTION
         }
+        settingRepositorySpi.updateAllSetting(category, userId, isActivate)
     }
 
     override fun queryUserCategoryStatus(userId: UUID): SettingListResponse {
