@@ -18,28 +18,24 @@ class SettingApiImplTest {
     private val settingApi = SettingApiImpl(settingSpi, categorySpi)
 
     @Test
-    fun queryActivatedCategory() {
+    fun queryUserCategoryStatus() {
         val userId = UUID.randomUUID()
         val categoryId = UUID.randomUUID()
 
         val category = Category(categoryId, "Test name", "Test destination", false, "ALL")
+        val setting = Setting(categoryId, userId, true)
 
         settingSpi.saveCategory(category)
 
-        val categoryIds = listOf(category.id)
-
-
-        settingSpi.updateAllSetting(
-            categoryIds,
+        settingSpi.saveSetting(
+            category,
             userId,
             true
         )
 
-        val result = settingApi.queryActivatedCategory(userId).categories[0]
+        val result = settingApi.queryUserCategoryStatus(userId).settings.first()
 
-        assertThat(result.id).isEqualTo(categoryId)
-        assertThat(result.title).isEqualTo(category.title)
-        assertThat(result.destination).isEqualTo(category.destination)
-
+        assertThat(result.topic).isEqualTo(category.topic)
+        assertThat(result.isActivate).isEqualTo(setting.isActivated)
     }
 }

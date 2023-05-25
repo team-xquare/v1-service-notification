@@ -1,10 +1,10 @@
 package io.github.v1servicenotification.setting.service
 
 import io.github.v1servicenotification.annotation.DomainService
-import io.github.v1servicenotification.category.api.response.CategoryElement
-import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
 import io.github.v1servicenotification.setting.api.SettingApi
+import io.github.v1servicenotification.setting.api.response.SettingElement
+import io.github.v1servicenotification.setting.api.response.SettingListResponse
 import io.github.v1servicenotification.setting.exception.SettingNotFoundException
 import io.github.v1servicenotification.setting.spi.SettingCategorySpi
 import java.util.UUID
@@ -24,18 +24,20 @@ class SettingApiImpl(
         settingRepositorySpi.updateAllSetting(category, userId, isActivate)
     }
 
-    override fun queryActivatedCategory(userId: UUID): CategoryListResponse {
-        return CategoryListResponse(
-            settingRepositorySpi.queryActivatedCategory(userId)
-                .map {
-                    CategoryElement(
-                        id = it.id,
-                        title = it.title,
-                        destination = it.destination,
-                        topic = it.topic
-                    )
-                }
-                .toList()
-        )
+    override fun queryUserCategoryStatus(userId: UUID): SettingListResponse {
+        val settingList = settingRepositorySpi.queryUserIdSetting(userId)
+        val categoryList = settingRepositorySpi.queryUserCategory(userId)
+
+        val categoryMap = categoryList.associateBy { it.id }
+
+        val activatedCategories = settingList.mapNotNull { setting ->
+            val category = categoryMap[setting.notificationCategoryId]
+            category?.let {
+                val topicSubStringByUnderscore = it.topic.substringBefore("_")
+                SettingElement(topicSubStringByUnderscore, setting.isActivated)
+            }
+        }.distinctBy { it.topic }
+
+        return SettingListResponse(activatedCategories)
     }
 }

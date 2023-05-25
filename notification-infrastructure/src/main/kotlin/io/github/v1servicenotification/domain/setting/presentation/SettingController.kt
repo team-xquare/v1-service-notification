@@ -1,8 +1,8 @@
 package io.github.v1servicenotification.domain.setting.presentation
 
-import io.github.v1servicenotification.category.api.response.CategoryListResponse
 import io.github.v1servicenotification.global.extension.getUserId
 import io.github.v1servicenotification.setting.api.SettingApi
+import io.github.v1servicenotification.setting.api.response.SettingListResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 
@@ -21,10 +21,10 @@ class SettingController(
     private val settingApi: SettingApi
 ) {
 
-    @Operation(summary = "활성화된 알림 카테고리 목록")
+    @Operation(summary = "유저 알림 카테고리 상태 목록")
     @GetMapping
-    fun queryActivatedCategory(): CategoryListResponse {
-        return settingApi.queryActivatedCategory(getUserId())
+    fun queryUserCategoryStatus(): SettingListResponse {
+        return settingApi.queryUserCategoryStatus(getUserId())
     }
 
     @Operation(summary = "알림 카테고리 활성화 / 비활성화")

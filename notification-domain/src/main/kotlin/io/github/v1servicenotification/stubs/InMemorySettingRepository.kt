@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.stubs
 
 import io.github.v1servicenotification.category.Category
+import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.detail.spi.PostDetailSettingRepositorySpi
 import io.github.v1servicenotification.setting.Setting
 import io.github.v1servicenotification.setting.spi.SettingRepositorySpi
@@ -10,6 +11,14 @@ class InMemorySettingRepository(
     private val categoryMap: HashMap<UUID, Category> = hashMapOf(),
     private val settingMap: HashMap<UUID, Setting> = hashMapOf()
 ) : SettingRepositorySpi, PostDetailSettingRepositorySpi {
+
+
+    fun saveSetting(category: Category, userId: UUID, isActivated: Boolean): Setting {
+        val setting = Setting(userId, category.id, isActivated)
+        settingMap[UUID.randomUUID()] = setting
+
+        return setting
+    }
 
     fun saveCategory(category: Category) {
         categoryMap[category.id] = category
@@ -27,11 +36,8 @@ class InMemorySettingRepository(
         return categoryIds.map { findSetting(userId, it) }.any { it != null }
     }
 
-    override fun queryActivatedCategory(userId: UUID): List<Category> {
-        return categoryMap.filter {
-            val setting = findSetting(userId, it.value.id)
-            setting?.isActivated ?: it.value.defaultActivated
-        }.map { it.value }
+    override fun queryUserIdSetting(userId: UUID): List<Setting> {
+        return settingMap.values.filter { it.userId == userId }
     }
 
     private fun findSetting(userId: UUID, categoryId: UUID): Setting? {
@@ -44,5 +50,11 @@ class InMemorySettingRepository(
         return settingMap.values.filter {
             it.isActivated == isActivated && categoryMap[it.notificationCategoryId]?.topic == topic
         }.map { it.userId }
+    }
+
+    override fun queryUserCategory(userId: UUID): List<Category> {
+        return settingMap.filter { it.value.userId == userId }.map {
+            categoryMap[it.value.notificationCategoryId] ?: throw CategoryNotFoundException.EXCEPTION
+        }
     }
 }
