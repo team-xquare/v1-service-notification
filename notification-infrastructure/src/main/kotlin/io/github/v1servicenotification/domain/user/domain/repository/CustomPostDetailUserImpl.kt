@@ -11,7 +11,7 @@ import java.util.UUID
 class CustomPostDetailUserImpl(
     private val userClient: UserClient
 ) : PostDetailUserSpi {
-    override fun getExcludeUserIdList(userIdList: List<UUID>?): List<UUID> {
+    override fun getExcludeUserIdList(userIdList: List<UUID>): List<UUID> {
         val userIdsRequest = ExcludeUserIdsRequest(userIdList)
         return userClient.getExcludeUserIdList(userIdsRequest).userIdList
     }
