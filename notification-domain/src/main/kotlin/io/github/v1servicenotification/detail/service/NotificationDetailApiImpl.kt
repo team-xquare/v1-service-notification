@@ -49,7 +49,7 @@ class NotificationDetailApiImpl(
                 Detail(
                     title = category.title,
                     content = content,
-                    sentAt = LocalDateTime.now(),
+                    sentAt = LocalDateTime.now().withNano(0),
                     isRead = false,
                     userId = it,
                     categoryId = category.id,
@@ -78,7 +78,7 @@ class NotificationDetailApiImpl(
             Detail(
                 title = category.title,
                 content = content,
-                sentAt = LocalDateTime.now(),
+                sentAt = LocalDateTime.now().withNano(0),
                 isRead = false,
                 userId = userId,
                 categoryId = category.id,
@@ -97,7 +97,7 @@ class NotificationDetailApiImpl(
                         id = it.id,
                         title = it.title,
                         content = it.content,
-                        sentAt = it.sentAt,
+                        sentAt = it.sentAt.withNano(0),
                         isRead = it.isRead,
                         userId = it.userId,
                         topic = it.topic,
