@@ -97,7 +97,7 @@ class NotificationDetailApiImpl(
                         id = it.id,
                         title = it.title,
                         content = it.content,
-                        sentAt = it.sentAt.withNano(0),
+                        sentAt = it.sentAt,
                         isRead = it.isRead,
                         userId = it.userId,
                         topic = it.topic,
