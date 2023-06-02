@@ -1,6 +1,6 @@
 package io.github.v1servicenotification.infrastructure.feign.client
 
-import io.github.v1servicenotification.infrastructure.feign.client.dto.request.ExcludeUserIdsRequest
+import io.github.v1servicenotification.infrastructure.feign.client.dto.request.GetExcludeUserIdsRequest
 import io.github.v1servicenotification.infrastructure.feign.client.dto.response.TokenResponse
 import io.github.v1servicenotification.infrastructure.feign.client.dto.response.UserIdListResponse
 import org.springframework.cloud.openfeign.FeignClient
@@ -16,5 +16,5 @@ interface UserClient {
     fun token(@RequestParam("users") userList: List<UUID>): TokenResponse
 
     @GetMapping("/users/exclude")
-    fun getExcludeUserIdList(@RequestBody request: ExcludeUserIdsRequest): UserIdListResponse
+    fun getExcludeUserIdList(@RequestBody request: GetExcludeUserIdsRequest): UserIdListResponse
 }
