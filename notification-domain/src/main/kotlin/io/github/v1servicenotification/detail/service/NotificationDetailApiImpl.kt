@@ -42,7 +42,6 @@ class NotificationDetailApiImpl(
             postDetailSettingRepositorySpi.findAllUserIdByTopicAndIsActivated(topic, true)
         }
 
-
         val detailList = userIdList
             .stream()
             .map {
@@ -64,7 +63,6 @@ class NotificationDetailApiImpl(
             content,
             threadId,
         )
-
     }
 
     override fun postNotification(userId: UUID, topic: String, content: String, threadId: String) {
