@@ -43,7 +43,6 @@ class NotificationDetailApiImpl(
         }
 
         val detailList = userIdList
-            .stream()
             .map {
                 Detail(
                     title = category.title,
@@ -53,7 +52,7 @@ class NotificationDetailApiImpl(
                     userId = it,
                     categoryId = category.id,
                 )
-            }.toList()
+            }
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
@@ -73,7 +72,6 @@ class NotificationDetailApiImpl(
         val category = queryCategoryRepositorySpi.findByTopic(topic)
 
         val detailList = userIdList
-            .stream()
             .map {
                 Detail(
                     title = category.title,
@@ -83,7 +81,7 @@ class NotificationDetailApiImpl(
                     userId = it,
                     categoryId = category.id,
                 )
-            }.toList()
+            }
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
