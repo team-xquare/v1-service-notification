@@ -23,7 +23,6 @@ class QueueController(
 
     @SqsListener(value = ["specific-group-notification.fifo"], deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
     fun specificGroupNotification(@Payload @Valid specificGroup: SpecificGroup) {
-        println(specificGroup.userIdList)
         notificationDetailApi.postSpecificGroupNotification(specificGroup.userIdList, specificGroup.topic, specificGroup.content, specificGroup.threadId)
     }
 
