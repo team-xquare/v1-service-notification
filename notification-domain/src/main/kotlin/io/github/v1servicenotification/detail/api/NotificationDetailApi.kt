@@ -6,6 +6,7 @@ import io.github.v1servicenotification.detail.api.dto.response.NotificationCount
 
 interface NotificationDetailApi {
     fun postGroupNotification(topic: String, content: String, threadId: String)
+    fun postSpecificGroupNotification(userIdList: List<UUID>, topic: String, content: String,threadId: String)
     fun postNotification(userId: UUID, topic: String, content: String,threadId: String)
     fun queryNotificationDetail(userId: UUID): DetailResponse
     fun queryUnreadNotificationCount(userId: UUID): NotificationCountResponse

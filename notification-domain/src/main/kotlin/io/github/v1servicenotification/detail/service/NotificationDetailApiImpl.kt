@@ -43,7 +43,6 @@ class NotificationDetailApiImpl(
         }
 
         val detailList = userIdList
-            .stream()
             .map {
                 Detail(
                     title = category.title,
@@ -53,7 +52,7 @@ class NotificationDetailApiImpl(
                     userId = it,
                     categoryId = category.id,
                 )
-            }.toList()
+            }
 
         postDetailRepositorySpi.saveAllDetail(detailList)
 
@@ -61,7 +60,36 @@ class NotificationDetailApiImpl(
             postDetailUserSpi.getDeviceTokenList(userIdList),
             category.title,
             content,
-            threadId,
+            threadId
+        )
+    }
+
+    override fun postSpecificGroupNotification(userIdList: List<UUID>, topic: String, content: String, threadId: String) {
+        if (!queryCategoryRepositorySpi.existByTopic(topic)) {
+            throw CategoryNotFoundException.EXCEPTION
+        }
+
+        val category = queryCategoryRepositorySpi.findByTopic(topic)
+
+        val detailList = userIdList
+            .map {
+                Detail(
+                    title = category.title,
+                    content = content,
+                    sentAt = LocalDateTime.now(),
+                    isRead = false,
+                    userId = it,
+                    categoryId = category.id,
+                )
+            }
+
+        postDetailRepositorySpi.saveAllDetail(detailList)
+
+        postDetailFcmSpi.sendGroupMessage(
+            postDetailUserSpi.getDeviceTokenList(userIdList),
+            category.title,
+            content,
+            threadId
         )
     }
 
