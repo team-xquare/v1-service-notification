@@ -103,6 +103,5 @@ class CustomSettingRepositoryImpl(
                     .and(categoryEntity.topic.eq(topic))
             )
             .fetchFirst()
-
     }
 }
