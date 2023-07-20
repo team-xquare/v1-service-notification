@@ -100,6 +100,13 @@ class NotificationDetailApiImpl(
 
         val category = queryCategoryRepositorySpi.findByTopic(topic)
 
+        val userId = if (category.defaultActivated) {
+            // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
+            postDetailSettingRepositorySpi.findUserIdByTopicAndIsActivated(topic, false)
+        } else {
+            postDetailSettingRepositorySpi.findUserIdByTopicAndIsActivated(topic, true)
+        }
+
         postDetailRepositorySpi.save(
             Detail(
                 title = category.title,
