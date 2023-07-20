@@ -100,11 +100,9 @@ class NotificationDetailApiImpl(
 
         val category = queryCategoryRepositorySpi.findByTopic(topic)
 
-        val userId = if (category.defaultActivated) {
+        if (category.defaultActivated && postDetailSettingRepositorySpi.findIsActivatedByUserIdAndTopic(userId, topic)) {
             // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
-            postDetailSettingRepositorySpi.findUserIdByTopicAndIsActivated(topic, false)
-        } else {
-            postDetailSettingRepositorySpi.findUserIdByTopicAndIsActivated(topic, true)
+            postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId)
         }
 
         postDetailRepositorySpi.save(
@@ -117,8 +115,6 @@ class NotificationDetailApiImpl(
                 categoryId = category.id,
             )
         )
-
-        postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId)
     }
 
     override fun queryNotificationDetail(userId: UUID): DetailResponse {
