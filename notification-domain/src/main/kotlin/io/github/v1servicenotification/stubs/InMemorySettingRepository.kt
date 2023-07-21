@@ -59,6 +59,8 @@ class InMemorySettingRepository(
     }
 
     override fun findIsActivatedByUserIdAndTopic(userId: UUID, topic: String): Boolean {
-        return settingMap.values.filter { it.userId == userId && categoryMap[it.notificationCategoryId]?.topic == topic }.all { it.isActivated }
+        return settingMap.values.filter {
+            it.userId == userId && categoryMap[it.notificationCategoryId]?.topic == topic
+        }.all { it.isActivated }
     }
 }
