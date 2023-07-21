@@ -57,4 +57,10 @@ class InMemorySettingRepository(
             categoryMap[it.value.notificationCategoryId] ?: throw CategoryNotFoundException.EXCEPTION
         }
     }
+
+    override fun findIsActivatedByUserIdAndTopic(userId: UUID, topic: String): Boolean {
+        return settingMap.values.filter {
+            it.userId == userId && categoryMap[it.notificationCategoryId]?.topic == topic
+        }.all { it.isActivated }
+    }
 }

@@ -92,4 +92,16 @@ class CustomSettingRepositoryImpl(
             )
             .fetch()
     }
+
+    override fun findIsActivatedByUserIdAndTopic(userId: UUID, topic: String): Boolean {
+        return jpaQueryFactory
+            .select(settingEntity.isActivated)
+            .from(settingEntity)
+            .leftJoin(settingEntity.settingId.categoryEntity, categoryEntity)
+            .where(
+                settingEntity.settingId.userId.eq(userId)
+                    .and(categoryEntity.topic.eq(topic))
+            )
+            .fetchFirst()
+    }
 }
