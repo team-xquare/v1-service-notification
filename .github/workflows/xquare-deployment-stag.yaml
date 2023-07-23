@@ -1,0 +1,45 @@
+name: Xquare Deploy for Stage
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ 17 ]
+    outputs:
+      version: ${{ steps.get_version.outputs.BRANCH_NAME }}
+
+    steps:
+      - name: Check Out The Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'zulu'
+          
+      - name: Gradle Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            build
+            --no-daemon
+            
+      - name: Deploy to xquare
+        uses: team-xquare/xquare-deployment-action@master 
+        with:
+          environment: stag
+          xquare_role_arn: ${{ secrets.XQUARE_ROLE_ARN }}
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          buildargs: |
+            CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
+            CLOUD_CONFIG_USERNAME=${{secrets.CLOUD_CONFIG_USERNAME}}
+            PROFILE=stag
