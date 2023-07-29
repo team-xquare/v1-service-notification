@@ -1,6 +1,7 @@
 package io.github.v1servicenotification.detail.service
 
 import io.github.v1servicenotification.annotation.DomainService
+import io.github.v1servicenotification.category.Category
 import io.github.v1servicenotification.category.exception.CategoryNotFoundException
 import io.github.v1servicenotification.category.spi.QueryCategoryRepositorySpi
 import io.github.v1servicenotification.detail.Detail
@@ -100,21 +101,28 @@ class NotificationDetailApiImpl(
 
         val category = queryCategoryRepositorySpi.findByTopic(topic)
 
+        if (category.topic == "FEED_NOTICE_LIKE" || category.topic == "FEED_BAMBOO_LIKE") {
+            sendMessage(category, userId, topic, content, threadId)
+        } else {
+            sendMessage(category, userId, topic, content, threadId)
+            postDetailRepositorySpi.save(
+                Detail(
+                    title = category.title,
+                    content = content,
+                    sentAt = LocalDateTime.now(),
+                    isRead = false,
+                    userId = userId,
+                    categoryId = category.id,
+                )
+            )
+        }
+    }
+
+    private fun sendMessage(category: Category, userId: UUID, topic: String, content: String, threadId: String) {
         if (category.defaultActivated && postDetailSettingRepositorySpi.findIsActivatedByUserIdAndTopic(userId, topic)) {
             // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
             postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId)
         }
-
-        postDetailRepositorySpi.save(
-            Detail(
-                title = category.title,
-                content = content,
-                sentAt = LocalDateTime.now(),
-                isRead = false,
-                userId = userId,
-                categoryId = category.id,
-            )
-        )
     }
 
     override fun queryNotificationDetail(userId: UUID): DetailResponse {
