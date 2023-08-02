@@ -4,7 +4,7 @@ on:
     branches:
       - main
   
-jobs:
+jobs:  
   build:
     permissions:
       id-token: write
