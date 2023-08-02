@@ -42,4 +42,5 @@ jobs:
           buildargs: |
             CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
             CLOUD_CONFIG_USERNAME=${{secrets.CLOUD_CONFIG_USERNAME}}
+            CLOUD_CONFIG_IMPORT_URL=${{ secrets.CLOUD_CONFIG_IMPORT_URL }}
             PROFILE=stag
