@@ -2,3 +2,4 @@ config:
   name: notification
   prefix: /notifications
   service_type: be
+  port: 8080
