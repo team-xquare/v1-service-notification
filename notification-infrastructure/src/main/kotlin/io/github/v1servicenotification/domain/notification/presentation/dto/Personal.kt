@@ -13,5 +13,5 @@ data class Personal(
     val content: String,
 
     @JsonProperty("thread_id")
-    val threadId: String
+    val threadId: String,
 )
