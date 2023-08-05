@@ -34,6 +34,7 @@ class FcmService: PostDetailFcmSpi {
                             Aps.builder()
                                 .setSound("default")
                                 .setThreadId(threadId)
+                                .putCustomData("destination", destination)
                                 .build()
                         ).build()
                 )
