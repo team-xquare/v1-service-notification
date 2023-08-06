@@ -17,7 +17,7 @@ class FcmService: PostDetailFcmSpi {
         const val MAX_TOKEN_LENGTH = 163
     }
 
-    override fun sendGroupMessage(tokenList: List<String>, title: String, content: String, threadId: String) {
+    override fun sendGroupMessage(tokenList: List<String>, title: String, content: String, threadId: String, destination: String) {
         val validTokens = tokenList.filter { it.length == MAX_TOKEN_LENGTH }
         if (validTokens.isNotEmpty()) {
             val multicast = MulticastMessage.builder()
@@ -34,6 +34,7 @@ class FcmService: PostDetailFcmSpi {
                             Aps.builder()
                                 .setSound("default")
                                 .setThreadId(threadId)
+                                .putCustomData("destination", destination)
                                 .build()
                         ).build()
                 )
@@ -43,7 +44,7 @@ class FcmService: PostDetailFcmSpi {
         }
     }
 
-    override fun sendMessage(token: String, title: String, content: String, threadId: String) {
+    override fun sendMessage(token: String, title: String, content: String, threadId: String, destination: String) {
         if (token.length >= MAX_TOKEN_LENGTH) {
             val message = Message.builder()
                 .setToken(token)
@@ -59,6 +60,7 @@ class FcmService: PostDetailFcmSpi {
                             Aps.builder()
                                 .setSound("default")
                                 .setThreadId(threadId)
+                                .putCustomData("destination", destination)
                                 .build()
                         ).build()
                 )

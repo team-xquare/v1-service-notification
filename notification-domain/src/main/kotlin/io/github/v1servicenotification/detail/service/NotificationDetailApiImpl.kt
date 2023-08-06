@@ -61,7 +61,8 @@ class NotificationDetailApiImpl(
             postDetailUserSpi.getDeviceTokenList(userIdList),
             category.title,
             content,
-            threadId
+            threadId,
+            category.destination
         )
     }
 
@@ -90,7 +91,8 @@ class NotificationDetailApiImpl(
             postDetailUserSpi.getDeviceTokenList(userIdList),
             category.title,
             content,
-            threadId
+            threadId,
+            category.destination
         )
     }
 
@@ -121,7 +123,7 @@ class NotificationDetailApiImpl(
     private fun sendMessage(category: Category, userId: UUID, topic: String, content: String, threadId: String) {
         if (category.defaultActivated && postDetailSettingRepositorySpi.findIsActivatedByUserIdAndTopic(userId, topic)) {
             // 기본값이 true면 Setting에서 false로 설정한 사람을 제외하고 발송한다.
-            postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId)
+            postDetailFcmSpi.sendMessage(postDetailUserSpi.getDeviceToken(userId), category.title, content, threadId, category.destination)
         }
     }
 
