@@ -37,7 +37,7 @@ jobs:
         uses: team-xquare/xquare-deployment-action@master 
         with:
           environment: prod
-          xquare_role_arn: ${{ secrets.XQUARE_ROLE_ARN }}
+          access_key: ${{ secrets.ACCESS_KEY }}
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           buildargs: |
             CLOUD_CONFIG_PASSWORD=${{secrets.CLOUD_CONFIG_PASSWORD}}
