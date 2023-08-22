@@ -1,7 +1,7 @@
 name: Xquare Deploy for Production
 on:
   push:
-    branches:
+    tags:
       - v*.*.*
  
 jobs:
