@@ -97,6 +97,7 @@ class NotificationDetailApiImpl(
     }
 
     override fun postNotification(userId: UUID, topic: String, content: String, threadId: String) {
+        println("test")
         if (!queryCategoryRepositorySpi.existByTopic(topic)) {
             throw CategoryNotFoundException.EXCEPTION
         }
